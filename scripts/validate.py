@@ -28,6 +28,7 @@ REQUIRED_PATHS = (
     "core/budget-policy.md",
     "core/evidence-policy.md",
     "core/side-effect-policy.md",
+    "core/visual-source-policy.md",
     "capabilities/product-design.md",
     "capabilities/solution-design.md",
     "capabilities/product-build.md",

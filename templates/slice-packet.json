@@ -21,6 +21,14 @@
     "external_spend": 0,
     "fidelity_target": "functional"
   },
+  "visual_source": {
+    "status": "none",
+    "source_refs": [],
+    "viewport": null,
+    "project_style_refs": [],
+    "must_preserve": [],
+    "must_not_invent": []
+  },
   "steps": [],
   "verification": [],
   "replan_when": []

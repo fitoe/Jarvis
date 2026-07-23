@@ -39,6 +39,8 @@ product defaults in `golden-paths/`; feature defaults in `recipes/`.
 - Invalidate durable evidence when its code dependencies change.
 - Reconcile external side effects before retrying them after interruption.
 - Generate an artifact only when another person or tool will consume it.
+- For new visual surfaces, settle product truth, generate GPT Image 2 references,
+  and implement against one persistent project design language.
 
 ## Repository layout
 
@@ -88,10 +90,10 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.2 establishes a single public trigger, internal capabilities, Slice Packets,
-evidence freshness, side-effect idempotency, budgets, and positive/negative
-trigger fixtures. Real agent-vs-baseline runs remain required before claiming
-behavioral improvement.
+V0.3 adds an Image 2-first path for material new UI, one persistent project
+visual baseline, Product Design plugin translation, and same-viewport comparison
+without making routine UI edits pass a new design gate. Real agent-vs-baseline
+runs remain required before claiming behavioral improvement.
 
 ## License
 

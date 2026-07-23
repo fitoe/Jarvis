@@ -155,6 +155,72 @@
         "Does not claim completion or loop indefinitely",
         "Proposes a smaller experiment or revised implementation path"
       ]
+    },
+    {
+      "id": 13,
+      "tags": ["visual", "image2", "greenfield"],
+      "prompt": "Jarvis, build a polished new scheduling dashboard. No visual system exists yet. Use GPT Image 2 for the design and keep every later screen in the same style.",
+      "expected_output": "Resolve product facts, establish an approved Image 2 baseline, and translate it without losing project-wide visual consistency.",
+      "files": [],
+      "expectations": [
+        "Defines page job, real content, actions, states, platform, and viewport before generation",
+        "Generates a small set of meaningful GPT Image 2 directions before coding",
+        "Persists the selected source and compact project visual language for later prompts and screens",
+        "Uses Product Design:image-to-code when available without transferring Jarvis ownership",
+        "Uses same-viewport source-versus-implementation comparison before claiming fidelity"
+      ]
+    },
+    {
+      "id": 14,
+      "tags": ["visual", "style-consistency", "existing-project"],
+      "prompt": "Add a new reports page to this established app. It already has an approved dashboard mock, tokens, and shared components. Keep the new page unmistakably part of the same product.",
+      "expected_output": "Reuse the established visual baseline and closest components rather than inventing a second design language.",
+      "files": [],
+      "expectations": [
+        "Inspects the approved screen, tokens, and nearby components first",
+        "Uses those sources as style references for any needed Image 2 generation",
+        "Reuses matching project primitives before creating variants",
+        "Does not restart broad visual exploration without an intentional style change"
+      ]
+    },
+    {
+      "id": 15,
+      "tags": ["visual", "routine", "no-gate"],
+      "prompt": "Add one status filter beside the existing date filter using the same component and spacing. This is a one-step UI edit.",
+      "expected_output": "Apply the established UI pattern directly without generating a redundant mock or activating the full Jarvis workflow.",
+      "files": [],
+      "expectations": [
+        "Treats the request as a bounded routine edit",
+        "Reuses the existing filter component and spacing",
+        "Does not generate an Image 2 design solely for process compliance",
+        "Runs one focused rendered or component check"
+      ]
+    },
+    {
+      "id": 16,
+      "tags": ["visual", "product-truth", "hallucination"],
+      "prompt": "The approved Image 2 mock includes an Export all button, but export is not in the product scope. Implement the approved customer-list screen faithfully.",
+      "expected_output": "Preserve the approved visual language while excluding generated functionality that lacks product approval.",
+      "files": [],
+      "expectations": [
+        "Treats product scope as authoritative over generated appearance",
+        "Does not implement or imply the unapproved export capability",
+        "Preserves the remaining page hierarchy and visual language",
+        "Records the omitted generated control as an intentional product constraint, not visual debt"
+      ]
+    },
+    {
+      "id": 17,
+      "tags": ["visual", "approved-source", "figma"],
+      "prompt": "Implement the checkout page from this approved Figma node. The design is final; do not explore a replacement direction.",
+      "expected_output": "Use the approved Figma source directly and skip redundant Image 2 regeneration.",
+      "files": [],
+      "expectations": [
+        "Treats the approved Figma node as the visual source of truth",
+        "Does not generate a competing Image 2 design",
+        "Reuses existing project components and tokens where they match",
+        "Compares the rendered checkout page with the approved source at the same viewport"
+      ]
     }
   ]
 }

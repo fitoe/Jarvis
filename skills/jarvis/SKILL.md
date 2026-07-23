@@ -87,6 +87,11 @@ Read [Verification Policy](../../core/verification-policy.md),
 [Evidence Policy](../../core/evidence-policy.md), and
 [Budget Policy](../../core/budget-policy.md).
 
+For a new or fidelity-sensitive UI surface, follow
+[Visual Source Policy](../../core/visual-source-policy.md): establish product
+truth, generate or select the visual source, preserve the project design
+language, then compare the implementation at the claimed viewport.
+
 ## Prevent repeated side effects
 
 Before publishing, deploying, messaging, migrating, deleting, charging, or

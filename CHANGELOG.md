@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 - 2026-07-24
+
+- Add a conditional GPT Image 2 visual-source policy for new UI surfaces.
+- Preserve one approved visual baseline across later project screens and prompts.
+- Use `Product Design:image-to-code` as the preferred translation and QA provider
+  while Jarvis retains product and delivery ownership.
+- Add same-viewport comparison, product-truth boundaries, and visual-source fields
+  to the Slice Packet.
+- Add behavior evaluations for generation, reuse, source priority, and hallucinated
+  functionality.
+
 ## 0.2.0 - 2026-07-24
 
 - Replace four public skill entry points with one `jarvis` skill.

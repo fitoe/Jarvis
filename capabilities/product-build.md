@@ -27,10 +27,17 @@ closer pattern.
 
 ## Visual implementation
 
-When approved visual evidence exists and fidelity is part of success, preserve
-page type, hierarchy, density, states, and action priority. Verify the claimed
-viewport with screenshots. Record simplifications instead of calling them parity.
-Do not require pixel extraction for ordinary convention-based UI.
+Follow [Visual Source Policy](../core/visual-source-policy.md). When approved
+visual evidence exists and fidelity is part of success, treat it as the visual
+source of truth while product behavior remains authoritative. Preserve page type,
+hierarchy, density, typography, color, assets, states, and action priority.
+
+Use the Product Design plugin's `Product Design:image-to-code` and visual QA when
+available, without transferring Jarvis ownership. Capture source and
+implementation at the same viewport and state, compare them together, and repair
+the largest visible gaps within budget. Record simplifications instead of calling
+them parity. Do not require a generated mock for a small edit that already has a
+clear project pattern.
 
 ## Adapt rather than patch blindly
 

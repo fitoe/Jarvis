@@ -29,6 +29,18 @@ rework. Otherwise choose a reversible default and record it.
 Do not generate a design specification, token file, matrix, manifest, freeze
 record, and debt ledger together without named consumers.
 
+## Establish visual direction
+
+Follow [Visual Source Policy](../core/visual-source-policy.md) when UI quality or
+style affects the slice. For a new or materially different surface, settle the
+page job, real content, actions, states, platform, and viewport before asking GPT
+Image 2 for visual directions. Generated controls or features do not become
+product requirements.
+
+Approve and persist one baseline for the project. Later prompts and screens must
+reuse its visual language and the closest existing components or tokens. A small
+edit inside an established system does not need a fresh mock.
+
 ## Validate product value when uncertainty is high
 
 For a new or weakly evidenced product direction, follow

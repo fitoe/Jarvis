@@ -12,6 +12,8 @@ context. Keep it temporary unless recovery or another consumer needs it.
 - material assumptions and decisions;
 - authority limits and known external effects;
 - iteration, dependency, spend, and fidelity budget;
+- visual source, viewport, project style references, must-preserve details, and
+  must-not-invent boundaries when fidelity matters;
 - verification and replanning triggers.
 
 ## Output
