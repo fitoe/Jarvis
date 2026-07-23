@@ -5,13 +5,13 @@ import re
 import sys
 from pathlib import Path
 
+if __package__:
+    from scripts.state import validate_state
+else:
+    from state import validate_state
 
-SKILLS = (
-    "product-delivery",
-    "product-design",
-    "solution-design",
-    "product-build",
-)
+
+SKILLS = ("jarvis",)
 
 REQUIRED_PATHS = (
     "README.md",
@@ -23,22 +23,22 @@ REQUIRED_PATHS = (
     "core/planning-policy.md",
     "core/code-quality-policy.md",
     "core/verification-policy.md",
+    "core/slice-contract.md",
+    "core/product-validation.md",
+    "core/budget-policy.md",
+    "core/evidence-policy.md",
+    "core/side-effect-policy.md",
+    "capabilities/product-design.md",
+    "capabilities/solution-design.md",
+    "capabilities/product-build.md",
     "golden-paths/README.md",
     "recipes/README.md",
-    "templates/delivery-state.yaml",
+    "templates/delivery-state.json",
+    "templates/slice-packet.json",
     "templates/active-slice.md",
-)
-
-STATE_KEYS = (
-    "goal",
-    "success_claims",
-    "mode",
-    "current_slice",
-    "assumptions",
-    "decisions",
-    "blockers",
-    "evidence",
-    "next_action",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "NOTICE.md",
 )
 
 LINK_PATTERN = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
@@ -89,8 +89,8 @@ def validate_eval_file(path: Path, skill_name: str) -> list[str]:
         errors.append(f"{path}: skill_name must be {skill_name}")
 
     evals = payload.get("evals")
-    if not isinstance(evals, list) or len(evals) < 3:
-        errors.append(f"{path}: expected at least 3 evals")
+    if not isinstance(evals, list) or not evals:
+        errors.append(f"{path}: expected at least 1 eval")
         return errors
 
     ids: set[int] = set()
@@ -110,6 +110,44 @@ def validate_eval_file(path: Path, skill_name: str) -> list[str]:
         expectations = case.get("expectations")
         if not isinstance(expectations, list) or len(expectations) < 2:
             errors.append(f"{prefix} needs at least 2 expectations")
+        tags = case.get("tags")
+        if not isinstance(tags, list) or not tags or not all(
+            isinstance(tag, str) and tag for tag in tags
+        ):
+            errors.append(f"{prefix} needs non-empty tags")
+    return errors
+
+
+def validate_trigger_evals(path: Path) -> list[str]:
+    errors: list[str] = []
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"invalid trigger eval file {path}: {exc}"]
+    if not isinstance(payload, list) or not payload:
+        return [f"{path}: expected a non-empty array"]
+
+    queries: set[str] = set()
+    values: set[bool] = set()
+    for index, item in enumerate(payload, start=1):
+        prefix = f"{path}: trigger eval {index}"
+        if not isinstance(item, dict):
+            errors.append(f"{prefix} must be an object")
+            continue
+        query = item.get("query")
+        if not isinstance(query, str) or not query.strip():
+            errors.append(f"{prefix} missing query")
+        elif query in queries:
+            errors.append(f"{prefix} duplicates a query")
+        else:
+            queries.add(query)
+        should_trigger = item.get("should_trigger")
+        if not isinstance(should_trigger, bool):
+            errors.append(f"{prefix}.should_trigger must be boolean")
+        else:
+            values.add(should_trigger)
+    if values != {True, False}:
+        errors.append(f"{path}: include both trigger and non-trigger cases")
     return errors
 
 
@@ -135,22 +173,26 @@ def validate_repo(root: Path) -> list[str]:
         description = frontmatter.get("description", "")
         if len(description) < 80:
             errors.append(f"{skill_file.relative_to(root)}: description is too weak")
-        line_count = len(text.splitlines())
-        if line_count > 180:
-            errors.append(
-                f"{skill_file.relative_to(root)}: {line_count} lines exceeds 180"
-            )
         if not eval_file.is_file():
             errors.append(f"missing evals: {eval_file.relative_to(root)}")
         else:
             errors.extend(validate_eval_file(eval_file, skill_name))
 
-    state_path = root / "templates" / "delivery-state.yaml"
+        trigger_file = skill_root / "evals" / "trigger-evals.json"
+        if not trigger_file.is_file():
+            errors.append(f"missing trigger evals: {trigger_file.relative_to(root)}")
+        else:
+            errors.extend(validate_trigger_evals(trigger_file))
+
+    state_path = root / "templates" / "delivery-state.json"
     if state_path.is_file():
-        state_text = state_path.read_text(encoding="utf-8")
-        for key in STATE_KEYS:
-            if not re.search(rf"(?m)^{re.escape(key)}\s*:", state_text):
-                errors.append(f"delivery-state.yaml missing key: {key}")
+        try:
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+            errors.extend(
+                f"delivery-state.json: {error}" for error in validate_state(state)
+            )
+        except json.JSONDecodeError as exc:
+            errors.append(f"invalid delivery-state.json: {exc}")
 
     errors.extend(validate_markdown_links(root))
     return errors
@@ -170,7 +212,12 @@ def main() -> int:
         len(json.loads((root / "skills" / name / "evals" / "evals.json").read_text(encoding="utf-8"))["evals"])
         for name in SKILLS
     )
-    print(f"Jarvis validation passed: {skill_count} skills, {eval_count} evals")
+    skill_lines = {
+        name: len((root / "skills" / name / "SKILL.md").read_text(encoding="utf-8").splitlines())
+        for name in SKILLS
+    }
+    line_report = ", ".join(f"{name}={count} lines" for name, count in skill_lines.items())
+    print(f"Jarvis validation passed: {skill_count} skill, {eval_count} evals; {line_report}")
     return 0
 
 

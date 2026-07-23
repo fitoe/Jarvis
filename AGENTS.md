@@ -11,10 +11,13 @@ workflow systems it replaces.
   mandatory documents, plans, branches, agents, or full suites for routine work.
 - Explain why guidance exists. Avoid accumulating `MUST` rules to patch isolated
   failures; add or improve an evaluation scenario instead.
-- Keep shared policy in `core/`. Do not duplicate it across skill entry points.
-- Keep each `SKILL.md` under 180 lines. Load Golden Paths and Recipes only when
-  the active product or feature needs them.
+- Keep shared policy in `core/` and domain lenses in `capabilities/`. Do not copy
+  them into `SKILL.md`.
+- Treat skill size as a review signal, not a CI gate. Load capabilities, Golden
+  Paths, and Recipes only when the active product or feature needs them.
 - Artifacts are optional unless a real downstream consumer needs them.
+- Every new behavioral rule needs a failing or discriminating eval scenario.
+- Prefer changing a capability or Recipe over broadening the control kernel.
 
 ## Verification
 

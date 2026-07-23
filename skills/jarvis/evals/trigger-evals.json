@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Jarvis, take the rough idea in docs/idea.md and build the first usable version in this repo. Make reasonable reversible decisions, show me working slices, and continue until the core flow is verified.",
+    "should_trigger": true
+  },
+  {
+    "query": "We need a small clinic appointment product, not just a plan. Inspect the empty repository, choose a mature stack, define the patient booking journey, and implement it end to end.",
+    "should_trigger": true
+  },
+  {
+    "query": "贾维斯继续，读取 project-state/current.json，核对昨天的验证是否还有效，然后完成下一个可交付切片。",
+    "should_trigger": true
+  },
+  {
+    "query": "Turn this collection of customer interview notes into a product direction and then build a testable prototype. I want one owner to handle design, technical choices, implementation, and evidence.",
+    "should_trigger": true
+  },
+  {
+    "query": "Please own delivery of the new supplier portal across frontend, API, permissions, and database work. Work in vertical slices and stop only for decisions that really need me.",
+    "should_trigger": true
+  },
+  {
+    "query": "Start a new mobile H5 incident-reporting product from this Figma concept, work out missing product and API details, implement the core journey, and verify it on a phone viewport.",
+    "should_trigger": true
+  },
+  {
+    "query": "This project stalled halfway through auth and onboarding. Recover the real state from the repo, decide what remains, and drive it to a verified demo.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build an internal inventory tool for our workshop. We have only a short goal and no repository yet; use sensible defaults and deliver the first useful workflow.",
+    "should_trigger": true
+  },
+  {
+    "query": "Coordinate the redesign and implementation of checkout, including product decisions, API integration, visual parity, regression checks, and final handoff.",
+    "should_trigger": true
+  },
+  {
+    "query": "I want an autonomous but safe product loop for this multi-week feature: plan the roadmap lightly, detail only current work, implement, test claims, and keep going.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explain why the computed property in src/cart.ts recalculates twice. Do not modify files.",
+    "should_trigger": false
+  },
+  {
+    "query": "Review pull request 184 for correctness and leave inline comments. No implementation changes.",
+    "should_trigger": false
+  },
+  {
+    "query": "Change the button text on the settings page from Save to Apply and run the focused component test.",
+    "should_trigger": false
+  },
+  {
+    "query": "What is the difference between optimistic and pessimistic locking? Give me a short example.",
+    "should_trigger": false
+  },
+  {
+    "query": "Draft three alternative names for our new analytics product. I only want naming ideas today.",
+    "should_trigger": false
+  },
+  {
+    "query": "Diagnose why npm test exits with Cannot find module './config'. Report the cause but do not fix it.",
+    "should_trigger": false
+  },
+  {
+    "query": "Translate README.md into Chinese and preserve Markdown formatting.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run the existing release checklist exactly as written; all decisions and implementation are already complete.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a visual moodboard for a luxury tea brand. No website or product implementation yet.",
+    "should_trigger": false
+  },
+  {
+    "query": "Show me the current Git branch, uncommitted files, and latest commit. Make no changes.",
+    "should_trigger": false
+  }
+]

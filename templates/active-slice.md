@@ -18,6 +18,18 @@
 
 - <decision, evidence, confidence, reversibility>
 
+## Authority and side effects
+
+- Authority limits: <what is not authorized>
+- Side effects: <action, exact target, idempotency key, current external state>
+
+## Budget
+
+- Repair loops: 2
+- New dependencies: 1
+- External spend: 0
+- Fidelity target: functional
+
 ## Implementation path
 
 1. <observable change, affected boundary, proof>
@@ -26,6 +38,7 @@
 
 - Claim: <completion claim>
 - Check: <smallest command or observation that can falsify it>
+- Freshness: <commit and paths whose changes invalidate this evidence>
 
 ## Replan when
 

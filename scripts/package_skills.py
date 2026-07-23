@@ -13,12 +13,20 @@ else:
 
 REPLACEMENTS = {
     "../../core/": "references/core/",
+    "../../capabilities/": "references/capabilities/",
     "../../golden-paths/": "references/golden-paths/",
     "../../recipes/": "references/recipes/",
     "../../templates/": "references/templates/",
+    "../../scripts/state.py": "scripts/state.py",
 }
 
-RESOURCE_DIRECTORIES = ("core", "golden-paths", "recipes", "templates")
+RESOURCE_DIRECTORIES = (
+    "core",
+    "capabilities",
+    "golden-paths",
+    "recipes",
+    "templates",
+)
 
 
 def _safe_target(output_root: Path, skill_name: str) -> Path:
@@ -46,6 +54,8 @@ def package_skills(root: Path, output_root: Path) -> list[Path]:
         (target / "SKILL.md").write_text(skill_text, encoding="utf-8")
 
         shutil.copytree(source / "evals", target / "evals")
+        (target / "scripts").mkdir()
+        shutil.copy2(root / "scripts" / "state.py", target / "scripts" / "state.py")
         for resource in RESOURCE_DIRECTORIES:
             shutil.copytree(
                 root / resource,
@@ -77,12 +87,12 @@ def main() -> int:
     if args.check:
         with tempfile.TemporaryDirectory(prefix="jarvis-packages-") as directory:
             packages = package_skills(root, Path(directory))
-            print(f"Jarvis package check passed: {len(packages)} skills")
+            print(f"Jarvis package check passed: {len(packages)} skill package(s)")
         return 0
 
     output = args.output or root / "dist"
     packages = package_skills(root, output)
-    print(f"Packaged {len(packages)} skills in {output.resolve()}")
+    print(f"Packaged {len(packages)} skill package(s) in {output.resolve()}")
     return 0
 
 

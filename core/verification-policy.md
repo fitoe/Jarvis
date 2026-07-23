@@ -45,3 +45,13 @@ business meaning, static copy checks, framework plumbing, and duplicate coverage
 
 Never claim a check passed unless it ran in the current work and its output was
 inspected. A partial check supports only the claim it actually tested.
+
+## Completion levels
+
+- **Slice done:** current slice claims have fresh evidence.
+- **Journey done:** the complete in-scope user journey works across its boundaries.
+- **Product ready:** agreed product scope, critical journeys, permissions, data,
+  operating conditions, and requested release boundary are evidenced.
+
+State the achieved level and material gaps. Passing a slice check does not imply
+journey completion or release readiness.

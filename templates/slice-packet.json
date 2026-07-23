@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.2",
+  "goal": "",
+  "value_hypothesis": null,
+  "observable_result": "",
+  "scope": {
+    "in": [],
+    "out": []
+  },
+  "success_claims": [],
+  "local_truth": {
+    "relevant_files": [],
+    "existing_patterns": []
+  },
+  "assumptions": [],
+  "decisions": [],
+  "authority_limits": [],
+  "budget": {
+    "max_repair_loops": 2,
+    "max_new_dependencies": 1,
+    "external_spend": 0,
+    "fidelity_target": "functional"
+  },
+  "steps": [],
+  "verification": [],
+  "replan_when": []
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.2",
+  "goal": "",
+  "success_claims": [],
+  "mode": "routine",
+  "current_slice": null,
+  "assumptions": [],
+  "decisions": [],
+  "blockers": [],
+  "evidence": [],
+  "side_effects": [],
+  "next_action": ""
+}

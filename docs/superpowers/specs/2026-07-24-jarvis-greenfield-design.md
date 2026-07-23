@@ -18,10 +18,10 @@ Success means:
 
 ## System shape
 
-Use one repository with four thin skill entry points and a shared policy kernel.
-The entry points are capabilities, not ordered stages. `product-delivery` owns
-the loop. It routes to `product-design`, `solution-design`, or `product-build`
-only when the active slice benefits from that context.
+Use one repository and one public `jarvis` skill with a shared policy kernel.
+Product Design, Solution Design, and Product Build are progressively loaded
+internal capabilities, not separately triggered skills or ordered stages. One
+Jarvis context owns the goal, state, and evidence throughout delivery.
 
 ## Operating loop
 
@@ -71,10 +71,12 @@ or scope expansion trigger replanning instead of more patching.
 
 ## State and artifacts
 
-Default durable state is one small file containing goal, success claims, current
-slice, assumptions, decisions, blockers, evidence, and next action. Specialized
-briefs, contracts, visual sources, and reports are created only for real
-consumers.
+Default durable state is one validated JSON file containing goal, success claims,
+current slice, assumptions, decisions, blockers, evidence, side effects, and next
+action. Evidence becomes stale when recorded code dependencies change. Externally
+visible operations use stable idempotency keys and external-state reconciliation.
+Specialized briefs, contracts, visual sources, and reports are created only for
+real consumers.
 
 ## Safety boundary
 
@@ -87,8 +89,9 @@ reversible assumption.
 
 Treat skill instructions as behavioral code. Scenario evaluations cover routine
 changes, new-product walking skeletons, shared API work, authorization boundaries,
-visual fidelity, and interrupted-session recovery. Fix a failing scenario before
-adding a broad rule.
+visual fidelity, interrupted-session recovery, stale evidence, repeated side
+effects, and budget exhaustion. Trigger evaluations cover positive and near-miss
+negative queries. Fix a failing scenario before adding a broad rule.
 
 ## Initial non-goals
 
@@ -96,4 +99,6 @@ adding a broad rule.
 - mandatory dashboards or progress overlays;
 - exhaustive framework-specific architecture;
 - automated deployment or production mutation;
+- a deterministic agent orchestration runtime;
+- automated agent-vs-baseline benchmarks without an available isolated runner;
 - migration of the previous four repositories.
