@@ -1,0 +1,41 @@
+{
+  "skill_name": "product-delivery",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In the existing website, change the checkout button label from Place order to Confirm order and verify it. Do not touch anything else.",
+      "expected_output": "A routine, surgical change with one focused verification and no workflow artifacts.",
+      "files": [],
+      "expectations": [
+        "Classifies or treats the request as routine and reversible",
+        "Does not require a product specification, roadmap, design handoff, or full test suite",
+        "Inspects the relevant existing code before editing",
+        "Reports only the focused verification actually performed"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build a small inventory web app for our five-person workshop. We need to receive parts, see current stock, and record usage. Start now and make sensible choices for details I did not specify.",
+      "expected_output": "A walking-skeleton first slice with explicit low-risk assumptions and selective specialist routing.",
+      "files": [],
+      "expectations": [
+        "Defines an observable product outcome and smallest end-to-end first slice",
+        "Uses explicit reversible assumptions instead of asking about every detail",
+        "Keeps the broader roadmap coarse and the active slice concrete",
+        "Does not require all specialist skills or artifact types before useful work"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Continue this project from project-state/current.yaml. The file says the API is complete, but inspect the repository before trusting it and continue until the next verified slice.",
+      "expected_output": "Recovery from durable state that is reconciled with repository evidence before execution.",
+      "files": [],
+      "expectations": [
+        "Treats stored state as a recovery hint rather than proof",
+        "Checks current files or executable evidence before accepting completion",
+        "Selects one next valuable slice",
+        "Updates completion claims only from fresh evidence"
+      ]
+    }
+  ]
+}
