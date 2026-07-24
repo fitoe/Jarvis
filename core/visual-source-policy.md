@@ -6,7 +6,12 @@ Truth only; Product Truth still governs functions, data, states, and authority.
 
 ## Choose the source path
 
-- Existing approved mock, Figma node, or screenshot: use it as source of truth.
+- New visual design generation: use the user's configured GPT Image 2 provider.
+  Do not route generation to Figma, another design canvas, or another image model
+  unless the user explicitly overrides the provider.
+- Existing approved mock, Figma node, or screenshot supplied or explicitly
+  selected by the user: use it as source of truth. Reading an existing Figma
+  source does not authorize creating or redesigning in Figma.
 - Existing product with a mature nearby pattern: reuse its components, tokens,
   and interaction language.
 - New page-level UI, key visual state, or materially different surface: define
@@ -72,6 +77,11 @@ for an unreferenced viewport.
 
 Use the user's configured GPT Image 2 path when available. Keep selected images
 in a durable project location; drafts can remain disposable.
+
+Figma is an import and inspection provider only when an existing Figma source is
+in scope. `Product Design:image-to-code` remains an implementation and visual-QA
+provider. Neither may replace Image 2 as the new-design generator without an
+explicit user instruction.
 
 ## Decompose only when the source is hard to inspect
 

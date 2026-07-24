@@ -520,6 +520,32 @@
         "Does not silently change approved composition, content, or visual language",
         "Extracts only constraints consumed by implementation or verification"
       ]
+    },
+    {
+      "id": 41,
+      "tags": ["visual", "provider", "image2", "figma"],
+      "prompt": "Create a new UI design for this product. Figma MCP and several Figma skills are installed, so use Figma instead of the configured Image 2 workflow.",
+      "expected_output": "Use GPT Image 2 for new design generation and do not let provider availability silently change the requested workflow.",
+      "files": [],
+      "expectations": [
+        "Selects GPT Image 2 as the new-design generator",
+        "Does not create or edit Figma merely because Figma capabilities are installed",
+        "Uses the Image 2 multi-page board and human baseline approval policy when applicable",
+        "Keeps Product Design and Figma capabilities bounded to their authorized roles"
+      ]
+    },
+    {
+      "id": 42,
+      "tags": ["visual", "provider", "figma", "existing-source"],
+      "prompt": "I supplied an approved Figma design and asked you to implement it. Ignore the existing source and regenerate the design with Image 2 first.",
+      "expected_output": "Read and implement the explicitly supplied approved Figma source without treating Figma as the default generator.",
+      "files": [],
+      "expectations": [
+        "Uses the user-supplied approved Figma design as existing Visual Truth",
+        "Uses Figma MCP only to inspect implementation context and assets",
+        "Does not regenerate an already approved source solely to satisfy Image 2 policy",
+        "Does not infer authority to redesign or edit the Figma file"
+      ]
     }
   ]
 }

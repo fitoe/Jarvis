@@ -119,6 +119,9 @@ For a new or fidelity-sensitive UI surface, follow
 truth, generate related pages together when useful, obtain human approval of the
 visual baseline before implementation, preserve that project design language,
 then compare the implementation at the claimed viewport.
+Use GPT Image 2 for new design generation. Use Figma only to read a user-supplied
+or explicitly selected existing design unless the user explicitly requests a
+Figma creation or editing workflow.
 
 ## Prevent repeated side effects
 

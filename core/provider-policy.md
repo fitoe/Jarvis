@@ -19,6 +19,12 @@ Inspect a provider capability only when the claim depends on it. Prefer the
 project's configured provider. Do not install or invent a second workflow when a
 small direct fallback can satisfy the claim.
 
+For new UI design generation, bind the provider to GPT Image 2. Do not infer
+permission to use Figma from installed Figma skills, an available Figma MCP, or
+generic repository design guidance. Use Figma only to read an existing source
+the user supplied or explicitly selected, unless the user explicitly requests a
+Figma creation or editing workflow.
+
 A provider may propose decisions and return artifacts or observations. It may
 not broaden product scope, override product truth, expand authority, own Jarvis
 state, or declare the slice complete. Persist provider output only when code,

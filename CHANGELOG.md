@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.1 - 2026-07-24
+
+- Bind new UI design generation to GPT Image 2 by default.
+- Prevent installed Figma skills, Figma MCP availability, or generic repository
+  guidance from silently replacing the configured Image 2 workflow.
+- Limit Figma to reading user-supplied or explicitly selected existing designs
+  unless the user explicitly requests Figma creation or editing.
+
 ## 0.8.0 - 2026-07-24
 
 - Require Image 2 design before new page-level UI, key visual states, and material

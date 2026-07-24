@@ -48,6 +48,8 @@ independent work, integrate results, and retain final acceptance.
   and implement against one persistent project design language.
 - Generate related pages together when useful, and require human approval of the
   resulting visual baseline before page-level UI implementation.
+- Use GPT Image 2 for new UI design generation; use Figma only for existing
+  user-supplied sources unless the user explicitly requests Figma creation.
 - Decompose only visually complex sources into semantic sections; preserve the
   full-page source and require section plus assembled-page comparison.
 - Keep Product Truth, Visual Truth, implementation choices, and evidence separate.
