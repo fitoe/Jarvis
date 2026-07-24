@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 - 2026-07-24
+
+- Require Image 2 design before new page-level UI, key visual states, and material
+  visual redesigns, with narrow exceptions for established-system edits.
+- Support multi-page design boards as efficient, consistent project baselines.
+- Require one human Visual Baseline approval before UI implementation, without
+  adding repeated per-page approval gates.
+- Extract only constraints consumed by implementation or verification.
+- Keep approved boards authoritative; use crops or high-resolution details only
+  to improve inspectability without silently redesigning the product.
+
 ## 0.7.0 - 2026-07-24
 
 - Activate complex visual decomposition by inspectability and fidelity risk,

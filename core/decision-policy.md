@@ -34,6 +34,10 @@ Pause when:
 Ask one concise question containing the decision, why it matters, and the default
 recommendation.
 
+For a new project or page family, approval of the Image 2 design board is the
+visual-direction decision. Do not start UI implementation before it is approved.
+Do not require repeated approval for later screens that preserve that baseline.
+
 ## Use a spike
 
 When a decision is uncertain, expensive, but safely testable, run the smallest

@@ -46,6 +46,8 @@ independent work, integrate results, and retain final acceptance.
 - Generate an artifact only when another person or tool will consume it.
 - For new visual surfaces, settle product truth, generate GPT Image 2 references,
   and implement against one persistent project design language.
+- Generate related pages together when useful, and require human approval of the
+  resulting visual baseline before page-level UI implementation.
 - Decompose only visually complex sources into semantic sections; preserve the
   full-page source and require section plus assembled-page comparison.
 - Keep Product Truth, Visual Truth, implementation choices, and evidence separate.
@@ -107,10 +109,10 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.7 adds conditional semantic decomposition for long or dense visual sources,
-least-context section handoffs, continuous assembly, and section plus full-page
-visual evidence. Real agent-vs-baseline runs remain required before claiming
-behavioral improvement.
+V0.8 makes Image 2 design-first the default for new page-level UI, supports
+multi-page design boards, requires one human baseline approval before UI
+implementation, and keeps approved-source extraction lightweight. Real
+agent-vs-baseline runs remain required before claiming behavioral improvement.
 
 ## License
 

@@ -1,19 +1,24 @@
 # Visual Source Policy
 
-Use a visual source when UI quality or project style materially affects the
-active slice. The approved source governs Visual Truth only; Product Truth still
-governs functions, data, states, and authority.
+Use an approved visual source before implementing a new page-level UI, a key new
+visual state, or a material visual redesign. The approved source governs Visual
+Truth only; Product Truth still governs functions, data, states, and authority.
 
 ## Choose the source path
 
 - Existing approved mock, Figma node, or screenshot: use it as source of truth.
 - Existing product with a mature nearby pattern: reuse its components, tokens,
   and interaction language.
-- New or materially different visual surface: define the page job, real content,
-  actions, reachable states, platform, and viewport; then generate GPT Image 2
-  directions before coding.
+- New page-level UI, key visual state, or materially different surface: define
+  the page job, real content, actions, reachable states, platform, and viewport;
+  then generate GPT Image 2 designs before coding.
 - Small convention-based UI edit: follow the existing system directly. Do not
   generate a new mock solely to satisfy process.
+
+Copy changes, narrow color or spacing corrections, visual-neutral bug fixes, and
+mechanical composition of already approved components may bypass generation.
+When uncertain whether a change establishes new visual language, treat it as a
+new surface.
 
 Generated images may propose composition and art direction. They must not create
 product scope. Ignore controls, claims, data, or states that are absent from the
@@ -21,9 +26,16 @@ approved product behavior.
 
 ## Preserve one project design language
 
-Approve one visual baseline early enough to guide implementation. Persist the
-selected source because code and later Image 2 prompts consume it. Keep a compact
-Visual Source Record with:
+For a new project or page family, require human approval of one visual baseline
+before UI implementation starts. This is one direction decision, not approval of
+every later screen. Later screens may proceed automatically while they preserve
+the baseline; ask again only when they materially change the visual language or
+the approved source is too ambiguous to implement safely.
+
+Persist the selected source because code and later Image 2 prompts consume it.
+After approval, extract only implementation constraints a downstream builder or
+verifier will consume. Keep them in the existing Visual Source Record or Slice
+Packet, not a separate freeze-document set:
 
 - source paths and target viewport;
 - page type, hierarchy, density, and key states;
@@ -41,10 +53,17 @@ language.
 
 ## Generate usable references
 
-When direction is unresolved, generate two or three meaningfully different
-directions and select one. Once selected, generate readable references at the
-claimed viewport or by meaningful section; avoid one compressed board whose text
-and spacing cannot be inspected. Regenerate unclear sections instead of guessing.
+Generate related pages together on one Image 2 design board when this improves
+speed, token use, cross-page comparison, or style consistency. The board may be
+the approved Visual Baseline and global overview. It must show enough real
+content and page identity for a human to judge direction; it need not make every
+implementation measurement readable.
+
+Generate multiple directions only when direction is unresolved or the human asks
+for alternatives. After approval, crop readable pages or semantic sections from
+the board for implementation. Generate a higher-resolution page or detail only
+when the approved board cannot support reliable extraction; preserve the board's
+composition, content, and style unless the replacement is explicitly approved.
 
 One desktop reference does not define mobile behavior. When a breakpoint changes
 the composition materially, generate or approve that viewport separately;

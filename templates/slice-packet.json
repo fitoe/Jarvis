@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "goal": "",
   "value_hypothesis": null,
   "observable_result": "",
@@ -27,6 +27,11 @@
   },
   "visual_source": {
     "status": "none",
+    "approval": {
+      "required": false,
+      "status": "not_required",
+      "approved_refs": []
+    },
     "generation_provider": null,
     "reference_images_supported": null,
     "source_refs": [],

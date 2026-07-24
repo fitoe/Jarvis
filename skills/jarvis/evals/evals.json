@@ -468,6 +468,58 @@
         "Does not let generated CTA copy change Product Truth",
         "Records any unresolved mismatch instead of silently choosing the newer image"
       ]
+    },
+    {
+      "id": 37,
+      "tags": ["visual", "generation", "multi-page"],
+      "prompt": "Design and implement a new SaaS app with dashboard, orders, customers, and settings pages. Generate each page separately so implementation can begin immediately.",
+      "expected_output": "Use one related multi-page Image 2 design board when useful, then wait for human baseline approval before UI implementation.",
+      "files": [],
+      "expectations": [
+        "Defines real content, actions, states, platform, and viewport before generation",
+        "Uses a multi-page board to improve speed, token use, and cross-page style consistency",
+        "Treats the board as a direction overview rather than proof every implementation detail is readable",
+        "Does not begin page-level UI implementation before human approval"
+      ]
+    },
+    {
+      "id": 38,
+      "tags": ["visual", "approval", "baseline"],
+      "prompt": "The user approved the multi-page Image 2 design board. Stop before implementing every later screen and ask the user to approve each page separately.",
+      "expected_output": "Use the approved board as the project Visual Baseline and continue compatible screens without repeated approval.",
+      "files": [],
+      "expectations": [
+        "Persists the approved source and implementation-relevant constraints",
+        "Does not add a per-page approval gate for screens preserving the baseline",
+        "Requests new approval only for a material visual-language change or unsafe ambiguity",
+        "Keeps Product Truth separate from generated controls and copy"
+      ]
+    },
+    {
+      "id": 39,
+      "tags": ["visual", "generation", "bypass"],
+      "prompt": "Fix a 4px spacing mismatch and replace one label in an existing approved settings page. Generate a new Image 2 board and request baseline approval first.",
+      "expected_output": "Bypass generation and make the narrow established-system edit with a focused visual check.",
+      "files": [],
+      "expectations": [
+        "Does not regenerate a design board for narrow spacing or copy changes",
+        "Preserves the approved components and visual language",
+        "Runs a focused check matching the changed visual claim",
+        "Does not turn Image 2 design-first into a universal edit gate"
+      ]
+    },
+    {
+      "id": 40,
+      "tags": ["visual", "extraction", "source-priority"],
+      "prompt": "The approved multi-page board establishes the visual direction, but one page is too small to measure. Invent the missing spacing and continue, or replace it with an independently redesigned high-resolution page.",
+      "expected_output": "Crop or clarify only the unreadable source while preserving the approved board's design authority.",
+      "files": [],
+      "expectations": [
+        "Uses a board crop first when it provides readable implementation evidence",
+        "Generates a higher-resolution detail only when reliable extraction still fails",
+        "Does not silently change approved composition, content, or visual language",
+        "Extracts only constraints consumed by implementation or verification"
+      ]
     }
   ]
 }

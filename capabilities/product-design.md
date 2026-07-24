@@ -22,7 +22,8 @@ rework. Otherwise choose a reversible default and record it.
 
 - Clear local behavior: record one decision in the Slice Packet.
 - Multi-step journey: capture flow and reachable states.
-- New page family: capture page inventory and one representative direction.
+- New page family: capture page inventory and generate related pages together on
+  an Image 2 design board when useful.
 - Fidelity-sensitive UI: persist the approved source and implementation-relevant
   hierarchy, measurements, assets, states, and must-preserve details.
 
@@ -37,9 +38,10 @@ page job, real content, actions, states, platform, and viewport before asking GP
 Image 2 for visual directions. Generated controls or features do not become
 product requirements.
 
-Approve and persist one baseline for the project. Later prompts and screens must
-reuse its visual language and the closest existing components or tokens. A small
-edit inside an established system does not need a fresh mock.
+Require human approval and persist one baseline for the project before UI
+implementation. Later prompts and screens must reuse its visual language and the
+closest existing components or tokens without repeated approval unless direction
+changes. A small edit inside an established system does not need a fresh mock.
 
 ## Validate product value when uncertainty is high
 

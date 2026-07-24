@@ -116,8 +116,9 @@ Read [Verification Policy](../../core/verification-policy.md),
 
 For a new or fidelity-sensitive UI surface, follow
 [Visual Source Policy](../../core/visual-source-policy.md): establish product
-truth, generate or select the visual source, preserve the project design
-language, then compare the implementation at the claimed viewport.
+truth, generate related pages together when useful, obtain human approval of the
+visual baseline before implementation, preserve that project design language,
+then compare the implementation at the claimed viewport.
 
 ## Prevent repeated side effects
 
