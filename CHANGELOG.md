@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.0 - 2026-07-24
+
+- Make Jarvis explicitly own global planning, dependencies, quality, integration,
+  and final acceptance.
+- Add a least-context Delegated Task Packet for bounded subagent work.
+- Parallelize only tasks with stable integration points and isolated or disjoint
+  writes.
+- Keep authority centralized and require useful worker handback evidence.
+- Use independent verification proportionally instead of fixed reviewer chains.
+- Add behavior evaluations for project control, safe and unsafe parallelism,
+  context minimization, integration, and final acceptance.
+
 ## 0.5.0 - 2026-07-24
 
 - Use `efficient-development-workflow` as the installed process governor for

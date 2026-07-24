@@ -3,6 +3,9 @@
 An explicit product request authorizes ordinary, reversible work within its
 scope. It does not authorize unrelated external actions.
 
+Delegation transfers task context, not authority. A subagent cannot perform an
+external or destructive action that Jarvis itself was not authorized to perform.
+
 ## Usually allowed
 
 - inspect files, history, manifests, and local runtime state;

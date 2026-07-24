@@ -22,9 +22,14 @@ when the active slice needs them:
 | Solution Design | Choose technical boundaries and implementation paths |
 | Product Build | Implement and verify working vertical slices |
 
-This avoids cross-skill routing and trigger conflicts while preserving progressive
-loading. Shared policy lives in `core/`; capability modules in `capabilities/`;
-product defaults in `golden-paths/`; feature defaults in `recipes/`.
+This avoids competing public workflow owners and trigger conflicts while
+preserving progressive loading. Shared policy lives in `core/`; capability
+modules in `capabilities/`; product defaults in `golden-paths/`; feature defaults
+in `recipes/`.
+
+Jarvis remains the project controller. It may delegate bounded implementation or
+verification tasks to subagents using least-context packets, parallelize safe
+independent work, integrate results, and retain final acceptance.
 
 ## Principles
 
@@ -49,6 +54,8 @@ product defaults in `golden-paths/`; feature defaults in `recipes/`.
   the active slice's needs.
 - Classify completion claims so product, functional, visual, quality, and release
   evidence cannot substitute for one another.
+- Delegate only bounded work with explicit ownership and integration points;
+  subagent completion never replaces Jarvis acceptance.
 
 ## Repository layout
 
@@ -58,7 +65,7 @@ capabilities/   Product Design, Solution Design, and Product Build modules
 core/           Shared operating, decision, planning, quality, and test policy
 golden-paths/   Defaults for common product archetypes
 recipes/        Defaults for common feature families
-templates/      Durable state, Slice Packet, and human-readable slice templates
+templates/      Durable state, Slice Packet, delegated-task, and slice templates
 evals/          Evaluation guidance
 scripts/        State, packaging, and repository validation tools
 tests/          Validator regression tests
@@ -98,10 +105,10 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.5 adds progressive skill composition: one process governor, one code-quality
-governor, and the smallest relevant set of domain providers under Jarvis
-ownership. Real agent-vs-baseline runs remain required before claiming behavioral
-improvement.
+V0.6 makes Jarvis the explicit project controller and adds least-context subagent
+delegation, safe parallelism, bounded ownership, proportional independent
+verification, integration checks, and controller-owned final acceptance. Real
+agent-vs-baseline runs remain required before claiming behavioral improvement.
 
 ## License
 

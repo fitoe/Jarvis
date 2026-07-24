@@ -30,4 +30,6 @@ context. Keep it temporary unless recovery or another consumer needs it.
 
 The packet is a context boundary, not a mandatory project artifact. Routine work
 can remain in conversation and code. Never use it to copy full logs or product
-history between capabilities.
+history between capabilities. When a slice delegates bounded work, derive each
+worker's smaller [Delegated Task Packet](../templates/delegated-task.json) from
+this context instead of forwarding the entire packet.

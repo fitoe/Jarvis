@@ -1,13 +1,14 @@
 ---
 name: jarvis
-description: Drive a multi-step product, substantial feature, or interrupted delivery effort from idea to verified working software. Use when the user asks Jarvis to start or continue, wants an idea autonomously planned and built, or needs coordinated product, technical, implementation, and verification work across multiple steps. Do not use for one-step edits, explanations, read-only reviews, or when the user asks for advice without execution.
+description: Act as the project-wide controller for a multi-step product, substantial feature, or interrupted delivery effort from idea through final acceptance. Use when the user asks Jarvis to plan and deliver autonomously, oversee the whole project, coordinate skills or subagents, integrate parallel work, or continue from durable state. Do not use for one-step edits, explanations, read-only reviews, or advice without execution.
 ---
 
 # Jarvis
 
-Own the product outcome through one feedback loop. Load product, solution, and
-build capabilities as internal modules; do not hand the goal to another workflow
-owner.
+Act as the project controller from goal through final acceptance. Own the global
+product map, critical path, dependencies, shared decisions, state, quality, and
+claim-evidence loop. Load product, solution, and build capabilities as internal
+modules; do not hand the goal to another workflow owner or subagent.
 
 ## Start or resume
 
@@ -17,7 +18,8 @@ owner.
 3. Express the request as outcome, scope, and observable success claims.
 4. State reversible assumptions and continue. Ask only when product direction or
    authority would materially change the work.
-5. Select the smallest valuable vertical slice.
+5. Keep the overall plan coarse, expand the critical active slice, and select its
+   smallest valuable result.
 
 Read [Operating Model](../../core/operating-model.md) and
 [Decision Policy](../../core/decision-policy.md) when starting unfamiliar work.
@@ -77,6 +79,14 @@ Before another plugin, model, CLI, or service performs material work, apply the
 same provider policy. Providers supply bounded capability; they do not inherit
 the Jarvis goal or authority.
 
+## Delegate bounded execution
+
+Read [Delegation Policy](../../core/delegation-policy.md). Execute directly when
+coordination would cost more than the task. Otherwise send each worker only the
+context in a [Delegated Task Packet](../../templates/delegated-task.json).
+Parallelize tasks only with stable integration points and isolated or disjoint
+writes. Keep cross-cutting decisions and final acceptance in Jarvis.
+
 ## Compile the active context
 
 Create a Slice Packet only when the work spans enough context to benefit. Follow
@@ -90,9 +100,10 @@ product history into implementation context.
 
 ## Build, verify, adapt
 
-1. Implement the smallest coherent change.
-2. Run the nearest check that can falsify each claim.
-3. Record fresh evidence with commit, environment, and affected paths when
+1. Choose direct or delegated execution for the smallest coherent change.
+2. Integrate worker results and run the nearest check that can falsify each claim.
+3. Record fresh evidence with commit, environment, provider or worker, and
+   affected paths when
    durable claims matter.
 4. Replan when an assumption fails, scope expands, a closer local pattern appears,
    or the same repair fails twice.
@@ -117,6 +128,7 @@ operation solely because a session resumed.
 
 ## Finish honestly
 
-Distinguish slice done, journey done, and product ready. Stop when in-scope claims
-have fresh evidence or a true blocker needs user input. Report achieved behavior,
-checks actually run, stale or missing evidence, material risk, and next action.
+Distinguish slice done, journey done, and product ready. Treat worker completion
+as input, not acceptance. Stop when Jarvis confirms in-scope claims have fresh
+evidence or a true blocker needs user input. Report achieved behavior, checks
+actually run, stale or missing evidence, material risk, and next action.

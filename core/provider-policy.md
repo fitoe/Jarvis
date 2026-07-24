@@ -1,7 +1,8 @@
 # Capability Provider Policy
 
-Jarvis is the control plane. Skills, plugins, models, CLIs, and services are
-bounded providers of design, implementation, verification, or external effects.
+Jarvis is the control plane. Skills, plugins, models, CLIs, services, and
+subagents are bounded providers of design, implementation, verification, or
+external effects.
 
 Before material provider work that can affect outcome, authority, cost, or
 evidence, define only what affects the active slice:

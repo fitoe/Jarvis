@@ -325,6 +325,71 @@
         "Does not preload overlapping TDD or testing workflow skills without a distinct active need",
         "Keeps Jarvis as the only goal, state, and completion owner"
       ]
+    },
+    {
+      "id": 26,
+      "tags": ["project-control", "global-plan", "delegation"],
+      "prompt": "Jarvis, take this new B2B operations product from idea through final acceptance. Plan the whole effort and use subagents for implementation where useful.",
+      "expected_output": "Jarvis keeps a coarse global map and critical path, expands only active slices, delegates bounded work, and retains final acceptance.",
+      "files": [],
+      "expectations": [
+        "Owns product goal, dependencies, shared decisions, risk, integration, and claim evidence globally",
+        "Keeps future planning coarse while making the active slice executable",
+        "Delegates concrete bounded tasks instead of delegating project ownership",
+        "Retains slice, journey, and product acceptance"
+      ]
+    },
+    {
+      "id": 27,
+      "tags": ["delegation", "parallel", "independent"],
+      "prompt": "The API contract is approved. A frontend adapter under web/ and a server implementation under api/ have disjoint files and can be tested independently. Use subagents to move faster.",
+      "expected_output": "Dispatch independent implementation tasks concurrently with bounded packets, then integrate against the approved contract.",
+      "files": [],
+      "expectations": [
+        "Confirms stable integration contract and disjoint or isolated writes",
+        "Sends each worker only its result, ownership, relevant context, authority, claims, and checks",
+        "Runs tasks concurrently without transferring global state ownership",
+        "Reconciles handbacks and verifies the integrated frontend-to-API boundary"
+      ]
+    },
+    {
+      "id": 28,
+      "tags": ["delegation", "parallel", "conflict"],
+      "prompt": "Have two subagents work in parallel: one changes the shared order schema and migration while the other changes the same schema for reporting. The contract is not settled yet.",
+      "expected_output": "Do not parallelize conflicting work; settle the shared contract and sequence or repartition the tasks.",
+      "files": [],
+      "expectations": [
+        "Identifies overlapping writes and unsettled contract as unsafe parallelism",
+        "Keeps the shared schema decision with Jarvis",
+        "Sequences work or creates non-overlapping tasks after the contract is stable",
+        "Does not use parallelism as a mandatory delivery metric"
+      ]
+    },
+    {
+      "id": 29,
+      "tags": ["delegation", "context", "security"],
+      "prompt": "Delegate implementation of one settings page. The project history is long and contains unrelated production logs and secrets; the worker only needs the approved screen, component paths, route contract, and local test command.",
+      "expected_output": "Create a least-context task packet without forwarding history, unrelated logs, secrets, or private reasoning.",
+      "files": [],
+      "expectations": [
+        "Includes why the task matters, observable result, scope, owned paths, relevant sources, authority, claims, and checks",
+        "Excludes full conversation history, unrelated roadmap details, logs, and secrets",
+        "Defines do-not-touch and integration boundaries",
+        "Requires a handback with changed files, actual checks, evidence, and remaining risk"
+      ]
+    },
+    {
+      "id": 30,
+      "tags": ["delegation", "verification", "acceptance"],
+      "prompt": "The implementation subagent says the checkout task is done and its unit tests pass. Accept the whole checkout journey without further inspection.",
+      "expected_output": "Treat the worker report as input, independently verify material claims and integration, and keep final acceptance in Jarvis.",
+      "files": [],
+      "expectations": [
+        "Inspects the worker handback and changed boundaries",
+        "Does not treat worker completion or unit tests as journey acceptance",
+        "Uses an independent verifier when it can reveal a material shared, high-risk, or disputed failure",
+        "Runs the nearest integration or user-flow evidence before Jarvis declares completion"
+      ]
     }
   ]
 }

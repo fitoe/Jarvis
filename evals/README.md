@@ -44,3 +44,7 @@ Scenario coverage:
 - software work composes with the process and code-quality governors;
 - explicitly named skills outrank automatic domain selection;
 - domain skills are selected from active need without skill swarms.
+- Jarvis retains global planning, integration, and final acceptance;
+- delegated work receives least-sufficient context and bounded ownership;
+- only independent tasks run concurrently;
+- worker and verifier evidence is integrated before completion.

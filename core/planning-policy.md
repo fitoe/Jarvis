@@ -42,7 +42,8 @@ security boundaries before dependent work spreads.
 
 Parallelize only independent slices with clear ownership and integration points.
 Do not delegate by default; coordination cost must be lower than expected time or
-context savings.
+context savings. Follow [Delegation Policy](delegation-policy.md) for task
+packets, write isolation, handback, integration, and acceptance.
 
 ## Artifacts
 

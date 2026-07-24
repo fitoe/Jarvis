@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1",
+  "role": "implement",
+  "project_goal_context": "",
+  "why_now": "",
+  "observable_result": "",
+  "scope": {
+    "in": [],
+    "out": []
+  },
+  "ownership": {
+    "read_refs": [],
+    "write_paths": [],
+    "do_not_touch": []
+  },
+  "inputs": {
+    "product_truth": [],
+    "visual_truth": [],
+    "patterns": [],
+    "decisions": [],
+    "contracts": []
+  },
+  "authority_limits": [],
+  "side_effects": [],
+  "budget": {},
+  "skills": [],
+  "success_claims": [],
+  "verification": [],
+  "integration": {
+    "depends_on": [],
+    "produces": [],
+    "parallel_with": []
+  },
+  "handback": {
+    "status": "",
+    "include": [
+      "changed_files",
+      "checks_and_results",
+      "new_assumptions_or_decisions",
+      "evidence",
+      "side_effects",
+      "remaining_risk"
+    ]
+  }
+}
