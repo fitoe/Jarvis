@@ -16,6 +16,8 @@ context. Keep it temporary unless recovery or another consumer needs it.
 - iteration, dependency, spend, and fidelity budget;
 - visual source, viewport, project style references, must-preserve details, and
   must-not-invent boundaries when fidelity matters;
+- compact Visual Map and semantic section context only when complex visual
+  decomposition is active and a downstream implementer or verifier needs it;
 - verification and replanning triggers.
 
 ## Output

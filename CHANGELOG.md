@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.0 - 2026-07-24
+
+- Activate complex visual decomposition by inspectability and fidelity risk,
+  without adding image-size gates or burdening ordinary UI work.
+- Preserve a full-page source and compact Visual Map across semantic sections.
+- Keep approved-source crops authoritative and regenerated detail views
+  supplementary.
+- Give delegated section work global style, adjacent-boundary, integration, and
+  dual-scale verification context.
+- Require continuous assembly and both section-level and full-page visual QA.
+- Add behavior evaluations for activation, bypass, source authority, context,
+  decomposition quality, and final acceptance.
+
 ## 0.6.0 - 2026-07-24
 
 - Make Jarvis explicitly own global planning, dependencies, quality, integration,

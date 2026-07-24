@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "goal": "",
   "value_hypothesis": null,
   "observable_result": "",
@@ -33,7 +33,8 @@
     "viewport": null,
     "project_style_refs": [],
     "must_preserve": [],
-    "must_not_invent": []
+    "must_not_invent": [],
+    "decomposition": null
   },
   "steps": [],
   "verification": [],

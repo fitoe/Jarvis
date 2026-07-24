@@ -46,6 +46,8 @@ independent work, integrate results, and retain final acceptance.
 - Generate an artifact only when another person or tool will consume it.
 - For new visual surfaces, settle product truth, generate GPT Image 2 references,
   and implement against one persistent project design language.
+- Decompose only visually complex sources into semantic sections; preserve the
+  full-page source and require section plus assembled-page comparison.
 - Keep Product Truth, Visual Truth, implementation choices, and evidence separate.
 - Treat skills, plugins, models, and services as bounded providers; Jarvis retains
   goal, authority, state, budget, and completion ownership.
@@ -105,10 +107,10 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.6 makes Jarvis the explicit project controller and adds least-context subagent
-delegation, safe parallelism, bounded ownership, proportional independent
-verification, integration checks, and controller-owned final acceptance. Real
-agent-vs-baseline runs remain required before claiming behavioral improvement.
+V0.7 adds conditional semantic decomposition for long or dense visual sources,
+least-context section handoffs, continuous assembly, and section plus full-page
+visual evidence. Real agent-vs-baseline runs remain required before claiming
+behavioral improvement.
 
 ## License
 

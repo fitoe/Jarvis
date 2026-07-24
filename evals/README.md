@@ -48,3 +48,6 @@ Scenario coverage:
 - delegated work receives least-sufficient context and bounded ownership;
 - only independent tasks run concurrently;
 - worker and verifier evidence is integrated before completion.
+- complex visual decomposition activates from inspectability, not fixed size;
+- semantic sections retain global style and adjacent-boundary context;
+- section evidence cannot replace assembled full-page visual evidence.

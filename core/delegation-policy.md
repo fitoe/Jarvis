@@ -49,6 +49,13 @@ unrelated files, secrets, or the controller's private reasoning. A verification
 agent receives the claim, acceptance criteria, and raw artifacts—not the
 implementer's conclusion or intended answer.
 
+When [Visual Source Policy](visual-source-policy.md) activates complex visual
+decomposition, populate `inputs.visual_context` only for section work. Include
+the full-page overview, authoritative section source, adjacent boundaries,
+shared tokens and components, cross-section constraints, owned integration
+boundary, and both section and full-page verification expectations. Jarvis keeps
+the Visual Map, shared shell, continuous assembly, and final visual acceptance.
+
 ## Require a useful handback
 
 The worker returns `done`, `partial`, `needs-context`, or `blocked`, plus changed

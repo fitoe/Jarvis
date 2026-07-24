@@ -390,6 +390,84 @@
         "Uses an independent verifier when it can reveal a material shared, high-risk, or disputed failure",
         "Runs the nearest integration or user-flow evidence before Jarvis declares completion"
       ]
+    },
+    {
+      "id": 31,
+      "tags": ["visual", "decomposition", "activation"],
+      "prompt": "Implement an approved, very long and dense Image 2 landing-page design. It contains overlapping sections, shared decorative rails, and typography too small to inspect reliably as one image.",
+      "expected_output": "Activate semantic visual decomposition while preserving the approved full-page design as global Visual Truth.",
+      "files": [],
+      "expectations": [
+        "Activates decomposition because one-pass inspection is unreliable, not because of a fixed pixel threshold",
+        "Keeps the approved full-page source as global Visual Truth",
+        "Creates a compact Visual Map for semantic sections, shared style, and cross-section constraints",
+        "Plans section and assembled-page comparison at the same viewport and state"
+      ]
+    },
+    {
+      "id": 32,
+      "tags": ["visual", "decomposition", "bypass"],
+      "prompt": "Add one settings card to an existing dashboard using its established component library and spacing tokens. The nearby page pattern is clear and fidelity risk is low.",
+      "expected_output": "Skip visual decomposition and follow the existing design system with a focused check.",
+      "files": [],
+      "expectations": [
+        "Does not create a Visual Map or section workflow for ordinary inspectable UI",
+        "Reuses existing components and tokens",
+        "Does not generate a new mock solely to satisfy process",
+        "Uses one focused visual or page check appropriate to the claim"
+      ]
+    },
+    {
+      "id": 33,
+      "tags": ["visual", "decomposition", "semantics"],
+      "prompt": "Split this approved long storefront design into equal 1000-pixel horizontal crops, have workers code each crop independently, and join everything only at the end.",
+      "expected_output": "Reject arbitrary fixed cropping and late-only assembly in favor of semantic boundaries and continuous integration.",
+      "files": [],
+      "expectations": [
+        "Splits on product and layout meaning rather than equal rectangles",
+        "Preserves adjacent boundary context, overlaps, shared rails, and alignment constraints",
+        "Builds shared shell, tokens, and components before isolated section implementation",
+        "Assembles continuously instead of waiting until every section is finished"
+      ]
+    },
+    {
+      "id": 34,
+      "tags": ["visual", "delegation", "context"],
+      "prompt": "Delegate the testimonials section of a complex approved page. The worker should receive only its crop so its prompt stays small.",
+      "expected_output": "Keep context small without removing the global and boundary information required for faithful integration.",
+      "files": [],
+      "expectations": [
+        "Includes the full-page overview and authoritative section source",
+        "Includes adjacent boundaries, shared tokens, components, and cross-section constraints",
+        "Defines owned paths and the section integration boundary",
+        "Excludes unrelated project history while retaining section and full-page verification expectations"
+      ]
+    },
+    {
+      "id": 35,
+      "tags": ["visual", "verification", "acceptance"],
+      "prompt": "Every section of the long page matches its individual crop, but the assembled screenshot has uneven section rhythm, broken vertical rails, and two visible boundary jumps. Declare visual parity.",
+      "expected_output": "Refuse full-page visual parity until assembled-page continuity is repaired and compared with the global source.",
+      "files": [],
+      "expectations": [
+        "Treats section comparison as insufficient for full-page acceptance",
+        "Uses the approved full-page source at the same viewport and state",
+        "Repairs or reports rhythm, rail, and boundary mismatches within budget",
+        "Keeps final visual acceptance with Jarvis rather than section workers"
+      ]
+    },
+    {
+      "id": 36,
+      "tags": ["visual", "generation", "source-priority"],
+      "prompt": "An approved long Image 2 design already exists. A regenerated high-resolution pricing-section close-up changes its layout and CTA copy. Use the clearer close-up as the new source automatically.",
+      "expected_output": "Treat the regenerated detail as supplementary and preserve the approved source's composition and product truth.",
+      "files": [],
+      "expectations": [
+        "Keeps crops from the approved source authoritative for visible composition and boundaries",
+        "Treats regenerated close-ups as supplementary clarification unless explicitly approved",
+        "Does not let generated CTA copy change Product Truth",
+        "Records any unresolved mismatch instead of silently choosing the newer image"
+      ]
     }
   ]
 }

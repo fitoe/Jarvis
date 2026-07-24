@@ -54,6 +54,34 @@ for an unreferenced viewport.
 Use the user's configured GPT Image 2 path when available. Keep selected images
 in a durable project location; drafts can remain disposable.
 
+## Decompose only when the source is hard to inspect
+
+Activate complex visual decomposition only when the source's length, density, or
+cross-section relationships make reliable one-pass implementation or comparison
+unlikely. Decide from inspectability and fidelity risk, not an arbitrary pixel
+height or section count. Keep ordinary pages and small edits on the normal path.
+
+When decomposition is active, retain the approved full-page source as global
+Visual Truth and create a compact Visual Map only when implementation or QA will
+consume it. Capture:
+
+- semantic section order, bounds, approximate height, and density;
+- shared grid, shell, tokens, components, assets, and responsive rules;
+- cross-section rhythm, overlaps, transitions, and alignment constraints;
+- for each section, its source, adjacent boundary context, states, and integration
+  boundary.
+
+Split by product and layout meaning, not fixed rectangles. If the design is still
+being generated, approve one full-page overview plus readable section references
+and detail views as needed. If a long source is already approved, crops from that
+source retain authority; newly generated close-ups are supplementary and cannot
+silently replace its composition, content, or boundaries.
+
+Build the shared shell and visual primitives first, then implement and assemble
+sections continuously. Compare each section with its source and compare the
+assembled page with the full-page source at the same viewport and state. Section
+parity does not prove full-page rhythm, continuity, or final visual acceptance.
+
 ## Translate and compare
 
 When the Product Design plugin is available, use its

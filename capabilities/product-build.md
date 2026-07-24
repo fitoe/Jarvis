@@ -39,6 +39,11 @@ the largest visible gaps within budget. Record simplifications instead of callin
 them parity. Do not require a generated mock for a small edit that already has a
 clear project pattern.
 
+When the source is too complex for reliable one-pass inspection, use the
+conditional decomposition defined by Visual Source Policy. Implement semantic
+sections against the shared visual language, assemble them continuously, and
+require both section-level and full-page comparison before accepting parity.
+
 Treat other skills, plugins, models, and services the same way. Follow
 [Capability Provider Policy](../core/provider-policy.md); accept their bounded
 output, then verify the active Jarvis claim.
