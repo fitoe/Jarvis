@@ -41,6 +41,11 @@ product defaults in `golden-paths/`; feature defaults in `recipes/`.
 - Generate an artifact only when another person or tool will consume it.
 - For new visual surfaces, settle product truth, generate GPT Image 2 references,
   and implement against one persistent project design language.
+- Keep Product Truth, Visual Truth, implementation choices, and evidence separate.
+- Treat skills, plugins, models, and services as bounded providers; Jarvis retains
+  goal, authority, state, budget, and completion ownership.
+- Classify completion claims so product, functional, visual, quality, and release
+  evidence cannot substitute for one another.
 
 ## Repository layout
 
@@ -90,10 +95,10 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.3 adds an Image 2-first path for material new UI, one persistent project
-visual baseline, Product Design plugin translation, and same-viewport comparison
-without making routine UI edits pass a new design gate. Real agent-vs-baseline
-runs remain required before claiming behavioral improvement.
+V0.4 adds explicit truth boundaries, bounded capability providers, typed claims,
+adaptive product/visual overlays, provider capability degradation, and a Shadow
+Mode evaluation protocol. Real agent-vs-baseline runs remain required before
+claiming behavioral improvement.
 
 ## License
 

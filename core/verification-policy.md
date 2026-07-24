@@ -4,6 +4,22 @@ Verification protects product claims, not implementation rituals.
 
 ## Build a claim-evidence map
 
+Use five claim types when the distinction affects completion:
+
+- **Product:** the slice solves the intended user problem or reduces the named
+  product uncertainty.
+- **Functional:** behavior, state, data, and recovery work at the claimed
+  boundary.
+- **Visual:** the named viewport and state match an approved source within the
+  declared fidelity target.
+- **Quality:** affected code satisfies relevant maintainability, type, security,
+  and regression expectations.
+- **Release:** the agreed artifact or environment is usable at the real release
+  boundary.
+
+Do not require every type for every slice. Do not use evidence from one type to
+claim another.
+
 For every completion claim, identify the nearest check that could prove it false:
 
 | Claim | Closest useful evidence |
@@ -34,6 +50,16 @@ Authentication, authorization, money, inventory, migrations, production data,
 deployment, publishing, or destructive actions. Verify authority, use isolated
 data, exercise the closest integration boundary, and run the repository's release
 gate when the completion claim includes release readiness.
+
+Add independent overlays when needed:
+
+- **Product-uncertain:** seek the cheapest user or market signal that can
+  challenge the value hypothesis before broad investment.
+- **Visual-fidelity:** establish an approved source and compare the same viewport
+  and state. Scope strict fidelity to the declared surfaces.
+
+An overlay does not lower risk intensity. A production admin screen can require
+both high-risk verification and visual-fidelity evidence.
 
 ## Test usefulness
 

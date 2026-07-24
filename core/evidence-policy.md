@@ -2,6 +2,11 @@
 
 Evidence supports a specific claim only while its relevant inputs remain valid.
 
+Classify the claim as product, functional, visual, quality, or release. Evidence
+for one type does not prove another: screenshots do not prove persistence, unit
+tests do not prove visual fidelity, and mock behavior does not prove a real
+integration.
+
 For durable evidence, record:
 
 - stable evidence and claim identifiers;
@@ -20,6 +25,7 @@ Stale evidence remains useful history but cannot support completion.
 {
   "id": "E1",
   "claim_id": "C1",
+  "claim_type": "functional",
   "kind": "test",
   "status": "fresh",
   "commit": "<git-commit>",

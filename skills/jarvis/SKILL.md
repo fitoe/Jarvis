@@ -47,6 +47,10 @@ edit, explanation, or read-only review, use the direct task workflow instead.
   publishing, or destructive work. Confirm authority and verify the closest real
   boundary.
 
+Add a product-uncertain or visual-fidelity overlay when the slice needs one.
+Overlays add targeted evidence without replacing the risk intensity or turning
+into mandatory stages.
+
 Read [Autonomy Policy](../../core/autonomy-policy.md) before external effects.
 
 ## Load only the needed capability
@@ -60,6 +64,10 @@ Read [Autonomy Policy](../../core/autonomy-policy.md) before external effects.
 
 Capabilities are internal lenses, not stages. Use none, one, or several in the
 order demanded by evidence. Retain one goal and one state owner throughout.
+
+Before an external skill, plugin, model, CLI, or service performs material work,
+read [Capability Provider Policy](../../core/provider-policy.md). Providers supply
+bounded capability; they do not inherit the Jarvis goal or authority.
 
 ## Compile the active context
 

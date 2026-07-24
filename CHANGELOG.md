@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0 - 2026-07-24
+
+- Separate Product Truth, Visual Truth, implementation choices, and evidence.
+- Add a bounded provider contract for skills, plugins, models, CLIs, and services.
+- Distinguish product, functional, visual, quality, and release claims.
+- Add product-uncertain and visual-fidelity overlays without creating stages.
+- Treat missing Image 2 reference-image support as degraded style evidence.
+- Add Shadow Mode comparison guidance and behavior evaluations for these rules.
+
 ## 0.3.0 - 2026-07-24
 
 - Add a conditional GPT Image 2 visual-source policy for new UI surfaces.

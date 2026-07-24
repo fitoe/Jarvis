@@ -11,6 +11,19 @@ Initial evaluations are fixtures for qualitative runs and future benchmark
 automation. Repository validation checks their schema. Run agent-vs-baseline
 benchmarks before claiming that an instruction change improves delivery behavior.
 
+Use Shadow Mode before trusting autonomous execution on varied projects:
+
+1. Give baseline and Jarvis the same raw task and repository state.
+2. Keep expected answers and prior diagnoses out of both contexts.
+3. Compare task completion, human intervention, rework, elapsed time, visual
+   drift, code quality, and unsafe or repeated side effects.
+4. Classify failures by outcome, assumption, decision, implementation, provider,
+   verification, or authority.
+5. Change a general decision rule or provider contract only after the failure is
+   reproducible; add a hard gate only for repeated high-impact risk.
+
+Structural validation and green CI do not count as behavioral improvement.
+
 Scenario coverage:
 
 - routine work remains lightweight;
@@ -23,3 +36,8 @@ Scenario coverage:
 - changed dependencies invalidate durable evidence;
 - uncertain external side effects are reconciled before retry;
 - repeated repairs trigger replanning rather than infinite loops.
+- product and visual truth remain separate;
+- provider capability does not become workflow ownership;
+- claim types receive non-substitutable evidence;
+- product uncertainty and visual fidelity overlay normal risk intensity;
+- behavior claims require agent-vs-baseline or Shadow Mode evidence.

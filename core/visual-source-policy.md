@@ -1,7 +1,8 @@
 # Visual Source Policy
 
 Use a visual source when UI quality or project style materially affects the
-active slice. Keep product truth separate from generated appearance.
+active slice. The approved source governs Visual Truth only; Product Truth still
+governs functions, data, states, and authority.
 
 ## Choose the source path
 
@@ -30,11 +31,13 @@ Visual Source Record with:
 - project components and tokens to reuse;
 - must-preserve details and must-not-invent boundaries.
 
-For later surfaces, attach the baseline and closest approved screen when the
-generation path accepts image references. Otherwise supply the Visual Source
-Record and exact reuse constraints in the prompt. Reuse established components
-before generating new variants. A new direction is warranted only when the
-product intentionally changes its visual language.
+For later surfaces, inspect whether the generation provider accepts image
+references. Attach the baseline and closest approved screen when it does.
+Otherwise supply the Visual Source Record and exact reuse constraints, then rely
+more heavily on approved tokens and components. Text-only prompting is degraded
+style evidence and cannot alone support a project-wide consistency claim. A new
+direction is warranted only when the product intentionally changes its visual
+language.
 
 ## Generate usable references
 
@@ -58,6 +61,10 @@ When the Product Design plugin is available, use its
 visual-QA provider. Jarvis retains goal, product truth, budget, implementation,
 and completion ownership. The plugin replaces a separate `design-to-code`
 workflow; it does not replace this policy or Image 2 generation.
+
+Follow [Capability Provider Policy](provider-policy.md). Apply the configured
+Image 2 provider and Jarvis repair budget; do not import another workflow's
+artifact set into Jarvis unless a downstream consumer needs it.
 
 If the plugin is unavailable, perform the same minimum loop directly:
 

@@ -7,6 +7,10 @@
     "in": [],
     "out": []
   },
+  "truth": {
+    "product": [],
+    "visual": []
+  },
   "success_claims": [],
   "local_truth": {
     "relevant_files": [],
@@ -23,6 +27,8 @@
   },
   "visual_source": {
     "status": "none",
+    "generation_provider": null,
+    "reference_images_supported": null,
     "source_refs": [],
     "viewport": null,
     "project_style_refs": [],

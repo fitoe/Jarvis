@@ -24,6 +24,21 @@ Before deciding how to work:
 3. Reuse existing product, architecture, and code conventions.
 4. Use a Golden Path only when local truth does not answer the decision.
 
+## Keep truth boundaries separate
+
+- **Product truth:** approved users, jobs, scope, behavior, data, states, and
+  authority.
+- **Visual truth:** approved composition, hierarchy, typography, color, assets,
+  components, and target viewports.
+- **Implementation choices:** reversible technical means used to realize the
+  product and visual truth.
+- **Evidence:** observations that support one named claim while their inputs stay
+  valid.
+
+Generated output and provider suggestions remain proposals until accepted into
+the relevant truth boundary. Visual truth cannot add product behavior, and an
+implementation choice cannot silently redefine the outcome.
+
 ## Select a vertical slice
 
 Choose the smallest coherent path from an input or user action to an observable
@@ -35,7 +50,8 @@ and data before building broad horizontal foundations.
 
 ## Run the feedback loop
 
-1. Define the current slice and its claims.
+1. Define the current slice; type claims only when their evidence could be
+   confused.
 2. Resolve only decisions that affect the slice.
 3. Implement the smallest coherent change.
 4. Run the nearest check that can falsify each claim.

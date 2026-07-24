@@ -6,8 +6,10 @@ context. Keep it temporary unless recovery or another consumer needs it.
 ## Input
 
 - goal and current observable result;
+- current Product Truth and Visual Truth relevant to the slice;
 - in-scope and out-of-scope behavior;
-- success claims;
+- typed product, functional, visual, quality, or release claims when the
+  distinction affects completion;
 - relevant files and local patterns;
 - material assumptions and decisions;
 - authority limits and known external effects;

@@ -39,6 +39,10 @@ the largest visible gaps within budget. Record simplifications instead of callin
 them parity. Do not require a generated mock for a small edit that already has a
 clear project pattern.
 
+Treat other skills, plugins, models, and services the same way. Follow
+[Capability Provider Policy](../core/provider-policy.md); accept their bounded
+output, then verify the active Jarvis claim.
+
 ## Adapt rather than patch blindly
 
 Stop and replan when a material assumption fails, scope crosses a new boundary,
