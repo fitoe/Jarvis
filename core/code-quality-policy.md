@@ -2,6 +2,9 @@
 
 Use these rules for every implementation slice.
 
+Load `karpathy-guidelines` when installed before writing, reviewing, debugging,
+or refactoring code. This policy remains the fallback when that skill is absent.
+
 ## Before editing
 
 - State assumptions only when ambiguity could change the implementation.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0 - 2026-07-24
+
+- Use `efficient-development-workflow` as the installed process governor for
+  software tasks.
+- Use `karpathy-guidelines` as the installed code-work governor.
+- Select user-named and domain skills progressively from the active slice.
+- Prevent unrelated skill preloading, overlapping workflow ownership, and
+  unauthorized skill installation.
+- Add behavior evaluations for fixed governors and automatic domain routing.
+
 ## 0.4.0 - 2026-07-24
 
 - Separate Product Truth, Visual Truth, implementation choices, and evidence.

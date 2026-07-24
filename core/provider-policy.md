@@ -27,3 +27,27 @@ When a provider is unavailable or lacks a required capability, use a bounded
 fallback if it can support the same claim. Otherwise mark that claim unverified
 and continue only with work whose truth is unaffected. Record provider identity
 or version when a later run could invalidate durable evidence.
+
+## Select skills progressively
+
+For software planning, implementation, debugging, review, or refactoring, load
+`efficient-development-workflow` when installed. It governs process size,
+risk-based verification, and outcome-focused tests.
+
+Before writing, reviewing, debugging, or refactoring code, also load
+`karpathy-guidelines` when installed. It governs assumptions, simplicity,
+surgical edits, and verifiable success.
+
+For the remaining need:
+
+1. Honor skills explicitly named by the user.
+2. Inspect available skill descriptions for the active slice's missing
+   capability.
+3. Load the smallest non-overlapping set that materially improves the result.
+4. Read each selected skill before using it, then keep its output inside the
+   Jarvis goal, authority, budget, and evidence model.
+
+Do not load skills by category, preload possible future skills, or let several
+workflow skills own the same task. If no relevant skill is installed, use local
+project truth and the smallest safe fallback; do not install one without user
+authority.

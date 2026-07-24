@@ -53,6 +53,14 @@ into mandatory stages.
 
 Read [Autonomy Policy](../../core/autonomy-policy.md) before external effects.
 
+## Compose with installed skills
+
+Read [Capability Provider Policy](../../core/provider-policy.md). For software
+work, load `efficient-development-workflow` when installed. Before code is
+written, reviewed, debugged, or refactored, also load `karpathy-guidelines`.
+Select any other skill from the active need, not the whole roadmap. User-named
+skills take priority; unrelated or overlapping workflow skills stay unloaded.
+
 ## Load only the needed capability
 
 - Read [Product Design](../../capabilities/product-design.md) when user, workflow,
@@ -65,9 +73,9 @@ Read [Autonomy Policy](../../core/autonomy-policy.md) before external effects.
 Capabilities are internal lenses, not stages. Use none, one, or several in the
 order demanded by evidence. Retain one goal and one state owner throughout.
 
-Before an external skill, plugin, model, CLI, or service performs material work,
-read [Capability Provider Policy](../../core/provider-policy.md). Providers supply
-bounded capability; they do not inherit the Jarvis goal or authority.
+Before another plugin, model, CLI, or service performs material work, apply the
+same provider policy. Providers supply bounded capability; they do not inherit
+the Jarvis goal or authority.
 
 ## Compile the active context
 

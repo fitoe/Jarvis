@@ -41,3 +41,6 @@ Scenario coverage:
 - claim types receive non-substitutable evidence;
 - product uncertainty and visual fidelity overlay normal risk intensity;
 - behavior claims require agent-vs-baseline or Shadow Mode evidence.
+- software work composes with the process and code-quality governors;
+- explicitly named skills outrank automatic domain selection;
+- domain skills are selected from active need without skill swarms.

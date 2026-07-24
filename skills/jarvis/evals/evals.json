@@ -286,6 +286,45 @@
         "Proposes the same raw task and repository state for baseline and Jarvis",
         "Names outcome, intervention, rework, time, quality, visual drift, and side effects as comparison signals"
       ]
+    },
+    {
+      "id": 23,
+      "tags": ["skill-routing", "process", "code-quality"],
+      "prompt": "Jarvis, plan and implement a multi-step customer import feature, including validation, persistence, and focused tests. The efficient-development-workflow and karpathy-guidelines skills are installed.",
+      "expected_output": "Compose the delivery with the installed process governor and apply the code-quality governor before implementation.",
+      "files": [],
+      "expectations": [
+        "Loads efficient-development-workflow for process size, risk, and verification choices",
+        "Loads karpathy-guidelines before writing or reviewing code",
+        "Keeps one Jarvis goal and state owner",
+        "Uses the smallest slice and checks that prove import behavior rather than ceremonial artifacts"
+      ]
+    },
+    {
+      "id": 24,
+      "tags": ["skill-routing", "domain", "no-swarm"],
+      "prompt": "Jarvis, add a Stripe subscription checkout to this existing React app. Relevant Stripe and React skills are installed alongside unrelated CAD, game, PDF, and email skills. Choose what you need automatically.",
+      "expected_output": "Load the fixed software governors and only the domain skills needed by the active checkout slice.",
+      "files": [],
+      "expectations": [
+        "Loads efficient-development-workflow and karpathy-guidelines for software and code work",
+        "Selects the relevant Stripe skill and a React skill only if the active implementation needs it",
+        "Does not load unrelated CAD, game, PDF, or email skills",
+        "Keeps domain skill output inside Jarvis scope, authority, budget, and evidence"
+      ]
+    },
+    {
+      "id": 25,
+      "tags": ["skill-routing", "user-named", "overlap"],
+      "prompt": "Jarvis, refactor the flaky upload tests. Use the installed testing-strategy skill. Several overlapping TDD and testing workflow skills are also available.",
+      "expected_output": "Honor the named testing skill, compose it with the software governors, and avoid loading competing workflow owners.",
+      "files": [],
+      "expectations": [
+        "Loads the user-named testing-strategy skill",
+        "Uses efficient-development-workflow and karpathy-guidelines for the software and code work",
+        "Does not preload overlapping TDD or testing workflow skills without a distinct active need",
+        "Keeps Jarvis as the only goal, state, and completion owner"
+      ]
     }
   ]
 }

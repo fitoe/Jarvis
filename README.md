@@ -44,6 +44,9 @@ product defaults in `golden-paths/`; feature defaults in `recipes/`.
 - Keep Product Truth, Visual Truth, implementation choices, and evidence separate.
 - Treat skills, plugins, models, and services as bounded providers; Jarvis retains
   goal, authority, state, budget, and completion ownership.
+- Compose software work with `efficient-development-workflow`, apply
+  `karpathy-guidelines` to code work, and select other installed skills only from
+  the active slice's needs.
 - Classify completion claims so product, functional, visual, quality, and release
   evidence cannot substitute for one another.
 
@@ -95,10 +98,10 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.4 adds explicit truth boundaries, bounded capability providers, typed claims,
-adaptive product/visual overlays, provider capability degradation, and a Shadow
-Mode evaluation protocol. Real agent-vs-baseline runs remain required before
-claiming behavioral improvement.
+V0.5 adds progressive skill composition: one process governor, one code-quality
+governor, and the smallest relevant set of domain providers under Jarvis
+ownership. Real agent-vs-baseline runs remain required before claiming behavioral
+improvement.
 
 ## License
 
