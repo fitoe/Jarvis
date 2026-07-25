@@ -38,6 +38,19 @@ For a new project or page family, approval of the Image 2 design board is the
 visual-direction decision. Do not start UI implementation before it is approved.
 Do not require repeated approval for later screens that preserve that baseline.
 
+## Resolve instruction and preference precedence
+
+Unless a higher safety or authority boundary applies, prefer:
+
+1. current explicit user instruction;
+2. repository instructions and approved project truth;
+3. stable preference stated in the current conversation;
+4. Jarvis policy and relevant mature defaults;
+5. generic best practice.
+
+Persist a preference only when a real later consumer needs it. Do not infer
+sensitive traits, build a user profile, or persist one-off wording choices.
+
 ## Use a spike
 
 When a decision is uncertain, expensive, but safely testable, run the smallest

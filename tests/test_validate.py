@@ -269,6 +269,33 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertIn("Collaboration Policy", skill)
         self.assertIn("../../core/collaboration-policy.md", skill)
 
+        autonomy = (ROOT / "core" / "autonomy-policy.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Respond to steering",
+            "**Redirect:**",
+            "**Pause:**",
+            "**Resume:**",
+            "**Cancel:**",
+        ):
+            self.assertIn(phrase, autonomy)
+
+        decision = (ROOT / "core" / "decision-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Resolve instruction and preference precedence", decision)
+        self.assertIn("current explicit user instruction", decision)
+        self.assertIn(
+            "stable preference stated in the current conversation", decision
+        )
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in ("steering", "pause-resume-cancel", "preference-precedence"):
+            self.assertIn(tag, tags)
+
 
 if __name__ == "__main__":
     unittest.main()
