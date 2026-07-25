@@ -49,6 +49,10 @@ relevant repository code, not the full roadmap or conversation.
 - Make reversible, low-impact decisions automatically and record assumptions.
 - Ask only about direction, authority, secrets, production effects, and hard-to-
   reverse choices.
+- Communicate at material delivery events, accept correction without friction,
+  and keep pause, resume, redirect, and cancel behavior predictable.
+- Batch independent discovery and coherent implementation work; load providers
+  and quality overlays only when the active claim needs them.
 - Use the smallest check that can falsify the completion claim.
 - Treat failed checks and disproved assumptions as replanning signals.
 - Invalidate durable evidence when its code dependencies change.

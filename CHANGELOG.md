@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.0 - 2026-07-25
+
+- Add a concise human-agent collaboration contract with milestone-based progress
+  updates and outcome-first handoff.
+- Define add, redirect, pause, resume, cancel, correction, and preference
+  precedence behavior.
+- Batch independent discovery and avoid repeated provider or context loading.
+- Stop equivalent failure retries, preserve independent progress, and use bounded
+  fallback only when it supports the same claim.
+- Activate accessibility, performance, security, privacy, operability, and
+  compatibility checks only from relevant claims.
+- Add discriminating behavior evaluations for collaboration, steering, execution
+  economy, recovery, and conditional quality.
+
 ## 0.9.0 - 2026-07-25
 
 - Replace Slice Packet and Delegated Task Packet planning with human-readable
