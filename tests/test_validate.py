@@ -315,6 +315,27 @@ class ValidateRepositoryTests(unittest.TestCase):
         for tag in ("execution-economy", "changed-condition", "degraded-progress"):
             self.assertIn(tag, tags)
 
+        quality = (ROOT / "core" / "code-quality-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Activate quality overlays only when relevant", quality)
+        for phrase in (
+            "Accessibility",
+            "Performance",
+            "Security and privacy",
+            "Operability",
+            "Compatibility",
+        ):
+            self.assertIn(phrase, quality)
+
+        verification = (ROOT / "core" / "verification-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "An active quality overlay selects the smallest check", verification
+        )
+        self.assertIn("quality-overlay", tags)
+
 
 if __name__ == "__main__":
     unittest.main()

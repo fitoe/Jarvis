@@ -118,6 +118,10 @@ Prefer observable state changes, payloads, persisted results, rendered outcomes,
 and user-visible recovery. Avoid private-method assertions, call counts without
 business meaning, static copy checks, framework plumbing, and duplicate coverage.
 
+An active quality overlay selects the smallest check that can falsify its claim.
+It does not require a full accessibility, performance, security, operability, or
+compatibility suite when that boundary is outside the active scope.
+
 ## Evidence rule
 
 Never claim a check passed unless it ran in the current work and its output was

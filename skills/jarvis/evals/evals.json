@@ -819,6 +819,19 @@
         "Marks unsupported claims unverified",
         "Continues unaffected work whose truth is independent"
       ]
+    },
+    {
+      "id": 64,
+      "tags": ["quality-overlay", "conditional", "no-gate"],
+      "prompt": "For a private static copy edit, require complete accessibility, load, penetration, operability, and public compatibility suites before acceptance.",
+      "expected_output": "Keep the routine edit lightweight and activate only quality overlays connected to an actual claim or boundary.",
+      "files": [],
+      "expectations": [
+        "Does not turn every quality dimension into a universal gate",
+        "Selects the smallest check connected to the active claim",
+        "Activates stronger checks only when their boundary enters scope",
+        "Does not skip a relevant high-risk boundary"
+      ]
     }
   ]
 }

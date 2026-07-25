@@ -21,6 +21,17 @@ or refactoring code. This policy remains the fallback when that skill is absent.
   without consumers, and unrelated cleanup.
 - Match local style even when another style is personally preferable.
 
+## Activate quality overlays only when relevant
+
+- **Accessibility:** public UI, forms, keyboard flows, or assistive semantics.
+- **Performance:** startup, large collections, heavy assets, or latency-sensitive APIs.
+- **Security and privacy:** identity, untrusted input, secrets, or sensitive data.
+- **Operability:** background jobs, integrations, or production services.
+- **Compatibility:** public contracts, migrations, or multiple consumers.
+
+An overlay adds only checks needed by its active claim. Do not make every quality
+dimension a gate for every slice.
+
 ## After editing
 
 - Remove imports, variables, and files made unused by this change.
