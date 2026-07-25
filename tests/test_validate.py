@@ -198,6 +198,57 @@ class ValidateRepositoryTests(unittest.TestCase):
         ):
             self.assertIn(phrase, text)
 
+    def test_page_and_project_verification_contract_is_explicit(self) -> None:
+        verification = (ROOT / "core" / "verification-policy.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Select test level",
+            "## Select verification scope",
+            "## Verification cadence",
+            "Focused gate",
+            "Affected gate",
+            "Journey gate",
+            "Release gate",
+        ):
+            self.assertIn(phrase, verification)
+
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "Batch related edits",
+            "coherent checkpoint",
+            "Avoid repeated compile-test loops",
+        ):
+            self.assertIn(phrase, product_build)
+
+        product_plan = (ROOT / "templates" / "product-plan.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Critical journey verification", product_plan)
+        self.assertIn("## Project verification gates", product_plan)
+
+        development = (ROOT / "templates" / "development-guide.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "| Acceptance claim | Claim type | Risk | Evidence |", development
+        )
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "focused-gate",
+            "affected-gate",
+            "journey-gate",
+            "release-gate",
+            "batched-verification",
+            "early-check",
+        ):
+            self.assertIn(tag, tags)
+
 
 if __name__ == "__main__":
     unittest.main()

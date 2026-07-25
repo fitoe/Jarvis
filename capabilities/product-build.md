@@ -22,6 +22,13 @@ Follow [Code Quality Policy](../core/code-quality-policy.md).
 - Touch only files required by the current Development Guide.
 - Remove only code made unused by this change.
 - Keep mock behavior separate from real integration claims.
+- Batch related edits until a coherent checkpoint so most active time remains on
+  implementation.
+- Avoid repeated compile-test loops while implementation is still incomplete.
+- Run an early cheap check only to prevent material rework, confirm an uncertain
+  contract, reproduce a defect, or protect a high-risk boundary.
+- At a coherent checkpoint, use the verification scope defined by
+  [Verification Policy](../core/verification-policy.md).
 
 Load one [Feature Recipe](../recipes/README.md) only when the project lacks a
 closer pattern.

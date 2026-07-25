@@ -46,6 +46,20 @@ Order pages or journeys by user value, dependency, uncertainty, and risk.
 
 - Observable product claim and evidence needed to accept it.
 
+## Critical journey verification
+
+- Journey: observable result; UI, API, data, permission, or external boundaries;
+  risk; evidence needed to accept the complete journey.
+
+## Project verification gates
+
+- Focused gate: narrow checks used while building the active page or unit.
+- Affected gate: regression and contract checks required when shared behavior
+  changes.
+- Journey gate: end-to-end evidence required when a critical journey is connected.
+- Release gate: repository checks and real artifact or environment evidence
+  required only when release readiness is claimed.
+
 ## Assumptions and unresolved decisions
 
 - Assumption or decision that could materially change product direction.

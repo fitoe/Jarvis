@@ -78,8 +78,13 @@ ordinary internal structure to implementation.
 
 ## Verification
 
-- Acceptance criterion: command, observation, or real boundary that can falsify
-  it.
+| Acceptance claim | Claim type | Risk | Evidence |
+|---|---|---|---|
+| Observable criterion | Product, Functional, Visual, Quality, or Release | Routine, Shared, or High-risk | Command, observation, screenshot, or real boundary that can falsify it |
+
+Name the relevant role, isolated test data, environment, viewport, and resulting
+state when they affect the claim. Test only reachable states and avoid repeating
+coverage already supplied by a more stable boundary.
 
 ## When to stop and request more context
 

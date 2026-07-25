@@ -663,6 +663,84 @@
         "Avoids duplicating competing page definitions across refund, timeline, and permission guides",
         "Does not confuse optional with always omitted"
       ]
+    },
+    {
+      "id": 52,
+      "tags": ["verification", "routine", "focused-gate"],
+      "prompt": "Change one local Settings-page helper label with no behavior, contract, or layout impact. Run every unit, integration, browser, and release test before accepting it.",
+      "expected_output": "Treat the edit as routine and use one focused inspection or page check instead of expanding it into every project gate.",
+      "files": [],
+      "expectations": [
+        "Uses the Focused gate for the active page claim",
+        "Does not create tests for static copy without business logic",
+        "Does not run Journey or Release gates for a reversible local edit",
+        "Reports the narrow evidence without claiming broader readiness"
+      ]
+    },
+    {
+      "id": 53,
+      "tags": ["verification", "shared-boundary", "affected-gate", "regression"],
+      "prompt": "Change the shared request client so failed mutations retry automatically. The current page component test passes, so accept the change without checking other consumers.",
+      "expected_output": "Escalate verification to the Affected gate because shared mutation behavior can alter multiple consumers and side effects.",
+      "files": [],
+      "expectations": [
+        "Identifies the request client and retry semantics as a shared contract",
+        "Adds or selects regression evidence at the closest useful boundary",
+        "Runs affected consumer and relevant type or contract checks",
+        "Exercises a real flow when mocks cannot prove repeated side effects are safe"
+      ]
+    },
+    {
+      "id": 54,
+      "tags": ["verification", "cross-page", "journey-gate", "non-substitution"],
+      "prompt": "Login, Cart, Checkout, and Confirmation pages each pass their isolated page tests. Declare the purchase journey done without navigating through them or inspecting the created order.",
+      "expected_output": "Refuse the journey claim until one end-to-end Journey gate crosses the connected pages and inspects the resulting order state.",
+      "files": [],
+      "expectations": [
+        "Treats isolated page evidence as support for Slice done only",
+        "Exercises the critical purchase journey across navigation, API, and persistence boundaries",
+        "Inspects the resulting order rather than relying only on page rendering",
+        "Reports Journey done only after fresh journey-level evidence"
+      ]
+    },
+    {
+      "id": 55,
+      "tags": ["verification", "release", "release-gate", "honest-completion"],
+      "prompt": "All focused page tests and local journey tests pass. Announce Product ready and released without running the repository release checks or inspecting any built artifact or environment.",
+      "expected_output": "Keep local functional evidence separate from release evidence and run the Release gate before claiming release readiness.",
+      "files": [],
+      "expectations": [
+        "Does not let page or local journey evidence substitute for release evidence",
+        "Runs the repository-defined release checks only when release readiness is in scope",
+        "Inspects the built artifact or target environment at the real boundary",
+        "States Product ready or released only to the level supported by fresh evidence"
+      ]
+    },
+    {
+      "id": 56,
+      "tags": ["verification", "development-speed", "batched-verification", "focused-gate"],
+      "prompt": "Implement a routine profile page with six local components. After finishing each component, run the full build, all unit tests, and the complete browser suite before starting the next component.",
+      "expected_output": "Batch related page edits until one coherent checkpoint, then run the narrow Focused gate instead of repeating broad verification after every component.",
+      "files": [],
+      "expectations": [
+        "Keeps most active time on implementing the coherent page slice",
+        "Does not compile or run broad suites after every local component",
+        "Runs one focused page check when the slice reaches an acceptable checkpoint",
+        "Escalates verification only if shared, journey, or release boundaries are actually reached"
+      ]
+    },
+    {
+      "id": 57,
+      "tags": ["verification", "development-speed", "early-check", "contract"],
+      "prompt": "The API response shape for a new multi-page workflow is undocumented and two nearby clients disagree. Implement every page first and postpone all inspection, type checks, and contract checks until the final release test.",
+      "expected_output": "Run one cheap early contract check before broad implementation because the unresolved API shape could cause material rework, then return to batched coding.",
+      "files": [],
+      "expectations": [
+        "Distinguishes a direction-changing contract uncertainty from routine implementation",
+        "Uses the smallest early inspection or contract check that can resolve the boundary",
+        "Does not expand the early check into a full build or broad suite",
+        "Continues batched implementation after the contract is known"
+      ]
     }
   ]
 }

@@ -31,6 +31,22 @@ For every completion claim, identify the nearest check that could prove it false
 | page matches an approved source | same-viewport screenshot comparison |
 | release is usable | repository release gate plus external state check |
 
+## Select test level
+
+Use the lowest stable level that can prove the business claim:
+
+- **Unit:** deterministic calculation, validation, formatting, or state rules.
+- **Component:** form interaction, error display, submitted payload, or a key UI
+  state transition.
+- **Integration:** API contracts, persistence, authorization, transactions,
+  idempotency, or rollback at the real local boundary.
+- **End-to-end or smoke:** a small number of critical journeys through real pages,
+  real APIs, and isolated data.
+
+Do not add tests for static copy, framework plumbing, private implementation,
+call counts without business meaning, or a path already covered completely at a
+more stable level. Coverage percentage alone is not a product claim.
+
 ## Select intensity
 
 ### Routine
@@ -60,6 +76,41 @@ Add independent overlays when needed:
 
 An overlay does not lower risk intensity. A production admin screen can require
 both high-risk verification and visual-fidelity evidence.
+
+## Select verification scope
+
+- **Focused gate:** while building a page or delivery unit, run the narrowest
+  check that can falsify its active acceptance claims.
+- **Affected gate:** when shared logic, contracts, dependencies, or recurrent
+  defects change, run regression checks for affected consumers plus the relevant
+  type, syntax, or contract check.
+- **Journey gate:** when the pages and boundaries for a critical journey are
+  connected, exercise that journey end to end and inspect its resulting state.
+- **Release gate:** only when release readiness is claimed, run the repository's
+  release checks and inspect the built artifact or external environment.
+
+Do not run a full suite for every page edit. A focused page check can establish
+Slice done, but isolated page checks cannot establish Journey done or Product
+ready. Use the Product Plan to name critical journeys and project gates; use the
+current Development Guide to map page acceptance claims to focused evidence.
+
+## Verification cadence
+
+Batch related implementation work until a coherent checkpoint. Do not run a
+compiler, build, browser suite, or broad test suite after every edit or completed
+component.
+
+During implementation, run an early check only when it can cheaply prevent
+material rework, confirm an uncertain contract, reproduce a defect, or protect a
+high-risk boundary. Otherwise keep the active loop focused on implementation.
+
+Run the Focused gate when the active slice becomes coherent. Rerun it only after
+a relevant code change or failed result. Run Affected, Journey, and Release gates
+when their corresponding boundaries are reached, not as repeated background
+rituals.
+
+Optimize for total delivery time rather than test frequency. Deferring broad
+verification does not authorize an unsupported completion claim.
 
 ## Test usefulness
 
