@@ -20,8 +20,10 @@ controller. Give bounded implementation work only the local context it needs.
 5. Select the smallest valuable page, journey, service, or other coherent
    delivery unit.
 
-Read [Operating Model](../../core/operating-model.md) and
-[Decision Policy](../../core/decision-policy.md) when starting unfamiliar work.
+Read [Operating Model](../../core/operating-model.md),
+[Decision Policy](../../core/decision-policy.md), and
+[Collaboration Policy](../../core/collaboration-policy.md) when starting
+unfamiliar or long-running work.
 
 For interrupted delivery, use [`state.py`](../../scripts/state.py) only when
 recovery has a real consumer:

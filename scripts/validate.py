@@ -20,6 +20,7 @@ REQUIRED_PATHS = (
     "core/operating-model.md",
     "core/decision-policy.md",
     "core/autonomy-policy.md",
+    "core/collaboration-policy.md",
     "core/planning-policy.md",
     "core/code-quality-policy.md",
     "core/verification-policy.md",

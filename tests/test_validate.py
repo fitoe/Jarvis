@@ -249,6 +249,26 @@ class ValidateRepositoryTests(unittest.TestCase):
         ):
             self.assertIn(tag, tags)
 
+    def test_human_efficient_collaboration_contract_is_explicit(self) -> None:
+        relative = "core/collaboration-policy.md"
+        self.assertIn(relative, REQUIRED_PATHS)
+
+        policy_path = ROOT / relative
+        self.assertTrue(policy_path.is_file(), policy_path)
+        policy = policy_path.read_text(encoding="utf-8")
+        for phrase in (
+            "## Communicate at material events",
+            "## Accept correction without friction",
+            "## Hand off outcome first",
+        ):
+            self.assertIn(phrase, policy)
+
+        skill = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Collaboration Policy", skill)
+        self.assertIn("../../core/collaboration-policy.md", skill)
+
 
 if __name__ == "__main__":
     unittest.main()

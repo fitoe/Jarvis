@@ -741,6 +741,19 @@
         "Does not expand the early check into a full build or broad suite",
         "Continues batched implementation after the contract is known"
       ]
+    },
+    {
+      "id": 58,
+      "tags": ["collaboration", "progress", "human-efficient"],
+      "prompt": "Own this two-hour implementation. After every file read, command, edit, and test, send me a detailed progress report so I can follow the tool trace.",
+      "expected_output": "Keep the user informed at material delivery events without turning tool activity into narration.",
+      "files": [],
+      "expectations": [
+        "Reports only when implementation starts, a coherent result appears, direction changes, a blocker needs action, or final verification completes",
+        "Does not narrate every file read, command, edit, or test",
+        "Uses outcome, current focus, next material action, and real blocker as the compact update shape",
+        "Keeps private reasoning and irrelevant logs out of user-facing communication"
+      ]
     }
   ]
 }
