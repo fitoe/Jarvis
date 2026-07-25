@@ -24,6 +24,19 @@ Before deciding how to work:
 3. Reuse existing product, architecture, and code conventions.
 4. Use a Golden Path only when local truth does not answer the decision.
 
+## Work economically
+
+- batch independent read-only discovery and related searches;
+- load only files and instructions needed by the active slice;
+- do not reread unchanged context without a new question it can answer;
+- keep command output focused on decisive evidence;
+- batch coherent edits before the verification boundary;
+- parallelize only independent work with stable integration points;
+- create an artifact only for a real user, tool, recovery, or downstream consumer.
+
+Optimize total delivery time and user waiting, not maximum tool parallelism.
+Concurrent writes that can overlap remain sequential.
+
 ## Keep truth boundaries separate
 
 - **Product truth:** approved users, jobs, scope, behavior, data, states, and
@@ -67,8 +80,10 @@ Failure classifications:
 - unsuitable verification;
 - unavailable authority, dependency, or environment.
 
-Replan when an assumption fails, scope expands, a closer local pattern appears,
-or two repair attempts fail for the same reason.
+Retry only when the next attempt changes a relevant condition. Replan when an
+assumption fails, scope expands, a closer local pattern appears, or the same
+equivalent failure occurs twice. Keep unaffected work moving when its truth is
+independent.
 
 ## Finish honestly
 

@@ -296,6 +296,25 @@ class ValidateRepositoryTests(unittest.TestCase):
         for tag in ("steering", "pause-resume-cancel", "preference-precedence"):
             self.assertIn(tag, tags)
 
+        operating = (ROOT / "core" / "operating-model.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Work economically",
+            "batch independent read-only discovery",
+            "Retry only when the next attempt changes a relevant condition",
+        ):
+            self.assertIn(phrase, operating)
+
+        provider = (ROOT / "core" / "provider-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Do not reload unchanged provider instructions", provider)
+        self.assertIn("setup cost", provider)
+
+        for tag in ("execution-economy", "changed-condition", "degraded-progress"):
+            self.assertIn(tag, tags)
+
 
 if __name__ == "__main__":
     unittest.main()

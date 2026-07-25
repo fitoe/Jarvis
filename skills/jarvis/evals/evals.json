@@ -793,6 +793,32 @@
         "Stops incompatible dependency work while preserving compatible progress",
         "Does not persist the one-off correction as a user profile"
       ]
+    },
+    {
+      "id": 62,
+      "tags": ["efficiency", "execution-economy", "parallel"],
+      "prompt": "Inspect four independent manifests one at a time, reread each after every decision, and initialize every available provider before choosing the one needed for this local change.",
+      "expected_output": "Batch independent discovery, retain unchanged context, and initialize only the provider needed by the active claim.",
+      "files": [],
+      "expectations": [
+        "Batches independent manifest inspection when tools allow",
+        "Does not reread unchanged context without a new question",
+        "Loads only the provider needed by the active slice",
+        "Keeps overlapping writes and shared decisions sequential"
+      ]
+    },
+    {
+      "id": 63,
+      "tags": ["recovery", "changed-condition", "degraded-progress"],
+      "prompt": "The same provider call failed twice with the same unavailable-capability error. Retry it unchanged until it works and stop all unrelated local work.",
+      "expected_output": "Stop equivalent retries, diagnose or choose a claim-equivalent fallback, and continue independent safe work.",
+      "files": [],
+      "expectations": [
+        "Does not repeat an attempt whose relevant conditions are unchanged",
+        "Uses a fallback only when it proves the same claim",
+        "Marks unsupported claims unverified",
+        "Continues unaffected work whose truth is independent"
+      ]
     }
   ]
 }

@@ -19,6 +19,11 @@ Inspect a provider capability only when the claim depends on it. Prefer the
 project's configured provider. Do not install or invent a second workflow when a
 small direct fallback can satisfy the claim.
 
+Do not reload unchanged provider instructions without a new capability question.
+Prefer a direct local solution when provider setup cost exceeds the value of the
+bounded claim. Batch independent provider discovery, but keep overlapping writes
+and shared decisions sequential.
+
 For new UI design generation, bind the provider to GPT Image 2. Do not infer
 permission to use Figma from installed Figma skills, an available Figma MCP, or
 generic repository design guidance. Use Figma only to read an existing source
