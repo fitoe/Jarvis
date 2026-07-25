@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.9.0 - 2026-07-25
+
+- Replace Slice Packet and Delegated Task Packet planning with human-readable
+  Product Plan, Page Overview, and Development Guide documents.
+- Make Page Overview optional: omit it for simple single-guide pages and create
+  it for multiple guides, consumers, complex durable behavior, or repeated
+  implementation cycles.
+- Make Development Guide the self-contained context boundary for current page or
+  delivery-unit implementation.
+- Add truth ownership, controlled repetition, context-closure review, semantic
+  refresh, coherent splitting, `needs-context`, and reverse feedback rules.
+- Replace JSON packet templates with Markdown planning templates while retaining
+  optional JSON only for interrupted controller state.
+- Package a complete Lead Operations Golden Example where the optional Page
+  Overview has multiple durable consumers.
+- Add behavior evaluations for document-first planning, shared-boundary
+  escalation, read-only dry runs, truth conflicts, splitting, and handback.
+- Keep behavioral improvement unclaimed until agent-vs-baseline Lead List runs
+  provide evidence.
+
 ## 0.8.1 - 2026-07-24
 
 - Bind new UI design generation to GPT Image 2 by default.

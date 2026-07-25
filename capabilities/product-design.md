@@ -20,7 +20,7 @@ rework. Otherwise choose a reversible default and record it.
 
 ## Produce the lightest useful evidence
 
-- Clear local behavior: record one decision in the Slice Packet.
+- Clear local behavior: record it in the current Development Guide.
 - Multi-step journey: capture flow and reachable states.
 - New page family: capture page inventory and generate related pages together on
   an Image 2 design board when useful.
@@ -50,5 +50,7 @@ For a new or weakly evidenced product direction, follow
 prototype, interview, or measurable user signal over polishing an untested idea.
 
 Return the decision, evidence, affected flow, source status, material constraints,
-and any unresolved high-cost question. Continue into solution or build work in the
-same Jarvis context.
+and any unresolved high-cost question. Put durable product-wide truth in the
+Product Plan, durable page truth in Page Overview, and current implementation
+constraints in the Development Guide. Continue into solution or build work in
+the same Jarvis context.

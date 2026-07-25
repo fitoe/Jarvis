@@ -38,5 +38,6 @@ Classify each uncertainty:
 
 Return an ordered implementation path containing observable changes, relevant
 files or system boundaries, existing patterns, failure behavior, verification,
-and replanning triggers. Update the Slice Packet instead of creating separate
-decision, API, state, mock, and verification documents.
+and replanning triggers. Put consumed API, state, dependency, authority, and
+verification decisions into the current Development Guide instead of creating
+separate decision, state, mock, or execution-packet documents.

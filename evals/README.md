@@ -48,6 +48,17 @@ Scenario coverage:
 - delegated work receives least-sufficient context and bounded ownership;
 - only independent tasks run concurrently;
 - worker and verifier evidence is integrated before completion.
+- substantial products use readable Product Plan and current Development Guide
+  documents;
+- simple single-guide pages omit Page Overview while reusable, complex, or
+  repeatedly implemented pages keep it;
+- routine edits bypass the hierarchy;
+- Development Guides pass a read-only context-closure check before bounded work;
+- lower-level documents cannot silently redefine upstream product or page truth;
+- ordinary shared reuse stays local while shared behavior changes escalate;
+- guides split by coherent claim and risk boundary rather than token count;
+- implementation discoveries return to the narrowest durable truth owner;
+- readable handback replaces mandatory JSON completion packets;
 - complex visual decomposition activates from inspectability, not fixed size;
 - semantic sections retain global style and adjacent-boundary context;
 - section evidence cannot replace assembled full-page visual evidence.

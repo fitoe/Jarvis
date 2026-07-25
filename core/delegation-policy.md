@@ -1,74 +1,106 @@
 # Delegation Policy
 
-Jarvis owns project control. Subagents execute or verify bounded work; they do not
-inherit the project goal, roadmap, authority, state, or final acceptance decision.
-
-## Keep controller responsibilities centralized
-
-Jarvis maintains the coarse product map, critical path, dependencies, shared
-contracts, Product Truth, Visual Truth, material risks, budgets, integration
-state, and claim-evidence map. It selects the next slice, resolves cross-cutting
-decisions, integrates results, and decides slice, journey, or product completion.
+Jarvis owns project control. Workers implement or verify bounded work; they do
+not inherit the product goal, roadmap, authority, shared decisions, integration,
+or final acceptance.
 
 ## Decide direct, delegated, or parallel execution
 
-Delegate when a task has a clear observable result, bounded ownership, enough
-local truth, and a checkable handback. Work directly when delegation costs more
-than it saves or when the controller must first resolve architecture, product
-direction, authority, or an unstable shared contract.
+Delegate when a task has one clear observable result, stable ownership, enough
+local truth, and checkable acceptance. Work directly when coordination costs more
+than it saves or the capable model must first resolve product direction,
+architecture, authority, or an unstable shared contract.
 
-Run subagents concurrently only when tasks:
+Run workers concurrently only when tasks:
 
-- have independent outputs and stable integration points;
-- use disjoint write sets or isolated worktrees;
+- have independent observable results and stable integration points;
+- use disjoint write sets or isolated workspaces;
 - do not race on shared runtime state or external side effects;
-- can be accepted without another task finishing first.
+- can be accepted without another task completing first.
 
 Sequence work when agents would edit the same boundary, depend on an unsettled
-contract, or could invalidate each other's evidence. Parallelism is an
-optimization, not a completion requirement.
+contract, or invalidate each other's evidence. Parallelism is an optimization,
+not a completion requirement.
 
-## Send the least sufficient context
+## Give the worker the Development Guide
 
-Create a Delegated Task Packet only when work is delegated. Follow
-[Delegated Task Template](../templates/delegated-task.json), set the role to
-`implement` or `verify`, and include:
+For substantial page or delivery-unit work, the current Development Guide is the
+primary delegated context. Give the worker:
 
-- why the task matters and its observable result;
-- in-scope behavior, owned paths, and do-not-touch boundaries;
-- only relevant truth, source files, patterns, decisions, and contracts;
-- authority, side-effect, dependency, and budget limits;
-- selected skills, claims, checks, and integration handoff.
+- the Development Guide;
+- repository instructions;
+- named code paths and existing patterns relevant to the task;
+- linked contract or visual sources only when the guide cannot safely restate
+  their consumed detail;
+- a short clarification of owned paths and acceptance when delegation covers a
+  narrower claim than the guide.
 
-The packet is a dispatch shape, not a mandatory file. Put it directly in the
-subagent prompt unless recovery, auditing, or another real consumer needs it
-persisted.
+Do not create a second JSON packet around the guide. Do not send the full Product
+Plan, Page Overview, conversation history, unrelated roadmap details, completed
+work logs, secrets, or controller reasoning.
 
-Do not send full conversation history, the whole roadmap, completed-slice logs,
-unrelated files, secrets, or the controller's private reasoning. A verification
-agent receives the claim, acceptance criteria, and raw artifacts—not the
-implementer's conclusion or intended answer.
+Before dispatch, run the context-closure check in
+[Planning Policy](planning-policy.md). If the worker cannot identify goal,
+non-goals, complete behavior, authority, change boundaries, acceptance, and
+escalation conditions from the guide and named code, the capable model refreshes
+the guide first.
+
+Routine delegated work that needs no durable guide may use one concise prompt
+containing the same bounded facts. Do not create planning artifacts solely
+because another worker is involved.
+
+## Keep shared decisions centralized
+
+Ordinary consumption of an existing shared component or API may remain local.
+Return work to Jarvis when implementation would:
+
+- redefine shared behavior or a contract for other consumers;
+- change product-wide authority, permissions, data meaning, or visual truth;
+- require cross-page coordination not described by the guide;
+- conflict with current repository or upstream planning truth;
+- make acceptance impossible at the delegated boundary.
+
+The worker returns `needs-context` with the missing rule, blocked behavior, safe
+work already completed, and smallest additional decision needed. It does not
+invent the shared answer.
+
+## Preserve visual integration context
 
 When [Visual Source Policy](visual-source-policy.md) activates complex visual
-decomposition, populate `inputs.visual_context` only for section work. Include
-the full-page overview, authoritative section source, adjacent boundaries,
-shared tokens and components, cross-section constraints, owned integration
-boundary, and both section and full-page verification expectations. Jarvis keeps
-the Visual Map, shared shell, continuous assembly, and final visual acceptance.
+decomposition, keep prompts small without stripping necessary visual truth.
+Section work receives the full-page overview, authoritative section source,
+adjacent boundaries, shared tokens and components, cross-section constraints,
+owned integration boundary, and both section and full-page verification
+expectations.
 
-## Require a useful handback
+Jarvis keeps the Visual Map, shared shell, continuous assembly, and final visual
+acceptance. Individual section evidence cannot prove assembled-page parity.
 
-The worker returns `done`, `partial`, `needs-context`, or `blocked`, plus changed
-files, checks and actual results, new assumptions or decisions, fresh evidence,
-side effects, and remaining risk. It must not broaden scope, cross ownership, or
-exercise authority absent from the packet.
+## Require a readable handback
 
-Jarvis inspects the result, reconciles overlapping changes and evidence, and runs
-the nearest integration check. Worker self-checks are enough for low-risk bounded
-work when the controller can cheaply verify them. Use an independent verifier for
-shared contracts, high-risk behavior, fidelity-sensitive UI, or disputed claims
-when independence can reveal a real failure. Do not require fixed implementer,
-spec-reviewer, and code-reviewer chains for every task.
+The worker returns an ordinary development summary:
 
-Final acceptance stays with Jarvis. It closes work only when the in-scope claim
-map has fresh evidence at the declared slice, journey, or product level.
+```markdown
+## Completed
+
+## Changed files
+
+## Checks and actual results
+
+## Decisions or assumptions discovered
+
+## Acceptance criteria covered
+
+## Remaining risk or incomplete work
+
+## Context requested
+```
+
+The handback names material differences between documentation and code,
+unexpected dependencies, and newly discovered shared constraints. Jarvis
+inspects the diff, routes durable discoveries to the owning planning document,
+refreshes affected Development Guides, and runs the nearest integration check.
+
+Worker completion remains input to acceptance. Use an independent verifier only
+when it can reveal a material shared, high-risk, fidelity-sensitive, or disputed
+failure. Final page, journey, and product acceptance stay with Jarvis.

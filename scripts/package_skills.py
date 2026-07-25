@@ -16,6 +16,7 @@ REPLACEMENTS = {
     "../../capabilities/": "references/capabilities/",
     "../../golden-paths/": "references/golden-paths/",
     "../../recipes/": "references/recipes/",
+    "../../examples/": "references/examples/",
     "../../templates/": "references/templates/",
     "../../scripts/state.py": "scripts/state.py",
 }
@@ -25,6 +26,7 @@ RESOURCE_DIRECTORIES = (
     "capabilities",
     "golden-paths",
     "recipes",
+    "examples",
     "templates",
 )
 

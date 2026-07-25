@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from scripts.validate import (
+    REQUIRED_PATHS,
     SKILLS,
     parse_frontmatter,
     validate_eval_file,
@@ -84,7 +85,118 @@ class ValidateRepositoryTests(unittest.TestCase):
                 self.assertNotIn("../../core/", skill_text)
                 self.assertTrue((package / "references" / "core").is_dir())
                 self.assertTrue((package / "references" / "capabilities").is_dir())
+                self.assertTrue(
+                    (
+                        package
+                        / "references"
+                        / "examples"
+                        / "lead-operations"
+                        / "docs"
+                        / "pages"
+                        / "lead-list"
+                        / "development.md"
+                    ).is_file()
+                )
                 self.assertTrue((package / "scripts" / "state.py").is_file())
+
+    def test_document_first_resources_replace_packet_templates(self) -> None:
+        required = set(REQUIRED_PATHS)
+        for path in (
+            "templates/product-plan.md",
+            "templates/page-overview.md",
+            "templates/development-guide.md",
+        ):
+            self.assertIn(path, required)
+            self.assertTrue((ROOT / path).is_file(), path)
+
+        for path in (
+            "core/slice-contract.md",
+            "templates/active-slice.md",
+            "templates/slice-packet.json",
+            "templates/delegated-task.json",
+        ):
+            self.assertNotIn(path, required)
+            self.assertFalse((ROOT / path).exists(), path)
+
+    def test_jarvis_skill_uses_document_first_context(self) -> None:
+        text = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "Product Plan",
+            "Page Overview",
+            "Development Guide",
+            "context-closure",
+        ):
+            self.assertIn(phrase, text)
+        self.assertNotIn("Slice Packet", text)
+        self.assertNotIn("Delegated Task Packet", text)
+
+    def test_document_first_behavior_evals_are_present(self) -> None:
+        path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for required_tag in (
+            "document-first",
+            "context-closure",
+            "truth-ownership",
+            "shared-boundary",
+            "read-only-dry-run",
+        ):
+            self.assertIn(required_tag, tags)
+
+    def test_page_overview_is_optional_and_discriminated(self) -> None:
+        skill_text = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Page Overview is optional", skill_text)
+
+        template_text = (ROOT / "templates" / "development-guide.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "Page overview: optional",
+            "## Page purpose and journey position",
+            "## Entry, exit, and navigation",
+        ):
+            self.assertIn(phrase, template_text)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        cases = [
+            case
+            for case in payload["evals"]
+            if "optional-page-overview" in case["tags"]
+        ]
+        self.assertGreaterEqual(len(cases), 2)
+        combined = " ".join(
+            case["expected_output"] + " " + " ".join(case["expectations"])
+            for case in cases
+        )
+        self.assertIn("omit", combined.lower())
+        self.assertIn("keep", combined.lower())
+
+    def test_lead_list_golden_example_is_context_closed(self) -> None:
+        example_root = ROOT / "examples" / "lead-operations" / "docs"
+        product_plan = example_root / "product-plan.md"
+        overview = example_root / "pages" / "lead-list" / "overview.md"
+        development = example_root / "pages" / "lead-list" / "development.md"
+
+        for path in (product_plan, overview, development):
+            self.assertTrue(path.is_file(), path)
+
+        text = development.read_text(encoding="utf-8")
+        for phrase in (
+            "## Current development goal",
+            "owner and status filters",
+            "loading, empty, error, and retry",
+            "Lead Detail",
+            "## Acceptance criteria",
+            "## Verification",
+            "## When to stop and request more context",
+            "needs-context",
+        ):
+            self.assertIn(phrase, text)
 
 
 if __name__ == "__main__":

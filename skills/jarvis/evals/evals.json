@@ -9,20 +9,20 @@
       "files": [],
       "expectations": [
         "Treats the request as local and reversible",
-        "Does not create a product specification, roadmap, Slice Packet, or state file",
+        "Does not create a Product Plan, Page Overview, Development Guide, or state file",
         "Inspects the relevant code and runs one focused verification"
       ]
     },
     {
       "id": 2,
-      "tags": ["new-product", "vertical-slice"],
+      "tags": ["new-product", "vertical-slice", "document-first"],
       "prompt": "Jarvis, build a small inventory web app for our five-person workshop. We need to receive parts, see current stock, and record usage. Start now and make sensible choices for details I did not specify.",
-      "expected_output": "A walking-skeleton first slice with reversible assumptions and internal capability loading only as needed.",
+      "expected_output": "A coarse readable Product Plan, enough page overview to choose work, and one detailed guide for the walking-skeleton first page or journey.",
       "files": [],
       "expectations": [
         "Defines observable success and a smallest end-to-end first slice",
         "Uses explicit low-risk assumptions instead of asking about every detail",
-        "Keeps the roadmap coarse and the active slice concrete",
+        "Keeps future pages coarse while making only the current Development Guide implementation-ready",
         "Retains one Jarvis goal owner throughout"
       ]
     },
@@ -328,22 +328,22 @@
     },
     {
       "id": 26,
-      "tags": ["project-control", "global-plan", "delegation"],
+      "tags": ["project-control", "global-plan", "delegation", "document-first"],
       "prompt": "Jarvis, take this new B2B operations product from idea through final acceptance. Plan the whole effort and use subagents for implementation where useful.",
-      "expected_output": "Jarvis keeps a coarse global map and critical path, expands only active slices, delegates bounded work, and retains final acceptance.",
+      "expected_output": "Jarvis keeps a readable Product Plan, optional Page Overviews only where durable consumers exist, and one current Development Guide while retaining integration and final acceptance.",
       "files": [],
       "expectations": [
         "Owns product goal, dependencies, shared decisions, risk, integration, and claim evidence globally",
-        "Keeps future planning coarse while making the active slice executable",
+        "Keeps future page planning coarse while making only the current Development Guide executable",
         "Delegates concrete bounded tasks instead of delegating project ownership",
-        "Retains slice, journey, and product acceptance"
+        "Retains page or unit, journey, and product acceptance"
       ]
     },
     {
       "id": 27,
       "tags": ["delegation", "parallel", "independent"],
       "prompt": "The API contract is approved. A frontend adapter under web/ and a server implementation under api/ have disjoint files and can be tested independently. Use subagents to move faster.",
-      "expected_output": "Dispatch independent implementation tasks concurrently with bounded packets, then integrate against the approved contract.",
+      "expected_output": "Dispatch independent implementation tasks with bounded Development Guides or concise local prompts, then integrate against the approved contract.",
       "files": [],
       "expectations": [
         "Confirms stable integration contract and disjoint or isolated writes",
@@ -367,12 +367,12 @@
     },
     {
       "id": 29,
-      "tags": ["delegation", "context", "security"],
+      "tags": ["delegation", "context", "security", "context-closure"],
       "prompt": "Delegate implementation of one settings page. The project history is long and contains unrelated production logs and secrets; the worker only needs the approved screen, component paths, route contract, and local test command.",
-      "expected_output": "Create a least-context task packet without forwarding history, unrelated logs, secrets, or private reasoning.",
+      "expected_output": "Use a context-closed settings Development Guide plus named repository context without forwarding history, unrelated logs, secrets, or private reasoning.",
       "files": [],
       "expectations": [
-        "Includes why the task matters, observable result, scope, owned paths, relevant sources, authority, claims, and checks",
+        "Includes goal, non-goals, complete behavior, owned and protected paths, relevant sources, authority, acceptance, and checks",
         "Excludes full conversation history, unrelated roadmap details, logs, and secrets",
         "Defines do-not-touch and integration boundaries",
         "Requires a handback with changed files, actual checks, evidence, and remaining risk"
@@ -545,6 +545,123 @@
         "Uses Figma MCP only to inspect implementation context and assets",
         "Does not regenerate an already approved source solely to satisfy Image 2 policy",
         "Does not infer authority to redesign or edit the Figma file"
+      ]
+    },
+    {
+      "id": 43,
+      "tags": ["document-first", "truth-ownership", "conflict"],
+      "prompt": "The Product Plan says only finance admins may approve refunds. The refund Page Overview agrees, but its Development Guide says any support agent may approve them. Give the guide to a small implementation model and continue.",
+      "expected_output": "Stop dispatch, preserve upstream authority, resolve the conflict in the owning document, and refresh the Development Guide before implementation.",
+      "files": [],
+      "expectations": [
+        "Treats the Product Plan or approved shared permission source as owner of product-wide authority",
+        "Does not let the lower-level guide silently redefine refund permission",
+        "Returns needs-context instead of asking the implementation model to choose",
+        "Refreshes the affected Development Guide after the capable model resolves the conflict"
+      ]
+    },
+    {
+      "id": 44,
+      "tags": ["shared-boundary", "delegation", "discrimination"],
+      "prompt": "The current page can reuse the existing shared DateFilter unchanged. It also needs the shared request client to start retrying every mutation automatically for all consumers. Keep all work with the page implementation model because both dependencies already exist.",
+      "expected_output": "Keep unchanged DateFilter reuse local, but return the shared request-client contract change to the capable model before dependent implementation.",
+      "files": [],
+      "expectations": [
+        "Does not escalate ordinary reuse of the existing DateFilter",
+        "Identifies automatic mutation retry as a shared behavior and side-effect contract change",
+        "Keeps the cross-consumer decision with Jarvis or the capable planning model",
+        "Refreshes affected Development Guides after the shared contract is settled"
+      ]
+    },
+    {
+      "id": 45,
+      "tags": ["context-closure", "read-only-dry-run", "document-first"],
+      "prompt": "Before coding the Lead List page, test whether a small model can work from development.md alone. Do not give it the Product Plan or planning conversation, and do not let it write code yet.",
+      "expected_output": "Run a read-only context-closure check that exposes missing page context before implementation.",
+      "files": [],
+      "expectations": [
+        "Asks the model to restate goal and non-goals",
+        "Asks for expected and protected change areas plus an implementation outline",
+        "Maps acceptance criteria to behavior and verification",
+        "Requires missing, conflicting, or shared-boundary context to be reported before code is written"
+      ]
+    },
+    {
+      "id": 46,
+      "tags": ["document-first", "coherent-splitting", "context"],
+      "prompt": "One long Customer List Development Guide has a single coherent search-and-filter result. Another short guide mixes a local empty-state copy change with a cross-tenant permission contract change. Split whichever guide exceeds 2000 tokens.",
+      "expected_output": "Ignore the token threshold, keep the coherent long guide whole, and split or escalate the short mixed-risk work by independent claim and boundary.",
+      "files": [],
+      "expectations": [
+        "Does not split by a fixed word or token count",
+        "Keeps one coherent independently acceptable result together",
+        "Separates local copy work from the cross-tenant authority decision",
+        "Ensures each resulting unit retains all context needed for its own acceptance"
+      ]
+    },
+    {
+      "id": 47,
+      "tags": ["document-first", "reverse-feedback", "truth-ownership"],
+      "prompt": "While implementing Lead List, the worker discovers that all lead pages use a shared archived-lead rule missing from planning. Add it only to this page's development.md and finish.",
+      "expected_output": "Report the discovery, place the durable shared rule in its owning product or shared document, and refresh every affected page guide before later work.",
+      "files": [],
+      "expectations": [
+        "Treats implementation as evidence rather than automatic Product Truth",
+        "Does not hide a multi-page rule only inside one Development Guide",
+        "Routes the approved shared rule to the Product Plan or a real shared source",
+        "Refreshes affected page documents while leaving unrelated code details local"
+      ]
+    },
+    {
+      "id": 48,
+      "tags": ["context-closure", "needs-context", "permissions"],
+      "prompt": "The Account Settings Development Guide names fields and API paths but says nothing about who may change billing email or how authorization failures appear. The repository contains two conflicting permission checks. Let the small model choose the safer-looking one.",
+      "expected_output": "Reject guessing, mark the guide not context-closed, and request the smallest authoritative permission and failure-behavior decision.",
+      "files": [],
+      "expectations": [
+        "Identifies permission and authorization failure behavior as missing required context",
+        "Does not infer Product Truth from conflicting repository implementations",
+        "Returns needs-context with the blocked behavior and smallest required decision",
+        "Refreshes the Development Guide before dispatch"
+      ]
+    },
+    {
+      "id": 49,
+      "tags": ["document-first", "handback", "verification"],
+      "prompt": "A small model implemented the approved Orders page and says done. Ask it for the mandatory JSON completion packet and accept the page if the packet validates.",
+      "expected_output": "Use a readable development handback, inspect the diff and evidence, route discoveries, and keep acceptance with Jarvis instead of validating a completion schema.",
+      "files": [],
+      "expectations": [
+        "Requests changed files, actual checks, acceptance criteria covered, discoveries, remaining risk, and context requests in ordinary text",
+        "Does not require a JSON completion packet",
+        "Inspects implementation and runs the nearest acceptance check",
+        "Treats worker completion as input rather than page or journey acceptance"
+      ]
+    },
+    {
+      "id": 50,
+      "tags": ["document-first", "optional-page-overview", "simple-page"],
+      "prompt": "Add a simple read-only About page to a planned product. The Product Plan already defines its purpose and navigation. It has one implementation task, one Development Guide, no separate designer or tester handoff, and no expected follow-up slices. Create all three planning levels before coding.",
+      "expected_output": "Omit Page Overview and compile the page purpose, journey position, entry and exit, complete behavior, and acceptance directly into one Development Guide.",
+      "files": [],
+      "expectations": [
+        "Treats Product Plan and Development Guide as the two needed documents",
+        "Omits Page Overview because no second consumer or implementation cycle exists",
+        "Keeps the Development Guide self-contained with page-level behavior and navigation",
+        "Does not treat uniform document count as a quality goal"
+      ]
+    },
+    {
+      "id": 51,
+      "tags": ["document-first", "optional-page-overview", "complex-page"],
+      "prompt": "Plan an Order Detail page that will have separate read-only, refund, timeline, and permission implementation guides. Product, design, QA, and later maintenance all need one stable definition of its states, roles, entry and exit contracts. Skip Page Overview to keep the workflow light.",
+      "expected_output": "Keep Page Overview because durable Order Detail truth has multiple guides, consumers, complex permissions, and repeated implementation cycles.",
+      "files": [],
+      "expectations": [
+        "Keeps one Page Overview as the durable source for page purpose, states, permissions, and navigation",
+        "Lets each Development Guide compile only the context needed for its bounded claim",
+        "Avoids duplicating competing page definitions across refund, timeline, and permission guides",
+        "Does not confuse optional with always omitted"
       ]
     }
   ]

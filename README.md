@@ -3,21 +3,21 @@
 Jarvis is a goal-driven skill for taking a product idea to verified,
 working software without turning delivery into a chain of document gates.
 
-It uses feedback control:
+It uses document-first feedback control:
 
 ```text
-observe -> choose the smallest valuable slice -> plan just enough -> build
-        -> verify the product claim -> adapt -> continue
+understand product globally -> explain current page or unit locally -> build
+  -> verify the product claim -> feed discoveries back -> continue
 ```
 
 ## Architecture
 
 Jarvis exposes one installable skill and loads three internal capabilities only
-when the active slice needs them:
+when the current delivery unit needs them:
 
 | Component | Responsibility |
 |---|---|
-| `jarvis` | Own the outcome, select slices, preserve state, and continue |
+| `jarvis` | Own the outcome, planning hierarchy, integration, and acceptance |
 | Product Design | Resolve product, interaction, and visual uncertainty |
 | Solution Design | Choose technical boundaries and implementation paths |
 | Product Build | Implement and verify working vertical slices |
@@ -27,15 +27,25 @@ preserving progressive loading. Shared policy lives in `core/`; capability
 modules in `capabilities/`; product defaults in `golden-paths/`; feature defaults
 in `recipes/`.
 
-Jarvis remains the project controller. It may delegate bounded implementation or
-verification tasks to subagents using least-context packets, parallelize safe
-independent work, integrate results, and retain final acceptance.
+Jarvis remains the project controller. A capable model maintains a readable
+Product Plan and one self-contained Development Guide for current implementation.
+It adds Page Overview only when durable page truth has multiple guides,
+consumers, or implementation cycles. Bounded workers receive the guide plus
+relevant repository code, not the full roadmap or conversation.
 
 ## Principles
 
 - Existing repository truth beats generic best practice.
-- Work in small vertical slices that produce observable product behavior.
-- Plan the roadmap coarsely and the active slice precisely.
+- Work in coherent pages or delivery units that produce observable behavior.
+- Plan product and future pages coarsely; detail only current work.
+- Keep Product Plan, optional Page Overview, and Development Guide human-readable.
+- Omit Page Overview for a simple page with one guide and no separate durable
+  page-document consumer; extract it later when reuse appears.
+- Treat Development Guide as compiled local context, not input to another packet.
+- Make lower-level documents expand rather than redefine upstream truth.
+- Run a context-closure check before bounded implementation begins.
+- Return `needs-context` instead of guessing product behavior, authority, or a
+  shared contract.
 - Make reversible, low-impact decisions automatically and record assumptions.
 - Ask only about direction, authority, secrets, production effects, and hard-to-
   reverse choices.
@@ -61,7 +71,10 @@ independent work, integrate results, and retain final acceptance.
 - Classify completion claims so product, functional, visual, quality, and release
   evidence cannot substitute for one another.
 - Delegate only bounded work with explicit ownership and integration points;
-  subagent completion never replaces Jarvis acceptance.
+  use the current Development Guide and ordinary handback, not JSON task packets.
+- Route durable implementation discoveries back to Product Plan, optional Page
+  Overview, or Development Guide according to truth ownership.
+- Subagent completion never replaces Jarvis acceptance.
 
 ## Repository layout
 
@@ -71,7 +84,8 @@ capabilities/   Product Design, Solution Design, and Product Build modules
 core/           Shared operating, decision, planning, quality, and test policy
 golden-paths/   Defaults for common product archetypes
 recipes/        Defaults for common feature families
-templates/      Durable state, Slice Packet, delegated-task, and slice templates
+examples/       Lead Operations example where the optional Page Overview is useful
+templates/      Product Plan, optional Page Overview, Development Guide, and state
 evals/          Evaluation guidance
 scripts/        State, packaging, and repository validation tools
 tests/          Validator regression tests
@@ -111,10 +125,12 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.8 makes Image 2 design-first the default for new page-level UI, supports
-multi-page design boards, requires one human baseline approval before UI
-implementation, and keeps approved-source extraction lightweight. Real
-agent-vs-baseline runs remain required before claiming behavioral improvement.
+V0.9 replaces packet-oriented execution planning with two core readable Markdown
+layers and one optional page-truth layer. Product Plan and current Development
+Guide are core; Page Overview appears only for real reuse or durable consumers.
+Optional JSON remains only for interrupted controller state. Real Lead List
+read-only and implementation comparisons remain required before claiming
+small-model delivery improvement.
 
 ## License
 

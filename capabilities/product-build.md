@@ -1,7 +1,7 @@
 # Product Build Capability
 
-Turn the active slice into verified behavior across frontend, backend, data,
-integrations, automation, or configuration.
+Turn the current page or coherent delivery unit into verified behavior across
+frontend, backend, data, integrations, automation, or configuration.
 
 ## Before editing
 
@@ -9,7 +9,8 @@ integrations, automation, or configuration.
 2. Confirm observable result and success claims.
 3. Find the closest existing implementation.
 4. Identify the smallest check that can falsify each claim.
-5. Resolve only ambiguity that materially changes implementation.
+5. Confirm the Development Guide is context-closed; resolve only ambiguity that
+   materially changes implementation.
 
 Follow [Code Quality Policy](../core/code-quality-policy.md).
 
@@ -18,7 +19,7 @@ Follow [Code Quality Policy](../core/code-quality-policy.md).
 - Reuse existing components, services, types, and dependencies.
 - Match local architecture and style.
 - Avoid one-use abstractions and speculative flexibility.
-- Touch only files required by the active slice.
+- Touch only files required by the current Development Guide.
 - Remove only code made unused by this change.
 - Keep mock behavior separate from real integration claims.
 
@@ -54,5 +55,7 @@ Stop and replan when a material assumption fails, scope crosses a new boundary,
 a closer project pattern invalidates the approach, the same failure survives two
 repairs, or verification cannot prove the intended claim.
 
-Return changed behavior, changed files, checks actually run, stale or missing
-evidence, remaining risk, and next action.
+Return changed behavior, changed files, acceptance criteria covered, checks
+actually run, document or code conflicts, stale or missing evidence, remaining
+risk, and next action. Return `needs-context` instead of inventing shared
+behavior, authority, or contracts.
