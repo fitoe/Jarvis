@@ -76,6 +76,19 @@ expectations.
 Jarvis keeps the Visual Map, shared shell, continuous assembly, and final visual
 acceptance. Individual section evidence cannot prove assembled-page parity.
 
+## Activate independent checking by risk
+
+Routine local work normally uses controller verification. Use an independent
+checker when it can materially challenge a shared, high-risk, fidelity-sensitive,
+disputed, or final-acceptance claim. The checker receives the claim, relevant
+truth, diff, evidence, and authority boundary; it does not inherit project control
+and does not reimplement the feature.
+
+Keep maker output and checker judgment separate. A checker opinion is not evidence
+unless it inspects a real diff, command result, browser state, data result, or
+other falsifiable boundary. Jarvis reconciles findings and retains acceptance and
+termination ownership.
+
 ## Require a readable handback
 
 The worker returns an ordinary development summary:

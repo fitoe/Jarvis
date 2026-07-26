@@ -370,6 +370,29 @@ class ValidateRepositoryTests(unittest.TestCase):
         ):
             self.assertIn(move, skill)
 
+        autonomy = (ROOT / "core" / "autonomy-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Start and reconcile host Goals", autonomy)
+        self.assertIn("explicit request", autonomy)
+
+        provider = (ROOT / "core" / "provider-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Use providers as observation boundaries", provider)
+        self.assertIn("visible built-in browser", provider)
+
+        delegation = (ROOT / "core" / "delegation-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Activate independent checking by risk", delegation)
+        self.assertIn("does not reimplement", delegation)
+
+        budget = (ROOT / "core" / "budget-policy.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Budget exhausted is a stop condition", budget)
+
 
 if __name__ == "__main__":
     unittest.main()

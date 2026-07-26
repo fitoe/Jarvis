@@ -40,6 +40,22 @@ fallback if it can support the same claim. Otherwise mark that claim unverified
 and continue only with work whose truth is unaffected. Record provider identity
 or version when a later run could invalidate durable evidence.
 
+## Use providers as observation boundaries
+
+Select a provider because it can observe the active claim at the closest useful
+boundary. Tests, APIs, stored state, browsers, screenshots, build artifacts, and
+external systems return evidence; none owns Jarvis state or completion.
+
+For runnable web pages, use the host's visible built-in browser when available.
+Keep the active route in one authorized session and refresh or navigate at
+coherent page or journey checkpoints, not after every edit. The browser shows the
+product, not a Goal dashboard or command trace.
+
+Browser creation, authentication, form submission, upload, and sensitive actions
+retain host confirmation requirements. If visible browsing is unavailable,
+continue independent work and keep visual or real-flow claims unverified until a
+claim-equivalent fallback or later browser run proves them.
+
 ## Select skills progressively
 
 For software planning, implementation, debugging, review, or refactoring, load

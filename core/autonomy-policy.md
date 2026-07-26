@@ -25,6 +25,19 @@ external or destructive action that Jarvis itself was not authorized to perform.
   authority;
 - expand the product objective or replace an approved direction.
 
+## Start and reconcile host Goals
+
+An explicit request for Jarvis to own autonomous multi-step delivery authorizes
+host Goal creation after the Loop Contract is decision-ready. A stable explicit
+opt-in to automatic Jarvis Goal ownership also qualifies. Do not infer Goal
+authority from an ordinary task, explanation, or read-only review.
+
+Before creating a Goal, inspect current host Goal state. Resume a matching
+unfinished Goal, apply steering semantics when direction changed, or request
+direction when objectives conflict. Never create a competing unfinished owner.
+When Goal capability is unavailable, continue with the same finite contract and
+report it as host-untracked, never as created.
+
 ## Respond to steering
 
 - **Add:** combine compatible new input with the active objective.
