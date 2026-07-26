@@ -336,6 +336,40 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
         self.assertIn("quality-overlay", tags)
 
+    def test_loop_engineering_contract_is_explicit(self) -> None:
+        operating = (ROOT / "core" / "operating-model.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Keep one Loop Contract",
+            "## Run the finite delivery loop",
+            "### Discover",
+            "### Frame",
+            "### Execute",
+            "### Observe",
+            "### Verify",
+            "### Record",
+            "### Continue or stop",
+            "## Keep nested evidence scopes",
+            "## Terminate honestly",
+        ):
+            self.assertIn(phrase, operating)
+
+        skill = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Run Loop Engineering", skill)
+        for move in (
+            "Discover",
+            "Frame",
+            "Execute",
+            "Observe",
+            "Verify",
+            "Record",
+            "Continue or stop",
+        ):
+            self.assertIn(move, skill)
+
 
 if __name__ == "__main__":
     unittest.main()

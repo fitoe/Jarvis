@@ -61,32 +61,90 @@ holding the whole product in context.
 For a new product, prefer a walking skeleton through UI or API, business logic,
 and data before building broad horizontal foundations.
 
-## Run the feedback loop
+## Keep one Loop Contract
 
-1. Define the current slice; type claims only when their evidence could be
-   confused.
-2. Resolve only decisions that affect the slice.
-3. Implement the smallest coherent change.
-4. Run the nearest check that can falsify each claim.
-5. If evidence passes, update state and select the next slice.
-6. If evidence fails, classify the cause before editing again.
+For substantial delivery, keep one logical contract in active context:
 
-Failure classifications:
+- **Objective:** final observable result.
+- **Scope and non-goals:** included and protected boundaries.
+- **Discovery source:** approved product truth and current repository state.
+- **Active unit:** current page, journey, service, or coherent slice.
+- **Acceptance claims:** statements that must become true.
+- **Evidence targets:** observations that can prove each claim false or true.
+- **Authority:** allowed work and confirmation boundaries.
+- **Budget:** relevant time, cost, retry, or iteration limit.
+- **Stop conditions:** proof, cancellation, true blocker, or exhausted budget.
+- **Next action:** nearest concrete action selected from current evidence.
 
-- misunderstood outcome;
-- invalid assumption;
-- unsuitable design or technical decision;
-- implementation defect;
-- unsuitable verification;
-- unavailable authority, dependency, or environment.
+This is not a mandatory artifact or state schema. Product Plan, Development Guide,
+host Goal, Git, and active context carry it. Persist optional recovery state only
+when interruption or another later consumer needs it.
 
-Retry only when the next attempt changes a relevant condition. Replan when an
-assumption fails, scope expands, a closer local pattern appears, or the same
-equivalent failure occurs twice. Keep unaffected work moving when its truth is
-independent.
+## Run the finite delivery loop
 
-## Finish honestly
+### Discover
 
-Completion means the in-scope product claims have fresh evidence. Report what is
-working, what was verified, what remains unverified, and the next material risk.
-Do not convert optional polish or unrelated debt into hidden completion work.
+Read current Product Truth, repository instructions, code, Git, valid evidence,
+host Goal state, and recovery state when present. Select the highest-value unit
+whose dependencies and authority are satisfied. Do not invent scheduled or
+perpetual work.
+
+### Frame
+
+Define the active unit's observable result, scope, relevant truth, acceptance
+claims, nearest evidence, authority, risk, budget, and stop or reframe condition.
+Resolve repository facts locally. Consolidate material user questions before
+substantial execution; use mature reversible defaults for ordinary choices.
+
+### Execute
+
+Implement the smallest coherent change that can satisfy the framed claims. Batch
+related edits until an informative feedback boundary. Keep overlapping writes and
+shared decisions sequential. Parallel discovery or workers remain optional.
+
+### Observe
+
+Collect real feedback from the closest useful boundary: diff, deterministic test,
+API or stored state, browser interaction, screenshot, build artifact, or external
+state. Select the observation provider from the claim, not from workflow habit.
+
+### Verify
+
+Compare observed evidence with the framed claims. Use one focused check for
+routine work, affected or contract evidence for shared work, and the closest real
+integration boundary for high-risk work. Independent checking activates only
+when it can materially challenge shared, high-risk, disputed, or final claims.
+
+### Record
+
+Write back only truth with a real later consumer. Route product, page, local
+implementation, Git, host Goal, and evidence updates to their existing owners.
+Git, approved documents, host Goal state, and valid evidence form the default
+spine; do not create an iteration log or mandatory `LOOP.md`.
+
+### Continue or stop
+
+If the unit passes, accept its claims, update affected higher-level claims, and
+return to Discover. If evidence fails, classify the cause and repair, reframe,
+change approach, use a claim-equivalent fallback, or stop.
+Retry only when the next attempt changes a relevant condition. Two equivalent
+failures require a changed path.
+
+## Keep nested evidence scopes
+
+Jarvis remains the one project-loop owner. Page or service evidence cycles live
+inside project execution; they do not create competing controllers or state
+machines. Page evidence cannot prove a connected journey, and journey evidence
+cannot substitute for project or release evidence.
+
+## Terminate honestly
+
+Complete only when every required in-scope claim has fresh evidence, failed
+evidence has been superseded, truth changes are propagated, required journeys and
+side effects are verified at their real boundaries, the final diff matches the
+objective, and no required work remains.
+
+Keep blocked, cancelled, and budget-exhausted distinct from complete. Report
+accepted progress, missing proof, and the smallest useful next action. Compiler
+success, worker completion, a checker opinion, or one visible page cannot alone
+prove the project complete.

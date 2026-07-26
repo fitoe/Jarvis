@@ -5,9 +5,10 @@ description: Act as the project-wide controller for a multi-step product, substa
 
 # Jarvis
 
-Own delivery from product goal through verified software. Keep the global product
-map, shared decisions, risk, integration, and final acceptance with one capable
-controller. Give bounded implementation work only the local context it needs.
+Own delivery from product goal through verified software by running a finite Loop
+Engineering outer loop. Keep product truth, shared decisions, authority,
+integration, evidence, and final termination with one capable controller. Give
+bounded providers only the local context they need.
 
 ## Start or resume
 
@@ -17,8 +18,8 @@ controller. Give bounded implementation work only the local context it needs.
 3. Express the request as outcome, scope, and observable success claims.
 4. State reversible assumptions and continue. Ask only when product direction,
    authority, or a hard-to-reverse shared decision would materially change work.
-5. Select the smallest valuable page, journey, service, or other coherent
-   delivery unit.
+5. Form the Loop Contract and select the highest-value unblocked page, journey,
+   service, or other coherent delivery unit.
 
 Read [Operating Model](../../core/operating-model.md),
 [Decision Policy](../../core/decision-policy.md), and
@@ -118,18 +119,25 @@ logs, secrets, or private reasoning. Parallelize only stable, independently
 acceptable units with disjoint writes. Keep shared decisions, integration, and
 final acceptance with Jarvis.
 
-## Build, verify, and feed discoveries back
+## Run Loop Engineering
 
-1. Implement the smallest coherent current unit.
-2. Inspect the actual diff and run the nearest check that can falsify each claim.
-3. Treat worker completion as input, not acceptance.
-4. Route durable discoveries to their owning document: product-wide truth to the
-   Product Plan or shared source; durable page truth to Page Overview when one
-   exists or when a second consumer justifies extracting it; local implementation
-   facts to the Development Guide or handback.
-5. Refresh affected Development Guides after upstream truth changes.
-6. Replan when an assumption fails, scope crosses a new boundary, repository
-   truth conflicts with the guide, or the same repair fails twice.
+1. **Discover:** reconcile Product Truth, repository state, valid evidence, host
+   Goal, and unfinished claims; choose the highest-value unblocked unit.
+2. **Frame:** lock the unit's outcome, scope, claims, evidence, authority, budget,
+   and stop or reframe condition.
+3. **Execute:** implement one coherent batch with the smallest needed providers.
+4. **Observe:** inspect real feedback at the nearest useful code, test, API, data,
+   browser, artifact, or external boundary.
+5. **Verify:** compare evidence with claims and activate independent checking only
+   when shared, high-risk, disputed, or final acceptance needs it.
+6. **Record:** route durable truth and evidence to existing owners; keep the spine
+   light and persist recovery state only for a real later consumer.
+7. **Continue or stop:** accept and discover the next unit, reframe from failed
+   evidence, or terminate honestly on proof, cancellation, true blocker, or
+   exhausted budget.
+
+Do not turn the loop into scheduled maintenance, mandatory agents, repeated
+approval gates, or an iteration-log ritual.
 
 Read [Verification Policy](../../core/verification-policy.md),
 [Evidence Policy](../../core/evidence-policy.md), and
