@@ -1,5 +1,9 @@
 # Autonomous Goal and Browser Workbench Implementation Plan
 
+Status: superseded by
+`../specs/2026-07-26-loop-engineering-jarvis-design.md`. Do not execute this plan;
+its useful behavior is being redesigned as Jarvis Loop Engineering.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Make Jarvis consolidate material questions before execution, automatically start and finish a host Goal for decision-ready multi-step delivery, continue in dependency order with few interruptions, and keep the active runnable page visible in one built-in browser session.

@@ -1,7 +1,11 @@
 # Autonomous Goal and Browser Workbench Design
 
 Date: 2026-07-26
-Status: approved direction, pending written-spec review
+Status: superseded by `2026-07-26-loop-engineering-jarvis-design.md`
+
+Do not implement this design as a separate lifecycle. Its requirement intake,
+Goal, browser, verification, and progress concepts are absorbed into Jarvis Loop
+Engineering.
 
 ## Goal
 
