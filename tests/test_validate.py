@@ -387,6 +387,11 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
         self.assertIn("## Activate independent checking by risk", delegation)
         self.assertIn("does not reimplement", delegation)
+        self.assertIn(
+            "## Route delegated work to the least capable sufficient model",
+            delegation,
+        )
+        self.assertIn("Do not invent a model identifier", delegation)
 
         budget = (ROOT / "core" / "budget-policy.md").read_text(
             encoding="utf-8"
@@ -406,6 +411,7 @@ class ValidateRepositoryTests(unittest.TestCase):
             "light-spine",
             "loop-termination",
             "finite-loop",
+            "model-routing",
         ):
             self.assertIn(tag, tags)
 

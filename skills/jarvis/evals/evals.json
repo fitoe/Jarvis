@@ -988,6 +988,20 @@
         "Does not expand the approved product objective",
         "Requires a separate explicit request for continuous maintenance"
       ]
+    },
+    {
+      "id": 77,
+      "tags": ["delegation", "model-routing", "budget", "acceptance-ownership"],
+      "prompt": "Deadline is today and compute budget is tight. A manager says to use the cheapest small model for everything. Available worker overrides are gpt-5.6-terra and gpt-5.6-sol. Route a bounded static-copy change, a cross-module authorization-contract redesign, and independent final product checking; choose reasoning effort, handle an unavailable preferred model, and state who accepts the product.",
+      "expected_output": "Use the least capable sufficient listed model for bounded work without moving shared decisions or final acceptance out of Jarvis.",
+      "files": [],
+      "expectations": [
+        "Routes the context-closed copy task to a fast general model such as gpt-5.6-terra with low or medium reasoning",
+        "Keeps authorization-contract decisions with the capable controller or a model such as gpt-5.6-sol until the contract is stable",
+        "Uses capable independent checking when it can challenge final claims while Jarvis retains acceptance",
+        "Falls back to an inherited or another adequate host-listed model without inventing unavailable identifiers",
+        "Does not let deadline or budget pressure silently weaken authority or evidence boundaries"
+      ]
     }
   ]
 }

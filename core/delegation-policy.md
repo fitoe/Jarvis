@@ -22,6 +22,31 @@ Sequence work when agents would edit the same boundary, depend on an unsettled
 contract, or invalidate each other's evidence. Parallelism is an optimization,
 not a completion requirement.
 
+## Route delegated work to the least capable sufficient model
+
+Choose a worker model only after the work qualifies for delegation. Route by
+decision risk, context stability, and evidence burden rather than vague task
+difficulty or size.
+
+- Use a host-listed fast general model, such as `gpt-5.6-terra`, for
+  context-closed implementation, repository discovery, documentation,
+  deterministic tests, and mechanical verification. Use low reasoning for
+  mechanical work and medium when local interpretation or coding is material.
+- Keep product direction, architecture, unsettled shared contracts,
+  authorization, high-risk changes, integration judgment, and material final
+  checking with a capable model, such as `gpt-5.6-sol` or the inherited
+  controller. Use high or greater reasoning only when uncertainty and failure
+  impact justify it.
+- Jarvis retains shared decisions, integration, acceptance, and termination
+  regardless of the worker or checker model.
+
+Use an explicit model or reasoning override only when the host lists it and its
+capability is known. Do not invent a model identifier or assume a name such as
+`Luna` is available. If the preferred model is unavailable, inherit the current
+model or choose another listed model that can satisfy the same claim; do not
+block routine progress or silently weaken acceptance. Tight budget may choose a
+cheaper adequate worker, but never move controller-owned decisions to it.
+
 ## Give the worker the Development Guide
 
 For substantial page or delivery-unit work, the current Development Guide is the
