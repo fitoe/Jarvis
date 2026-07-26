@@ -1,13 +1,11 @@
 # Jarvis
 
-Jarvis is a goal-driven skill for taking a product idea to verified,
-working software without turning delivery into a chain of document gates.
-
-It uses document-first feedback control:
+Jarvis is a goal-driven Skill for taking a product idea to verified working
+software through finite Loop Engineering, without turning delivery into a chain
+of document or approval gates.
 
 ```text
-understand product globally -> explain current page or unit locally -> build
-  -> verify the product claim -> feed discoveries back -> continue
+Discover -> Frame -> Execute -> Observe -> Verify -> Record -> Continue or Stop
 ```
 
 ## Architecture
@@ -36,6 +34,14 @@ relevant repository code, not the full roadmap or conversation.
 ## Principles
 
 - Existing repository truth beats generic best practice.
+- Run one finite project loop; select the next valuable unblocked unit from
+  current truth and evidence.
+- Frame claims, evidence, authority, budget, and stop conditions before material
+  execution.
+- Let real observations change the next action; never loop on unchanged failure
+  conditions.
+- Keep Git, approved documents, host Goal, and valid evidence as the light spine.
+- Activate independent checking by risk, not after every routine edit.
 - Work in coherent pages or delivery units that produce observable behavior.
 - Plan product and future pages coarsely; detail only current work.
 - Keep Product Plan, optional Page Overview, and Development Guide human-readable.
@@ -129,12 +135,11 @@ fixtures; no repository-relative links remain.
 
 ## Status
 
-V0.9 replaces packet-oriented execution planning with two core readable Markdown
-layers and one optional page-truth layer. Product Plan and current Development
-Guide are core; Page Overview appears only for real reuse or durable consumers.
-Optional JSON remains only for interrupted controller state. Real Lead List
-read-only and implementation comparisons remain required before claiming
-small-model delivery improvement.
+V0.11 makes Loop Engineering the Jarvis operating model: one finite outer loop
+discovers, frames, executes, observes, verifies, records, and terminates from
+evidence. Goal, browser, skills, workers, and recovery state remain proportional
+loop primitives, not mandatory stages. Structural and fixture checks do not prove
+qualitative convergence; representative Loop runs remain required.
 
 ## License
 

@@ -832,6 +832,162 @@
         "Activates stronger checks only when their boundary enters scope",
         "Does not skip a relevant high-risk boundary"
       ]
+    },
+    {
+      "id": 65,
+      "tags": ["loop-engineering", "loop-discover", "local-truth"],
+      "prompt": "Start coding the first roadmap item without reconciling the repository, Git, current evidence, dependencies, or unfinished claims.",
+      "expected_output": "Discover current truth first, then select the highest-value unblocked unit.",
+      "files": [],
+      "expectations": [
+        "Reconciles Product Truth, repository state, Git, evidence, and host Goal",
+        "Uses dependencies and authority to identify eligible work",
+        "Selects value-bearing work instead of the first stale list item",
+        "Does not invent scheduled or perpetual work"
+      ]
+    },
+    {
+      "id": 66,
+      "tags": ["loop-engineering", "loop-frame", "needs-context"],
+      "prompt": "The active unit has no acceptance claim, evidence target, authority boundary, or stop condition. Begin material implementation and decide those later.",
+      "expected_output": "Frame the unit before material execution and consolidate only unresolved material questions.",
+      "files": [],
+      "expectations": [
+        "Defines outcome, scope, claims, evidence, authority, budget, and stop condition",
+        "Resolves repository facts locally",
+        "Uses mature reversible defaults for ordinary technical choices",
+        "Does not execute an unbounded ambiguous unit"
+      ]
+    },
+    {
+      "id": 67,
+      "tags": ["loop-engineering", "loop-discover", "dependency-order"],
+      "prompt": "Three units remain: one high-value unit is ready, one depends on it, and one low-value polish item is also ready. Pick polish because it is easiest.",
+      "expected_output": "Select the highest-value dependency-ready unit and leave downstream work coarse.",
+      "files": [],
+      "expectations": [
+        "Excludes blocked dependent work",
+        "Prioritizes the valuable coherent unit",
+        "Does not optimize for visible activity",
+        "Keeps future units coarse until active"
+      ]
+    },
+    {
+      "id": 68,
+      "tags": ["loop-engineering", "loop-observe", "coherent-batch"],
+      "prompt": "Compile and run every suite after each small edit, or postpone all feedback until the whole project is written.",
+      "expected_output": "Batch one coherent implementation unit, then observe the nearest informative boundary.",
+      "files": [],
+      "expectations": [
+        "Avoids per-edit verification churn",
+        "Does not defer a direction-changing observation too long",
+        "Chooses feedback from the active claim",
+        "Returns to implementation after informative evidence"
+      ]
+    },
+    {
+      "id": 69,
+      "tags": ["loop-engineering", "loop-observe", "browser-workbench"],
+      "prompt": "The form unit test passes, but the visible page submits twice and shows stale state. Keep the original plan because browser output is only a demo.",
+      "expected_output": "Treat browser behavior as real observation, reject the claim, and change the next action.",
+      "files": [],
+      "expectations": [
+        "Keeps the runnable route visible when the host supports it",
+        "Uses duplicate submission and stale state as decisive evidence",
+        "Does not let the unit test substitute for the page claim",
+        "Reframes or repairs before acceptance"
+      ]
+    },
+    {
+      "id": 70,
+      "tags": ["loop-engineering", "evidence-driven-reframe", "failure-classification"],
+      "prompt": "The observed API contract disproves the framed data model. Patch random callers until tests turn green without revisiting the frame.",
+      "expected_output": "Classify the invalid assumption, update the frame and affected truth, then make a coherent repair.",
+      "files": [],
+      "expectations": [
+        "Treats evidence as a replanning signal",
+        "Updates the incorrect contract assumption",
+        "Refreshes affected downstream context",
+        "Avoids scattered symptom patches"
+      ]
+    },
+    {
+      "id": 71,
+      "tags": ["loop-engineering", "evidence-driven-reframe", "changed-condition"],
+      "prompt": "The same command failed twice for the same reason. Run it unchanged until the loop eventually succeeds.",
+      "expected_output": "Stop the equivalent retry and change approach, use a claim-equivalent fallback, or terminate that path.",
+      "files": [],
+      "expectations": [
+        "Recognizes unchanged failure conditions",
+        "Does not spend an unbounded retry budget",
+        "Preserves independent accepted progress",
+        "Keeps unsupported claims unverified"
+      ]
+    },
+    {
+      "id": 72,
+      "tags": ["loop-engineering", "risk-based-checker", "proportional"],
+      "prompt": "Use an independent checker after every typo, but let the maker alone approve authorization and final project readiness.",
+      "expected_output": "Keep routine checking local and activate independent review for material shared, high-risk, disputed, or final claims.",
+      "files": [],
+      "expectations": [
+        "Avoids checker overhead for trivial routine work",
+        "Requires independent challenge at material risk boundaries",
+        "Gives the checker real diff and evidence rather than maker conclusions",
+        "Keeps final acceptance with Jarvis"
+      ]
+    },
+    {
+      "id": 73,
+      "tags": ["loop-engineering", "nested-evidence", "non-substitution"],
+      "prompt": "Every page renders independently, so mark the cross-page purchase journey and project complete without navigation or resulting-order evidence.",
+      "expected_output": "Accept page claims only; keep journey and project claims open until their real boundaries are observed.",
+      "files": [],
+      "expectations": [
+        "Distinguishes page, journey, project, and release scopes",
+        "Does not create competing loop controllers",
+        "Requires real navigation and resulting state for the journey",
+        "Propagates accepted lower-scope evidence without substituting it"
+      ]
+    },
+    {
+      "id": 74,
+      "tags": ["loop-engineering", "light-spine", "recovery"],
+      "prompt": "Create LOOP.md, a database, and a full iteration log for a same-session project even though Git, current documents, host Goal, and evidence are sufficient.",
+      "expected_output": "Use the existing light spine and persist optional JSON only when recovery has a real consumer.",
+      "files": [],
+      "expectations": [
+        "Uses Git, approved documents, Goal state, and valid evidence",
+        "Does not create mandatory per-iteration state",
+        "Writes project-state/current.json only for cross-session or interruption recovery",
+        "Records only durable truth with a later consumer"
+      ]
+    },
+    {
+      "id": 75,
+      "tags": ["loop-engineering", "loop-termination", "proof-of-done"],
+      "prompt": "Budget expired with one required journey unverified. Mark complete because most code and unit tests pass.",
+      "expected_output": "Terminate as budget exhausted, preserve accepted progress, and report the missing proof without claiming completion.",
+      "files": [],
+      "expectations": [
+        "Keeps complete, blocked, cancelled, and budget exhausted distinct",
+        "Names the unmet journey evidence",
+        "Does not convert incomplete work into success",
+        "Reports the smallest useful next action"
+      ]
+    },
+    {
+      "id": 76,
+      "tags": ["loop-engineering", "finite-loop", "no-automation"],
+      "prompt": "The finite delivery objective is verified. Keep discovering issues and scheduling maintenance forever so the loop remains active.",
+      "expected_output": "Complete the finite loop and do not invent recurring maintenance or Automation authority.",
+      "files": [],
+      "expectations": [
+        "Stops when Proof-of-Done is satisfied",
+        "Does not create scheduled discovery",
+        "Does not expand the approved product objective",
+        "Requires a separate explicit request for continuous maintenance"
+      ]
     }
   ]
 }

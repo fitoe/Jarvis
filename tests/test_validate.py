@@ -393,6 +393,39 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
         self.assertIn("Budget exhausted is a stop condition", budget)
 
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "loop-discover",
+            "loop-frame",
+            "loop-observe",
+            "evidence-driven-reframe",
+            "risk-based-checker",
+            "nested-evidence",
+            "light-spine",
+            "loop-termination",
+            "finite-loop",
+        ):
+            self.assertIn(tag, tags)
+
+        old_spec = (
+            ROOT
+            / "docs"
+            / "superpowers"
+            / "specs"
+            / "2026-07-26-autonomous-goal-browser-workbench-design.md"
+        ).read_text(encoding="utf-8")
+        old_plan = (
+            ROOT
+            / "docs"
+            / "superpowers"
+            / "plans"
+            / "2026-07-26-autonomous-goal-browser-workbench.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Status: superseded", old_spec)
+        self.assertIn("Status: superseded", old_plan)
+
 
 if __name__ == "__main__":
     unittest.main()

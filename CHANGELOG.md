@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.0 - 2026-07-26
+
+- Make finite Loop Engineering the Jarvis operating model: Discover, Frame,
+  Execute, Observe, Verify, Record, then Continue or Stop.
+- Define a logical Loop Contract, nested evidence scopes, light Spine, explicit
+  termination states, and changed-condition retry behavior.
+- Integrate authorized host Goal creation, visible browser observation, and
+  risk-based independent checking without adding a workflow runtime.
+- Add behavior evals for discovery, framing, observation, reframing, checking,
+  evidence scope, recovery, termination, and finite-loop boundaries.
+- Supersede the separate automatic-Goal and browser-workbench lifecycle.
+
 ## 0.10.0 - 2026-07-25
 
 - Add a concise human-agent collaboration contract with milestone-based progress
