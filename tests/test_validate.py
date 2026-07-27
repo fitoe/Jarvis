@@ -9,6 +9,7 @@ from scripts.validate import (
     REQUIRED_PATHS,
     SKILLS,
     parse_frontmatter,
+    validate_canary_file,
     validate_eval_file,
     validate_repo,
     validate_trigger_evals,
@@ -75,6 +76,12 @@ class ValidateRepositoryTests(unittest.TestCase):
         payload = json.loads(path.read_text(encoding="utf-8"))
         self.assertIn(True, {item["should_trigger"] for item in payload})
         self.assertIn(False, {item["should_trigger"] for item in payload})
+
+    def test_delivery_canaries_have_real_fixture_acceptance(self) -> None:
+        path = ROOT / "evals" / "delivery-canaries.json"
+        self.assertEqual(validate_canary_file(path, ROOT), [])
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        self.assertGreaterEqual(len(payload["canaries"]), 2)
 
     def test_packaged_skills_are_standalone(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -417,6 +424,9 @@ class ValidateRepositoryTests(unittest.TestCase):
             "model-routing",
             "heuristic-steering",
             "progressive-refinement",
+            "capability-probe",
+            "checkpoint",
+            "in-flight",
         ):
             self.assertIn(tag, tags)
 
@@ -458,8 +468,12 @@ class ValidateRepositoryTests(unittest.TestCase):
             "ux-before-polish",
             "reference-driven-direction",
             "targeted-image-edit",
+            "truth-ownership",
         ):
             self.assertIn(tag, tags)
+
+        self.assertNotIn("Visual Source Record", visual)
+        self.assertNotIn("Slice Packet", visual)
 
 
 if __name__ == "__main__":

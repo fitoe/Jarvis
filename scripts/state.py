@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +12,8 @@ SCHEMA_VERSION = "0.2"
 MODES = {"routine", "shared", "high-risk"}
 EVIDENCE_STATUSES = {"fresh", "stale", "unverified"}
 SIDE_EFFECT_STATUSES = {"planned", "confirmed", "failed", "reversed"}
+IN_FLIGHT_STATUSES = {"planned", "running", "uncertain", "completed", "failed"}
+IN_FLIGHT_KINDS = {"provider", "agent", "command", "external-effect"}
 REQUIRED_KEYS = (
     "schema_version",
     "goal",
@@ -38,6 +41,7 @@ def new_state(goal: str, next_action: str) -> dict[str, Any]:
         "blockers": [],
         "evidence": [],
         "side_effects": [],
+        "in_flight": [],
         "next_action": next_action,
     }
 
@@ -135,6 +139,31 @@ def validate_state(state: Any) -> list[str]:
         if not isinstance(item.get("evidence", ""), str):
             errors.append(f"{prefix}.evidence must be a string")
 
+    in_flight = state.get("in_flight", [])
+    if not isinstance(in_flight, list):
+        errors.append("in_flight must be a list")
+        return errors
+    in_flight_ids: set[str] = set()
+    for index, item in enumerate(in_flight, start=1):
+        prefix = f"in_flight[{index}]"
+        if not isinstance(item, dict):
+            errors.append(f"{prefix} must be an object")
+            continue
+        for key in ("id", "target", "resume_action"):
+            _require_string(item, key, prefix, errors)
+        item_id = item.get("id")
+        if isinstance(item_id, str):
+            if item_id in in_flight_ids:
+                errors.append(f"duplicate in-flight id: {item_id}")
+            in_flight_ids.add(item_id)
+        if item.get("kind") not in IN_FLIGHT_KINDS:
+            errors.append(f"{prefix} has invalid kind")
+        if item.get("status") not in IN_FLIGHT_STATUSES:
+            errors.append(f"{prefix} has invalid status")
+        for optional in ("external_id", "started_at"):
+            if optional in item and not isinstance(item[optional], str):
+                errors.append(f"{prefix}.{optional} must be a string")
+
     return errors
 
 
@@ -219,11 +248,42 @@ def reconcile_state(state: dict[str, Any], repo: Path) -> list[str]:
     return stale
 
 
+def reconcile_in_flight(state: dict[str, Any]) -> list[str]:
+    uncertain: list[str] = []
+    for item in state.get("in_flight", []):
+        if isinstance(item, dict) and item.get("status") == "running":
+            item["status"] = "uncertain"
+            uncertain.append(item.get("id", "<unknown>"))
+    return uncertain
+
+
 def _load_valid_state(path: Path) -> dict[str, Any]:
     state = read_state(path)
     errors = validate_state(state)
     if errors:
         raise ValueError("invalid state:\n" + "\n".join(errors))
+    return state
+
+
+def checkpoint_state(
+    path: Path,
+    *,
+    goal: str | None,
+    next_action: str,
+    in_flight: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    if path.exists():
+        state = _load_valid_state(path)
+    else:
+        if not goal:
+            raise ValueError("--goal is required when creating recovery state")
+        state = new_state(goal, next_action)
+    state["next_action"] = next_action
+    if in_flight:
+        items = state.setdefault("in_flight", [])
+        items[:] = [item for item in items if item.get("id") != in_flight["id"]]
+        items.append(in_flight)
+    write_state(path, state)
     return state
 
 
@@ -247,6 +307,16 @@ def main() -> int:
     reconcile_parser.add_argument("--repo", type=Path, default=Path.cwd())
     reconcile_parser.add_argument("--write", action="store_true")
 
+    checkpoint_parser = subparsers.add_parser("checkpoint")
+    checkpoint_parser.add_argument("path", type=Path)
+    checkpoint_parser.add_argument("--goal")
+    checkpoint_parser.add_argument("--next-action", required=True)
+    checkpoint_parser.add_argument("--in-flight-id")
+    checkpoint_parser.add_argument("--kind", choices=sorted(IN_FLIGHT_KINDS))
+    checkpoint_parser.add_argument("--target")
+    checkpoint_parser.add_argument("--resume-action")
+    checkpoint_parser.add_argument("--external-id")
+
     args = parser.parse_args()
     try:
         if args.command == "init":
@@ -262,12 +332,43 @@ def main() -> int:
             print(json.dumps(state, ensure_ascii=False, indent=2))
         elif args.command == "reconcile":
             state = _load_valid_state(args.path)
+            uncertain = reconcile_in_flight(state)
             stale = reconcile_state(state, args.repo.resolve())
-            if args.write and stale:
+            if args.write and (stale or uncertain):
                 write_state(args.path, state)
             print(f"Stale evidence: {len(stale)}")
             for evidence_id in stale:
                 print(f"- {evidence_id}")
+            print(f"Uncertain in-flight work: {len(uncertain)}")
+            for item_id in uncertain:
+                print(f"- {item_id}")
+        elif args.command == "checkpoint":
+            supplied = (args.in_flight_id, args.kind, args.target, args.resume_action)
+            if (any(supplied) and not all(supplied)) or (
+                args.external_id and not all(supplied)
+            ):
+                raise ValueError(
+                    "--in-flight-id, --kind, --target, and --resume-action must be supplied together"
+                )
+            in_flight = None
+            if all(supplied):
+                in_flight = {
+                    "id": args.in_flight_id,
+                    "kind": args.kind,
+                    "target": args.target,
+                    "status": "running",
+                    "resume_action": args.resume_action,
+                    "started_at": datetime.now(timezone.utc).isoformat(),
+                }
+                if args.external_id:
+                    in_flight["external_id"] = args.external_id
+            checkpoint_state(
+                args.path,
+                goal=args.goal,
+                next_action=args.next_action,
+                in_flight=in_flight,
+            )
+            print(f"Checkpointed {args.path}")
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
         print(str(exc))
         return 1

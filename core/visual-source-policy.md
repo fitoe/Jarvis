@@ -103,8 +103,9 @@ the approved source is too ambiguous to implement safely.
 
 Persist the selected source because code and later Image 2 prompts consume it.
 After approval, extract only implementation constraints a downstream builder or
-verifier will consume. Keep them in the existing Visual Source Record or Slice
-Packet, not a separate freeze-document set:
+verifier will consume. Keep project-wide visual language and the approved source
+in the Product Plan; keep current-surface constraints in its Page Overview when
+one exists, otherwise in the Development Guide:
 
 - source paths and target viewport;
 - page type, hierarchy, density, and key states;
@@ -114,8 +115,9 @@ Packet, not a separate freeze-document set:
 
 For later surfaces, inspect whether the generation provider accepts image
 references. Attach the baseline and closest approved screen when it does.
-Otherwise supply the Visual Source Record and exact reuse constraints, then rely
-more heavily on approved tokens and components. Text-only prompting is degraded
+Otherwise supply the approved source location, current Development Guide, and
+exact reuse constraints, then rely more heavily on approved tokens and
+components. Text-only prompting is degraded
 style evidence and cannot alone support a project-wide consistency claim. A new
 direction is warranted only when the product intentionally changes its visual
 language.

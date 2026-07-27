@@ -120,6 +120,26 @@ python scripts/state.py init project-state/current.json --goal "Ship the core fl
 python scripts/state.py reconcile project-state/current.json --repo . --write
 ```
 
+At a real cross-session boundary, checkpoint the safe next action and any
+recoverable in-flight work:
+
+```powershell
+python scripts/state.py checkpoint project-state/current.json `
+  --goal "Ship the core flow" `
+  --next-action "Inspect Image 2 job before retry" `
+  --in-flight-id image2-1 --kind provider --target image-generation `
+  --resume-action "Query image2-1 and inspect its output"
+```
+
+Structural checks are cheap CI gates. Model behavior and delivery canaries run
+explicitly because they consume model capacity:
+
+```powershell
+python scripts/run_evals.py behavior --ids 22 --output .jarvis-evals/behavior-22.json
+python scripts/run_evals.py canary --output .jarvis-evals/canaries.json
+python scripts/run_evals.py probe --output .jarvis-evals/capabilities.json
+```
+
 ## Package for installation
 
 Build one standalone skill directory. Shared policy remains single-source in the
@@ -129,17 +149,20 @@ repository and is copied only into ignored build output:
 python scripts/package_skills.py
 ```
 
-Copy or link `dist/jarvis` into the skill directory used by your agent
-environment. The package contains its required references, state tool, and eval
-fixtures; no repository-relative links remain.
+For live development, link `skills/jarvis` directly into the skill directory used
+by the agent so source edits apply immediately. Use `dist/jarvis` only when a
+standalone copy is needed outside this repository; it contains all references,
+the state tool, and eval fixtures.
 
 ## Status
 
 V0.11 makes Loop Engineering the Jarvis operating model: one finite outer loop
 discovers, frames, executes, observes, verifies, records, and terminates from
 evidence. Goal, browser, skills, workers, and recovery state remain proportional
-loop primitives, not mandatory stages. Structural and fixture checks do not prove
-qualitative convergence; representative Loop runs remain required.
+loop primitives, not mandatory stages. Structural checks do not prove qualitative
+convergence. The executable behavior runner and isolated delivery canaries cover
+an HTTP journey, interrupted recovery, a real browser flow, and authorization
+when run; broader project classes still require Shadow Mode comparison.
 
 ## License
 

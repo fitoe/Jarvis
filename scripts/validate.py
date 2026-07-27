@@ -44,6 +44,9 @@ REQUIRED_PATHS = (
     "templates/product-plan.md",
     "templates/page-overview.md",
     "templates/development-guide.md",
+    "evals/delivery-canaries.json",
+    "evals/judge-schema.json",
+    "scripts/run_evals.py",
     "CONTRIBUTING.md",
     "CHANGELOG.md",
     "NOTICE.md",
@@ -159,6 +162,73 @@ def validate_trigger_evals(path: Path) -> list[str]:
     return errors
 
 
+def validate_canary_file(path: Path, root: Path) -> list[str]:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"invalid canary file {path}: {exc}"]
+    canaries = payload.get("canaries")
+    if not isinstance(canaries, list) or len(canaries) < 2:
+        return [f"{path}: expected at least 2 delivery canaries"]
+
+    errors: list[str] = []
+    ids: set[int] = set()
+    fixture_root = (root / "evals" / "fixtures").resolve()
+    for index, case in enumerate(canaries, start=1):
+        prefix = f"{path}: canary {index}"
+        if not isinstance(case, dict):
+            errors.append(f"{prefix} must be an object")
+            continue
+        case_id = case.get("id")
+        if not isinstance(case_id, int) or case_id in ids:
+            errors.append(f"{prefix} must have a unique integer id")
+        else:
+            ids.add(case_id)
+        for field in ("name", "prompt", "fixture"):
+            if not isinstance(case.get(field), str) or not case[field].strip():
+                errors.append(f"{prefix} missing {field}")
+        repair_attempts = case.get("repair_attempts", 0)
+        if not isinstance(repair_attempts, int) or not 0 <= repair_attempts <= 2:
+            errors.append(f"{prefix}.repair_attempts must be an integer from 0 to 2")
+        fixture = (root / "evals" / str(case.get("fixture", ""))).resolve()
+        if not fixture.is_dir() or fixture_root not in fixture.parents:
+            errors.append(f"{prefix} fixture must be inside evals/fixtures")
+        protected_paths = case.get("protected_paths", [])
+        if not isinstance(protected_paths, list) or not all(
+            isinstance(relative, str) and relative for relative in protected_paths
+        ):
+            errors.append(f"{prefix}.protected_paths must be a list of paths")
+        else:
+            for relative in protected_paths:
+                protected = (fixture / relative).resolve()
+                if (
+                    not protected.exists()
+                    or (protected != fixture and fixture not in protected.parents)
+                ):
+                    errors.append(f"{prefix} has unsafe or missing protected path: {relative}")
+        checks = case.get("acceptance")
+        if not isinstance(checks, list) or not checks:
+            errors.append(f"{prefix} needs acceptance checks")
+            continue
+        for check_index, check in enumerate(checks, start=1):
+            if not isinstance(check, dict):
+                errors.append(f"{prefix} acceptance {check_index} must be an object")
+                continue
+            command = check.get("command")
+            if not isinstance(check.get("name"), str) or not check["name"].strip():
+                errors.append(f"{prefix} acceptance {check_index} missing name")
+            if not isinstance(command, list) or not command or not all(
+                isinstance(part, str) and part for part in command
+            ):
+                errors.append(f"{prefix} acceptance {check_index} needs a command")
+        for prepare_index, command in enumerate(case.get("prepare", []), start=1):
+            if not isinstance(command, list) or not command or not all(
+                isinstance(part, str) and part for part in command
+            ):
+                errors.append(f"{prefix} prepare {prepare_index} needs a command")
+    return errors
+
+
 def validate_repo(root: Path) -> list[str]:
     errors: list[str] = []
 
@@ -201,6 +271,10 @@ def validate_repo(root: Path) -> list[str]:
             )
         except json.JSONDecodeError as exc:
             errors.append(f"invalid delivery-state.json: {exc}")
+
+    canary_path = root / "evals" / "delivery-canaries.json"
+    if canary_path.is_file():
+        errors.extend(validate_canary_file(canary_path, root))
 
     errors.extend(validate_markdown_links(root))
     return errors

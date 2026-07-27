@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "case_id": {"type": "integer"},
+    "passed": {"type": "boolean"},
+    "expectations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "expectation": {"type": "string"},
+          "passed": {"type": "boolean"},
+          "evidence": {"type": "string"}
+        },
+        "required": ["expectation", "passed", "evidence"],
+        "additionalProperties": false
+      }
+    },
+    "summary": {"type": "string"}
+  },
+  "required": ["case_id", "passed", "expectations", "summary"],
+  "additionalProperties": false
+}

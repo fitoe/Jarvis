@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased
+
+- Add executable Candidate-to-Judge behavior evaluations and deterministic
+  delivery canaries for HTTP, recovery, real-browser, and authorization paths.
+- Protect canary acceptance files by content hash and ignore generated Python
+  caches so modifying tests cannot create a false pass or false failure.
+- Add a local capability probe that proves Codex, Playwright, and a browser
+  executable while leaving the desktop host browser, Image 2, Goal, and subagents
+  explicitly unverified.
+- Feed failed canary acceptance evidence into one bounded repair before the final
+  verdict; persist benchmark results after every case.
+- Checkpoint recoverable in-flight providers, agents, commands, and external
+  effects, then mark unfinished work uncertain on resume.
+- Probe material provider capabilities in the current host and keep approved
+  visual truth in the existing Product Plan, Page Overview, or Development Guide.
+
 ## 0.11.0 - 2026-07-26
 
 - Make finite Loop Engineering the Jarvis operating model: Discover, Frame,

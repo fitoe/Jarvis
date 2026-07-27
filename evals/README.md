@@ -7,9 +7,47 @@ Expectations describe observable behavior rather than exact wording.
 and near-miss should-not-trigger queries. It protects Jarvis from taking over
 one-step edits, explanations, read-only reviews, and unrelated creative work.
 
-Initial evaluations are fixtures for qualitative runs and future benchmark
-automation. Repository validation checks their schema. Run agent-vs-baseline
-benchmarks before claiming that an instruction change improves delivery behavior.
+Repository validation checks scenario structure only. `scripts/run_evals.py`
+provides two executable layers:
+
+- `behavior` runs a selected prompt through Codex in a read-only sandbox, then
+  gives the response and event trace to a schema-constrained judge;
+- `canary` copies a small project fixture into an isolated Git workspace, lets
+  Codex implement it, and decides success only from deterministic acceptance
+  commands. A fixture may allow one bounded repair that receives the failed
+  acceptance evidence; unchanged retries are not allowed.
+
+Run a focused behavioral scenario:
+
+```powershell
+python scripts/run_evals.py behavior --ids 22 --output .jarvis-evals/behavior-22.json
+```
+
+Run the representative delivery canaries:
+
+```powershell
+python scripts/run_evals.py canary --output .jarvis-evals/canaries.json
+```
+
+Inspect safe local provider capabilities without pretending to validate host-only
+Image 2, Goal, or subagent behavior:
+
+```powershell
+python scripts/run_evals.py probe --output .jarvis-evals/capabilities.json
+```
+
+These runs consume model capacity and therefore remain an explicit benchmark,
+not a per-edit CI gate. A passing judged response supports only instruction
+behavior; a passing canary additionally proves its fixture's observable
+acceptance commands. Neither result proves every project class. Run
+agent-vs-baseline benchmarks before claiming a general delivery improvement.
+
+The browser canary intentionally uses isolated Playwright and a local browser
+executable because a nested `codex exec` benchmark cannot inherit the desktop
+host's built-in browser session. This does not change product delivery routing:
+active page work still prefers the host's visible built-in browser when exposed.
+The runner streams concise Codex events and prints a heartbeat every 30 seconds
+during silent agent or acceptance work, while retaining full output in its report.
 
 Use Shadow Mode before trusting autonomous execution on varied projects:
 

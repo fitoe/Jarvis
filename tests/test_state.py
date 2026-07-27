@@ -6,12 +6,24 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.state import new_state, reconcile_state, validate_state, write_state
+from scripts.state import (
+    checkpoint_state,
+    new_state,
+    reconcile_in_flight,
+    reconcile_state,
+    validate_state,
+    write_state,
+)
 
 
 class DeliveryStateTests(unittest.TestCase):
     def test_new_state_is_valid(self) -> None:
         state = new_state("Ship the first useful slice", "Inspect local truth")
+        self.assertEqual(validate_state(state), [])
+
+    def test_version_02_state_without_in_flight_remains_valid(self) -> None:
+        state = new_state("Resume old state", "Inspect local truth")
+        del state["in_flight"]
         self.assertEqual(validate_state(state), [])
 
     def test_duplicate_side_effect_keys_are_rejected(self) -> None:
@@ -101,6 +113,39 @@ class DeliveryStateTests(unittest.TestCase):
             write_state(path, new_state("Goal", "Next"))
             payload = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(payload["goal"], "Goal")
+
+    def test_checkpoint_records_recoverable_in_flight_work(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "project-state" / "current.json"
+            checkpoint_state(
+                path,
+                goal="Finish the provider-backed slice",
+                next_action="Inspect provider job before retry",
+                in_flight={
+                    "id": "P1",
+                    "kind": "provider",
+                    "target": "image-generation",
+                    "status": "running",
+                    "resume_action": "Query job P1",
+                },
+            )
+            state = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(state["next_action"], "Inspect provider job before retry")
+            self.assertEqual(state["in_flight"][0]["status"], "running")
+
+    def test_resume_marks_running_work_uncertain(self) -> None:
+        state = new_state("Resume safely", "Inspect worker")
+        state["in_flight"] = [
+            {
+                "id": "A1",
+                "kind": "agent",
+                "target": "database adapter",
+                "status": "running",
+                "resume_action": "Inspect the worker handback and diff",
+            }
+        ]
+        self.assertEqual(reconcile_in_flight(state), ["A1"])
+        self.assertEqual(state["in_flight"][0]["status"], "uncertain")
 
     def test_reconcile_rejects_non_git_directory(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

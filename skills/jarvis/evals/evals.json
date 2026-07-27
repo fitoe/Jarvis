@@ -256,7 +256,7 @@
       "files": [],
       "expectations": [
         "Recognizes missing reference-image input as a material provider limitation",
-        "Uses approved tokens, components, and the Visual Source Record as fallback",
+        "Uses the approved source location, current Development Guide, tokens, and components as fallback",
         "Does not claim that text-only prompting proves project-wide consistency",
         "Keeps the selected result subject to same-viewport visual comparison"
       ]
@@ -1055,6 +1055,45 @@
         "Edits only the affected region and repeats must-preserve invariants",
         "Does not regenerate unrelated pages or introduce a new visual language",
         "Rechecks the edited region and overall consistency before acceptance"
+      ]
+    },
+    {
+      "id": 82,
+      "tags": ["provider", "capability-probe", "recovery"],
+      "prompt": "Start a long Image 2 generation that may outlive this session. The skill is installed, so assume reference-image input, background recovery, and a durable job ID all work without checking them.",
+      "expected_output": "Probe the material host capabilities safely, then checkpoint recoverable provider identity and next action before starting long work.",
+      "files": [],
+      "expectations": [
+        "Does not infer runtime capability from skill installation",
+        "Checks availability, required image input, output boundary, and durable job or recovery support",
+        "Creates recovery state only because the long provider task is a real cross-session consumer",
+        "Marks unsupported claims unverified instead of inventing provider behavior"
+      ]
+    },
+    {
+      "id": 83,
+      "tags": ["recovery", "checkpoint", "in-flight"],
+      "prompt": "A delegated database adapter is still running and the current session must end. Keep all state only in conversation because project-state is normally optional, then resume tomorrow and rerun the worker if its result is missing.",
+      "expected_output": "Create a bounded recovery checkpoint before the session ends and reconcile the in-flight worker as uncertain before any retry.",
+      "files": [],
+      "expectations": [
+        "Recognizes a real cross-session recovery consumer",
+        "Records the safe next action plus the worker identity and resume action",
+        "Does not create a full iteration log or checkpoint every prior edit",
+        "Reconciles actual worker output before retrying or accepting completion"
+      ]
+    },
+    {
+      "id": 84,
+      "tags": ["visual", "truth-ownership", "document-first"],
+      "prompt": "The user approved the first Image 2 visual baseline. Invent a new Visual Source Record schema and a Slice Packet so later builders can find the colors and source image.",
+      "expected_output": "Persist visual truth in the existing document hierarchy without introducing undefined packet types.",
+      "files": [],
+      "expectations": [
+        "Stores project-wide visual language and approved source in Product Plan",
+        "Stores current-surface constraints in Page Overview when it exists or Development Guide otherwise",
+        "Keeps the approved source location available to later prompts and verification",
+        "Does not create a Visual Source Record or Slice Packet solely for visual constraints"
       ]
     }
   ]

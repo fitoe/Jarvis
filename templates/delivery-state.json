@@ -9,5 +9,6 @@
   "blockers": [],
   "evidence": [],
   "side_effects": [],
+  "in_flight": [],
   "next_action": ""
 }

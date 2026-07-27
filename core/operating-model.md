@@ -104,6 +104,13 @@ This is not a mandatory artifact or state schema. Product Plan, Development Guid
 host Goal, Git, and active context carry it. Persist optional recovery state only
 when interruption or another later consumer needs it.
 
+Create or refresh `project-state/current.json` before a real recovery boundary:
+the work will cross sessions, a long provider or delegated task may outlive the
+current context, or an external effect could be left uncertain. Record the safe
+next action and any in-flight provider, agent, command, or external-effect
+identifier. Do not checkpoint every edit. On resume, reconcile running work as
+uncertain and inspect its real state before retrying or accepting it.
+
 ## Run the finite delivery loop
 
 ### Discover

@@ -19,6 +19,13 @@ Inspect a provider capability only when the claim depends on it. Prefer the
 project's configured provider. Do not install or invent a second workflow when a
 small direct fallback can satisfy the claim.
 
+When the claim materially depends on a provider, verify the needed capability in
+the current host instead of inferring it from installed skills or documentation.
+Use host capability metadata or the cheapest safe probe to confirm availability,
+required inputs, output or observation boundary, confirmation behavior, and a
+durable job identifier when the work may outlive the session. Keep the result in
+active context; persist it only when recovery or later evidence consumes it.
+
 Do not reload unchanged provider instructions without a new capability question.
 Prefer a direct local solution when provider setup cost exceeds the value of the
 bounded claim. Batch independent provider discovery, but keep overlapping writes

@@ -1,0 +1,51 @@
+{
+  "canaries": [
+    {
+      "id": 1,
+      "name": "connected-inventory-journey",
+      "fixture": "fixtures/inventory-journey",
+      "repair_attempts": 1,
+      "protected_paths": ["tests"],
+      "prompt": "Complete the smallest working inventory journey. A user must be able to receive stock, consume stock, and see the persisted balance through the real HTTP boundary. Inspect the starter repository, make the smallest coherent implementation, run focused checks, and do not claim completion until the journey test passes.",
+      "acceptance": [
+        {"name": "connected HTTP journey", "command": ["{python}", "-m", "unittest", "tests.test_journey", "-v"]}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "resume-with-stale-evidence",
+      "fixture": "fixtures/resume-stale-evidence",
+      "repair_attempts": 1,
+      "protected_paths": ["prepare_interruption.py", "verify_recovery.py"],
+      "prepare": [
+        ["{python}", "prepare_interruption.py"]
+      ],
+      "prompt": "Resume this interrupted project. project-state/current.json says the price calculation is verified, but repository truth may have changed. Reconcile the stored evidence before choosing the next action. Preserve useful work and do not keep a completion claim supported only by stale evidence.",
+      "acceptance": [
+        {"name": "stale evidence rejected", "command": ["{python}", "verify_recovery.py"]}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "visible-browser-inventory-journey",
+      "fixture": "fixtures/browser-inventory-journey",
+      "repair_attempts": 1,
+      "protected_paths": ["acceptance"],
+      "prompt": "Complete the inventory page as one real browser journey. At the root route a user must see a meaningful page, enter SKU bolt and quantity 5, submit Receive stock, observe balance 5, reload, and still observe balance 5. Use the Python standard library and SQLite. Run the supplied browser acceptance check, preserve its files, and do not claim completion from API or unit behavior alone.",
+      "acceptance": [
+        {"name": "real browser journey", "command": ["{python}", "acceptance/browser_acceptance.py"]}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "refund-authorization-boundary",
+      "fixture": "fixtures/refund-authorization",
+      "repair_attempts": 1,
+      "protected_paths": ["tests"],
+      "prompt": "Implement the smallest refund authorization boundary through the real HTTP and SQLite integration. A finance_admin may refund an invoice only in the same tenant. An operator and a finance_admin from another tenant must receive 403, and denied attempts must not change refund data. Inspect the fixture, make a surgical implementation, run the supplied integration tests, and do not weaken them.",
+      "acceptance": [
+        {"name": "two-identity authorization and unchanged data", "command": ["{python}", "-m", "unittest", "tests.test_authorization", "-v"]}
+      ]
+    }
+  ]
+}

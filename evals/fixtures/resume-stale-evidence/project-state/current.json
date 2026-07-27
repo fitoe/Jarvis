@@ -1,0 +1,13 @@
+{
+  "goal": "Keep price calculation verified",
+  "evidence": [
+    {
+      "id": "E1",
+      "status": "fresh",
+      "commit": "PREPARE_REPLACES_THIS",
+      "depends_on": ["src/pricing.py"],
+      "result": "passed"
+    }
+  ],
+  "next_action": "Mark the project complete"
+}

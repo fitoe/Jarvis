@@ -25,6 +25,10 @@ project machinery merely because Jarvis is available.
 4. Reconcile `project-state/current.json` only when recovery state exists; code,
    Git, current documents, and executable evidence remain truth.
 
+Before work crosses sessions, starts a long provider or delegated task, or may
+leave an external effect uncertain, create or refresh recovery state with the
+safe next action and in-flight identifier. Do not checkpoint routine edits.
+
 For unfamiliar or long-running work, read [Operating Model](../../core/operating-model.md),
 [Decision Policy](../../core/decision-policy.md), and
 [Collaboration Policy](../../core/collaboration-policy.md).
