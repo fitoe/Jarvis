@@ -1002,6 +1002,21 @@
         "Falls back to an inherited or another adequate host-listed model without inventing unavailable identifiers",
         "Does not let deadline or budget pressure silently weaken authority or evidence boundaries"
       ]
+    },
+    {
+      "id": 78,
+      "tags": ["heuristic-steering", "progressive-refinement", "information-gain", "anti-ceremony"],
+      "prompt": "Build a human-friendly AI study product that helps people finish courses. The repository is a runnable empty shell, the demo is tomorrow, and a manager demands every page, data model, and implementation guide be fully detailed now before coding all pages in parallel. There is no research, approved journey, or downstream document consumer. Choose the next move and explain what becomes detailed now, what stays coarse, and how contradictory browser evidence changes the direction.",
+      "expected_output": "Anchor the goal, choose a cheap reversible probe with high information value, refine only its active slice, and let evidence reshape the next move.",
+      "files": [],
+      "expectations": [
+        "Compares eligible next moves by goal progress, information gain, dependencies, reversibility, risk, and cost without inventing a numeric score",
+        "Refines only the smallest coherent active journey and keeps future pages, data, and architecture as coarse hypotheses",
+        "Creates planning documents only when a real user, worker, recovery path, or later decision consumes them",
+        "Stops repository discovery when the selected next move no longer depends on another unread local fact",
+        "Rejects unstable all-page parallel implementation despite deadline and authority pressure",
+        "Uses contradictory browser evidence to revise assumptions, truth, and the next slice instead of preserving sunk planning"
+      ]
     }
   ]
 }

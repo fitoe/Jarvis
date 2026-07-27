@@ -1,8 +1,8 @@
 # Planning Policy
 
-Plan globally with capable models, explain the current work locally in ordinary
-Markdown, and let bounded implementation workers operate without the whole
-roadmap or conversation.
+Treat plans as adaptive memory for the goal, not prerequisites for action. Keep
+global truth coarse, explain only the current work in enough detail to act, and
+let evidence reshape future detail.
 
 ## Choose the lightest planning depth
 
@@ -11,7 +11,8 @@ repository patterns already make the change obvious. Do not create three
 documents for copy, spacing, static configuration, or one contained fix.
 
 Use hierarchical planning when work spans multiple pages, journeys, shared
-rules, capabilities, or delivery sessions. For UI products, the default shape is:
+rules, capabilities, or delivery sessions and those layers have real consumers.
+For UI products, the available shape is:
 
 ```text
 Product Plan
@@ -21,9 +22,22 @@ Product Plan
   -> verification and handback
 ```
 
-Product Plan and the current Development Guide are the core layers. Page
-Overview is optional. Its existence depends on durable page truth and real
-consumers, not on a requirement that every page produce the same document set.
+Product Plan and Development Guide are available durable layers when they have
+real consumers. Page Overview is optional. No layer exists merely because every
+page is expected to produce the same document set.
+
+## Refine plans progressively from evidence
+
+Begin with the goal, protected boundaries, current truth, costly unknowns, and
+nearest proof gap in active context. Expand only the decision or slice needed to
+select and execute the next move. Keep future pages, data, architecture, and
+implementation as coarse hypotheses until a dependency, consumer, or evidence
+makes them active.
+
+More detail is not more confidence. Prefer a reversible probe when evidence can
+resolve an expensive assumption faster than prose. When observation contradicts
+the plan, update or retire the invalid assumption and refresh only affected
+downstream context; do not preserve sunk planning.
 
 Page is the default UI boundary, not a universal unit. A Development Guide may
 instead cover a coherent page state, cross-page journey, shared component, API,
@@ -177,15 +191,19 @@ is a teaching and evaluation fixture, not a mandatory workflow stage.
 ## Prepare only the active detail
 
 1. Understand the product goal and resolve only direction-level ambiguity.
-2. Write or refresh the Product Plan.
-3. Identify the core journey, page inventory, shared rules, and priority.
+2. Decide whether a Product Plan has a real cross-unit, cross-session, or
+   downstream consumer; write or refresh it only then.
+3. Identify only enough of the core journey, likely page inventory, shared
+   rules, and priority to choose the active unit.
 4. Decide whether the current page has a real Page Overview consumer. Write or
    refresh one only when the optional-layer criteria apply.
 5. Select the current valuable page or coherent delivery unit.
 6. Inspect linked sources and current repository patterns.
-7. Write or refresh its Development Guide, compiling page truth directly when no
-   Overview exists.
-8. Run the context-closure check and dispatch only when decision-ready.
+7. Write or refresh its Development Guide only when implementation, delegation,
+   review, or recovery has a durable reader. Otherwise keep the same bounded
+   context active without creating a document.
+8. Run the context-closure check before dispatch and proceed only when
+   decision-ready.
 9. Verify the result, integrate it, and route durable discoveries upstream.
 10. Refresh the next active guide instead of fully detailing all future work.
 
@@ -220,8 +238,8 @@ Route a discovery to the narrowest durable owner:
 - local implementation fact: Development Guide or handback;
 - durable page behavior with multiple consumers: Page Overview, then refresh its
   Development Guides;
-- single-use page behavior: keep it in the current Development Guide until
-  another consumer justifies extracting an Overview;
+- single-use page behavior: keep it in active context or an existing Development
+  Guide until another consumer justifies extracting an Overview;
 - shared or product-wide rule: Product Plan or shared source, then refresh every
   affected page guide.
 

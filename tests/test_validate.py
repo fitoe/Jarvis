@@ -342,6 +342,8 @@ class ValidateRepositoryTests(unittest.TestCase):
         )
         for phrase in (
             "## Keep one Loop Contract",
+            "## Steer by goal-directed heuristics",
+            "Stop discovery when",
             "## Run the finite delivery loop",
             "### Discover",
             "### Frame",
@@ -359,6 +361,7 @@ class ValidateRepositoryTests(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("## Run Loop Engineering", skill)
+        self.assertIn("## Refine toward the goal", skill)
         for move in (
             "Discover",
             "Frame",
@@ -412,6 +415,8 @@ class ValidateRepositoryTests(unittest.TestCase):
             "loop-termination",
             "finite-loop",
             "model-routing",
+            "heuristic-steering",
+            "progressive-refinement",
         ):
             self.assertIn(tag, tags)
 

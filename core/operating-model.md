@@ -24,11 +24,35 @@ Before deciding how to work:
 3. Reuse existing product, architecture, and code conventions.
 4. Use a Golden Path only when local truth does not answer the decision.
 
+## Steer by goal-directed heuristics
+
+At each meaningful feedback boundary, derive the next action from the goal and
+current evidence instead of following a fixed decomposition.
+
+1. Re-anchor on the final observable result and the nearest missing proof.
+2. Exclude moves blocked by authority, dependency, or an unsettled shared
+   contract.
+3. Consider only a few plausible moves; do not create an exhaustive option tree
+   or expose private reasoning.
+4. When factors conflict, prefer in order: authority and dependency eligibility;
+   prevention of irreversible or high-impact error; information gain on costly
+   uncertainty; coherent goal progress; then lower cost and easier reversal.
+5. When no move clearly dominates, run the cheapest reversible probe that can
+   falsify the most consequential assumption.
+6. Refine the selected move only until it is safe, executable, and verifiable.
+   Keep future units coarse until evidence or a dependency makes them active.
+
+These are judgment heuristics, not a numeric score or optimizer. New evidence may
+change the active slice, plan, or implementation hypothesis, but it may not
+silently broaden the user's goal or authority.
+
 ## Work economically
 
 - batch independent read-only discovery and related searches;
 - load only files and instructions needed by the active slice;
 - do not reread unchanged context without a new question it can answer;
+- Stop discovery when the selected next move no longer depends on another unread
+  local fact; deeper inspection must answer a named decision or proof gap;
 - keep command output focused on decisive evidence;
 - batch coherent edits before the verification boundary;
 - parallelize only independent work with stable integration points;
@@ -85,14 +109,15 @@ when interruption or another later consumer needs it.
 ### Discover
 
 Read current Product Truth, repository instructions, code, Git, valid evidence,
-host Goal state, and recovery state when present. Select the highest-value unit
-whose dependencies and authority are satisfied. Do not invent scheduled or
-perpetual work.
+host Goal state, and recovery state when present. Use the goal-directed
+heuristics to select the next eligible move. Do not invent scheduled or
+perpetual work or fully decompose inactive units.
 
 ### Frame
 
-Define the active unit's observable result, scope, relevant truth, acceptance
-claims, nearest evidence, authority, risk, budget, and stop or reframe condition.
+Refine the selected move into an active unit with an observable result, scope,
+relevant truth, acceptance claims, nearest evidence, authority, risk, budget,
+and stop or reframe condition.
 Resolve repository facts locally. Consolidate material user questions before
 substantial execution; use mature reversible defaults for ordinary choices.
 
@@ -125,8 +150,9 @@ spine; do not create an iteration log or mandatory `LOOP.md`.
 ### Continue or stop
 
 If the unit passes, accept its claims, update affected higher-level claims, and
-return to Discover. If evidence fails, classify the cause and repair, reframe,
-change approach, use a claim-equivalent fallback, or stop.
+return to Discover. If evidence fails, update the invalid assumption, classify
+the cause, and repair, reframe, change approach, use a claim-equivalent fallback,
+or stop.
 Retry only when the next attempt changes a relevant condition. Two equivalent
 failures require a changed path.
 
