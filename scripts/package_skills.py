@@ -39,7 +39,9 @@ def _safe_target(output_root: Path, skill_name: str) -> Path:
     return target
 
 
-def package_skills(root: Path, output_root: Path) -> list[Path]:
+def package_skills(
+    root: Path, output_root: Path, *, include_evals: bool = True
+) -> list[Path]:
     output_root.mkdir(parents=True, exist_ok=True)
     packages: list[Path] = []
 
@@ -55,7 +57,8 @@ def package_skills(root: Path, output_root: Path) -> list[Path]:
             skill_text = skill_text.replace(old, new)
         (target / "SKILL.md").write_text(skill_text, encoding="utf-8")
 
-        shutil.copytree(source / "evals", target / "evals")
+        if include_evals:
+            shutil.copytree(source / "evals", target / "evals")
         (target / "scripts").mkdir()
         shutil.copy2(root / "scripts" / "state.py", target / "scripts" / "state.py")
         for resource in RESOURCE_DIRECTORIES:

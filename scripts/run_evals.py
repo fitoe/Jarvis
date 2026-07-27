@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import json
 import os
@@ -14,6 +15,11 @@ from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+if __package__:
+    from scripts.package_skills import package_skills
+else:
+    from package_skills import package_skills
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -127,6 +133,7 @@ def _run_streaming_process(
         "returncode": process.returncode,
         "stdout": "".join(stdout_lines),
         "stderr": "".join(stderr_lines),
+        "elapsed_seconds": round(time.monotonic() - started, 3),
     }
 
 
@@ -241,6 +248,114 @@ def load_canaries(path: Path) -> list[dict[str, Any]]:
     return payload["canaries"]
 
 
+def _source_codex_home() -> Path:
+    return Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")).resolve()
+
+
+def _minimal_codex_config(source: Path) -> str:
+    if not source.is_file():
+        return ""
+    lines = source.read_text(encoding="utf-8").splitlines()
+    root_values: dict[str, str] = {}
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("["):
+            break
+        for key in ("model_provider", "model", "model_reasoning_effort"):
+            if stripped.startswith(f"{key} ="):
+                root_values[key] = stripped
+
+    provider_line = root_values.get("model_provider")
+    provider_section: list[str] = []
+    if provider_line:
+        try:
+            provider = ast.literal_eval(provider_line.split("=", 1)[1].strip())
+        except (SyntaxError, ValueError):
+            provider = None
+        header = f"[model_providers.{provider}]" if provider else None
+        if header:
+            capture = False
+            for line in lines:
+                stripped = line.strip()
+                if stripped == header:
+                    capture = True
+                elif capture and stripped.startswith("["):
+                    break
+                if capture:
+                    provider_section.append(line)
+
+    selected = [
+        root_values[key]
+        for key in ("model_provider", "model", "model_reasoning_effort")
+        if key in root_values
+    ]
+    if provider_section:
+        selected.extend(["", *provider_section])
+    windows_section: list[str] = []
+    capture = False
+    for line in lines:
+        stripped = line.strip()
+        if stripped == "[windows]":
+            capture = True
+        elif capture and stripped.startswith("["):
+            break
+        if capture:
+            windows_section.append(line)
+    if windows_section:
+        selected.extend(["", *windows_section])
+    return "\n".join(selected).rstrip() + ("\n" if selected else "")
+
+
+def _disabled_global_skills_config(user_home: Path) -> str:
+    skill_root = user_home / ".agents" / "skills"
+    if not skill_root.is_dir():
+        return ""
+    entries: list[str] = []
+    for skill_file in sorted(skill_root.glob("*/SKILL.md")):
+        entries.extend(
+            [
+                "[[skills.config]]",
+                f"path = {json.dumps(str(skill_file.resolve()))}",
+                "enabled = false",
+                "",
+            ]
+        )
+    return "\n".join(entries)
+
+
+def _trust_workspace(codex_home: Path, workspace: Path) -> None:
+    config = codex_home / "config.toml"
+    table = f"[projects.{json.dumps(str(workspace.resolve()))}]\ntrust_level = \"trusted\"\n"
+    existing = config.read_text(encoding="utf-8") if config.is_file() else ""
+    config.write_text(existing.rstrip() + "\n\n" + table, encoding="utf-8")
+
+
+def _prepare_candidate_runtime(
+    root: Path, runtime_root: Path, variant: str
+) -> tuple[Path, Path]:
+    if variant not in {"jarvis", "baseline"}:
+        raise ValueError(f"unknown benchmark variant: {variant}")
+    workspace = runtime_root / "workspace"
+    codex_home = runtime_root / "codex-home"
+    workspace.mkdir(parents=True)
+    codex_home.mkdir(parents=True)
+
+    source_home = _source_codex_home()
+    for runtime_file in ("auth.json", "cap_sid"):
+        source_file = source_home / runtime_file
+        if source_file.is_file():
+            shutil.copy2(source_file, codex_home / runtime_file)
+    config = _minimal_codex_config(source_home / "config.toml")
+    config += _disabled_global_skills_config(Path.home())
+    if config:
+        (codex_home / "config.toml").write_text(config, encoding="utf-8")
+
+    if variant == "jarvis":
+        package_skills(root, codex_home / "skills", include_evals=False)
+    _trust_workspace(codex_home, workspace)
+    return workspace, codex_home
+
+
 def _codex_command(
     *,
     cwd: Path,
@@ -252,6 +367,8 @@ def _codex_command(
     executable = shutil.which("codex") or "codex"
     command = [
         executable,
+        "--ask-for-approval",
+        "never",
         "exec",
         "--ephemeral",
         "--color",
@@ -282,6 +399,7 @@ def run_codex(
     timeout: int,
     schema: Path | None = None,
     label: str = "Codex",
+    codex_home: Path | None = None,
 ) -> dict[str, Any]:
     with tempfile.TemporaryDirectory(prefix="jarvis-eval-output-") as directory:
         output_path = Path(directory) / "last-message.txt"
@@ -292,10 +410,13 @@ def run_codex(
             model=model,
             schema=schema,
         )
+        environment = check_environment()
+        if codex_home:
+            environment["CODEX_HOME"] = str(codex_home.resolve())
         process = _run_streaming_process(
             command,
             cwd=cwd,
-            env=check_environment(),
+            env=environment,
             timeout=timeout,
             input_text=prompt,
             on_stdout=lambda line: _progress(
@@ -311,6 +432,7 @@ def run_codex(
             "response": response,
             "events": events,
             "stderr": process["stderr"],
+            "elapsed_seconds": process.get("elapsed_seconds", 0.0),
         }
 
 
@@ -357,23 +479,41 @@ def run_behavior_case(
     model: str | None,
     judge_model: str | None,
     timeout: int,
+    variant: str = "jarvis",
 ) -> dict[str, Any]:
+    instruction = (
+        "Apply the installed Jarvis skill to this request in evaluation mode. "
+        if variant == "jarvis"
+        else "Handle this request using your normal software-delivery judgment. "
+    )
     candidate_prompt = (
-        "Apply the installed Jarvis skill to this request in evaluation mode. The "
+        instruction
+        + "The "
         "read-only sandbox prevents implementation and external effects; still make "
         "the same workflow, authority, provider, verification, and completion "
         "decisions you would make during execution. Report the concrete next actions "
         "and claims you would or would not accept.\n\nUser request:\n" + case["prompt"]
     )
-    candidate = run_codex(
-        candidate_prompt,
-        cwd=root,
-        sandbox="read-only",
-        model=model,
-        timeout=timeout,
-        label=f"behavior {case['id']} candidate",
-    )
-    result: dict[str, Any] = {"case_id": case["id"], "candidate": candidate}
+    with tempfile.TemporaryDirectory(
+        prefix=f"jarvis-behavior-{case['id']}-{variant}-", ignore_cleanup_errors=True
+    ) as directory:
+        workspace, codex_home = _prepare_candidate_runtime(
+            root, Path(directory), variant
+        )
+        candidate = run_codex(
+            candidate_prompt,
+            cwd=workspace,
+            sandbox="read-only",
+            model=model,
+            timeout=timeout,
+            label=f"behavior {case['id']} {variant} candidate",
+            codex_home=codex_home,
+        )
+    result: dict[str, Any] = {
+        "case_id": case["id"],
+        "variant": variant,
+        "candidate": candidate,
+    }
     if candidate["returncode"] != 0:
         result["status"] = "candidate-error"
         return result
@@ -405,6 +545,51 @@ def run_behavior_case(
         return result
     result["status"] = "passed" if grade.get("passed") is True else "failed"
     return result
+
+
+def run_benchmark_case(
+    case: dict[str, Any],
+    *,
+    root: Path,
+    model: str | None,
+    judge_model: str | None,
+    timeout: int,
+) -> dict[str, Any]:
+    variants = {
+        variant: run_behavior_case(
+            case,
+            root=root,
+            model=model,
+            judge_model=judge_model,
+            timeout=timeout,
+            variant=variant,
+        )
+        for variant in ("jarvis", "baseline")
+    }
+    jarvis = variants["jarvis"]
+    baseline = variants["baseline"]
+    jarvis_passed = jarvis["status"] == "passed"
+    baseline_passed = baseline["status"] == "passed"
+    pass_delta = int(jarvis_passed) - int(baseline_passed)
+    jarvis_elapsed = float(jarvis.get("candidate", {}).get("elapsed_seconds", 0.0))
+    baseline_elapsed = float(baseline.get("candidate", {}).get("elapsed_seconds", 0.0))
+    return {
+        "case_id": case["id"],
+        "status": "passed" if jarvis_passed else "failed",
+        "jarvis": jarvis,
+        "baseline": baseline,
+        "comparison": {
+            "outcome": (
+                "improved"
+                if pass_delta > 0
+                else "regressed"
+                if pass_delta < 0
+                else "tied"
+            ),
+            "pass_delta": pass_delta,
+            "elapsed_seconds_delta": round(jarvis_elapsed - baseline_elapsed, 3),
+        },
+    }
 
 
 def _run_check(
@@ -473,12 +658,43 @@ def _initialize_fixture(workspace: Path) -> None:
             raise RuntimeError(process.stderr.strip() or f"failed: {' '.join(command)}")
 
 
+def _restore_workspace_access(workspace: Path) -> None:
+    if os.name != "nt":
+        return
+    username = os.environ.get("USERNAME")
+    if not username:
+        raise RuntimeError("USERNAME is required to restore Windows workspace access")
+    domain = os.environ.get("USERDOMAIN")
+    identity = f"{domain}\\{username}" if domain else username
+    process = subprocess.run(
+        [
+            "icacls.exe",
+            str(workspace.resolve()),
+            "/grant",
+            f"{identity}:(OI)(CI)F",
+            "/T",
+            "/C",
+            "/Q",
+        ],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
+    if process.returncode != 0:
+        raise RuntimeError(
+            process.stderr.strip() or "failed to restore Windows workspace access"
+        )
+
+
 def run_canary(
     case: dict[str, Any],
     *,
     model: str | None,
     timeout: int,
     keep_workspace: Path | None = None,
+    variant: str = "jarvis",
 ) -> dict[str, Any]:
     fixture = (ROOT / "evals" / case["fixture"]).resolve()
     if not fixture.is_dir() or ROOT not in fixture.parents:
@@ -497,7 +713,15 @@ def run_canary(
         workspace = Path(temporary.name) / "workspace"
     shutil.copytree(fixture, workspace)
 
+    runtime = tempfile.TemporaryDirectory(
+        prefix=f"jarvis-canary-runtime-{case['id']}-{variant}-",
+        ignore_cleanup_errors=True,
+    )
     try:
+        _unused_workspace, codex_home = _prepare_candidate_runtime(
+            ROOT, Path(runtime.name), variant
+        )
+        _trust_workspace(codex_home, workspace)
         _initialize_fixture(workspace)
         prepare = [
             _run_check(
@@ -521,7 +745,9 @@ def run_canary(
             model=model,
             timeout=timeout,
             label=f"canary {case['id']} candidate",
+            codex_home=codex_home,
         )
+        _restore_workspace_access(workspace)
         checks = [
             _run_check(
                 item["command"],
@@ -575,8 +801,10 @@ def run_canary(
                 model=model,
                 timeout=timeout,
                 label=f"canary {case['id']} repair {attempt + 1}",
+                codex_home=codex_home,
             )
             repairs.append(repair)
+            _restore_workspace_access(workspace)
             checks = [
                 _run_check(
                     item["command"],
@@ -596,6 +824,7 @@ def run_canary(
             )
         return {
             "case_id": case["id"],
+            "variant": variant,
             "status": "passed" if passed else "failed",
             "candidate": candidate,
             "repairs": repairs,
@@ -604,8 +833,60 @@ def run_canary(
             "workspace": str(workspace) if keep_workspace else None,
         }
     finally:
+        runtime.cleanup()
         if temporary:
             temporary.cleanup()
+
+
+def run_canary_benchmark_case(
+    case: dict[str, Any],
+    *,
+    model: str | None,
+    timeout: int,
+    keep_workspace: Path | None = None,
+) -> dict[str, Any]:
+    variants = {
+        variant: run_canary(
+            case,
+            model=model,
+            timeout=timeout,
+            keep_workspace=(keep_workspace / variant) if keep_workspace else None,
+            variant=variant,
+        )
+        for variant in ("jarvis", "baseline")
+    }
+    jarvis = variants["jarvis"]
+    baseline = variants["baseline"]
+    jarvis_passed = jarvis["status"] == "passed"
+    baseline_passed = baseline["status"] == "passed"
+    pass_delta = int(jarvis_passed) - int(baseline_passed)
+
+    def elapsed(result: dict[str, Any]) -> float:
+        attempts = [result.get("candidate", {}), *result.get("repairs", [])]
+        return round(
+            sum(float(attempt.get("elapsed_seconds", 0.0)) for attempt in attempts),
+            3,
+        )
+
+    return {
+        "case_id": case["id"],
+        "status": "passed" if jarvis_passed else "failed",
+        "jarvis": jarvis,
+        "baseline": baseline,
+        "comparison": {
+            "outcome": (
+                "improved"
+                if pass_delta > 0
+                else "regressed"
+                if pass_delta < 0
+                else "tied"
+            ),
+            "pass_delta": pass_delta,
+            "elapsed_seconds_delta": round(elapsed(jarvis) - elapsed(baseline), 3),
+            "repair_count_delta": len(jarvis.get("repairs", []))
+            - len(baseline.get("repairs", [])),
+        },
+    }
 
 
 def _write_report(path: Path, kind: str, results: list[dict[str, Any]]) -> None:
@@ -615,6 +896,25 @@ def _write_report(path: Path, kind: str, results: list[dict[str, Any]]) -> None:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "results": results,
     }
+    if kind in {"benchmark", "canary-benchmark"}:
+        payload["summary"] = {
+            "pairs": len(results),
+            "jarvis_passed": sum(
+                result["jarvis"]["status"] == "passed" for result in results
+            ),
+            "baseline_passed": sum(
+                result["baseline"]["status"] == "passed" for result in results
+            ),
+            "improved": sum(
+                result["comparison"]["outcome"] == "improved" for result in results
+            ),
+            "tied": sum(
+                result["comparison"]["outcome"] == "tied" for result in results
+            ),
+            "regressed": sum(
+                result["comparison"]["outcome"] == "regressed" for result in results
+            ),
+        }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
@@ -641,12 +941,27 @@ def main() -> int:
     behavior.add_argument("--timeout", type=int, default=600)
     behavior.add_argument("--output", type=Path, required=True)
 
+    benchmark = subparsers.add_parser("benchmark")
+    benchmark.add_argument("--ids", help="comma-separated eval IDs")
+    benchmark.add_argument("--tags", help="comma-separated tags")
+    benchmark.add_argument("--model")
+    benchmark.add_argument("--judge-model")
+    benchmark.add_argument("--timeout", type=int, default=600)
+    benchmark.add_argument("--output", type=Path, required=True)
+
     canary = subparsers.add_parser("canary")
     canary.add_argument("--ids", help="comma-separated canary IDs")
     canary.add_argument("--model")
     canary.add_argument("--timeout", type=int, default=1200)
     canary.add_argument("--output", type=Path, required=True)
     canary.add_argument("--keep-workspaces", type=Path)
+
+    canary_benchmark = subparsers.add_parser("canary-benchmark")
+    canary_benchmark.add_argument("--ids", help="comma-separated canary IDs")
+    canary_benchmark.add_argument("--model")
+    canary_benchmark.add_argument("--timeout", type=int, default=1200)
+    canary_benchmark.add_argument("--output", type=Path, required=True)
+    canary_benchmark.add_argument("--keep-workspaces", type=Path)
 
     probe = subparsers.add_parser("probe")
     probe.add_argument("--output", type=Path, required=True)
@@ -663,25 +978,33 @@ def main() -> int:
                 f"report={args.output.resolve()}"
             )
             return 0
-        if args.command == "behavior":
+        if args.command in {"behavior", "benchmark"}:
             tags = set(args.tags.split(",")) if args.tags else None
             cases = load_behavior_cases(DEFAULT_BEHAVIOR_EVALS, _parse_ids(args.ids), tags)
             if not cases:
                 raise ValueError("no behavior evals selected")
             results = []
             for case in cases:
-                print(f"Running behavior eval {case['id']}...", flush=True)
-                results.append(
-                    run_behavior_case(
+                print(f"Running {args.command} eval {case['id']}...", flush=True)
+                if args.command == "behavior":
+                    result = run_behavior_case(
                         case,
                         root=ROOT,
                         model=args.model,
                         judge_model=args.judge_model,
                         timeout=args.timeout,
                     )
-                )
-                _write_report(args.output, "behavior", results)
-            kind = "behavior"
+                else:
+                    result = run_benchmark_case(
+                        case,
+                        root=ROOT,
+                        model=args.model,
+                        judge_model=args.judge_model,
+                        timeout=args.timeout,
+                    )
+                results.append(result)
+                _write_report(args.output, args.command, results)
+            kind = args.command
         else:
             selected = _parse_ids(args.ids)
             cases = [
@@ -694,16 +1017,23 @@ def main() -> int:
             results = []
             for case in cases:
                 print(f"Running delivery canary {case['id']}: {case['name']}...", flush=True)
-                results.append(
-                    run_canary(
+                if args.command == "canary":
+                    result = run_canary(
                         case,
                         model=args.model,
                         timeout=args.timeout,
                         keep_workspace=args.keep_workspaces,
                     )
-                )
-                _write_report(args.output, "canary", results)
-            kind = "canary"
+                else:
+                    result = run_canary_benchmark_case(
+                        case,
+                        model=args.model,
+                        timeout=args.timeout,
+                        keep_workspace=args.keep_workspaces,
+                    )
+                results.append(result)
+                _write_report(args.output, args.command, results)
+            kind = args.command
         _write_report(args.output, kind, results)
     except (
         OSError,

@@ -68,12 +68,13 @@
     {
       "id": 6,
       "tags": ["solution-design", "local-truth"],
-      "prompt": "Add paginated customer search to this Vue app. It already uses alova, Pinia, and a similar order list. Plan and implement it.",
-      "expected_output": "Reuse the nearby order-list architecture and avoid competing dependencies.",
+      "prompt": "Add paginated customer search to this Vue app. It already uses alova, Pinia, a matching API contract, and a similar order list. There is no Product Plan or Development Guide, and no worker or later handoff needs one. Start implementation rather than creating documents first.",
+      "expected_output": "Reuse the nearby order-list architecture and implement the active slice without manufacturing planning documents.",
       "files": [],
       "expectations": [
         "Inspects and reuses the existing order-list pattern",
         "Does not introduce another request or state library",
+        "Does not stop or create a Development Guide solely because none exists",
         "Plans only the active customer-search slice",
         "Maps product claims to focused verification"
       ]

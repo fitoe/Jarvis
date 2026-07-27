@@ -136,6 +136,8 @@ explicitly because they consume model capacity:
 
 ```powershell
 python scripts/run_evals.py behavior --ids 22 --output .jarvis-evals/behavior-22.json
+python scripts/run_evals.py benchmark --ids 22 --model gpt-5.6-sol --output .jarvis-evals/benchmark-22.json
+python scripts/run_evals.py canary-benchmark --ids 2 --model gpt-5.6-terra --output .jarvis-evals/canary-benchmark-2.json
 python scripts/run_evals.py canary --output .jarvis-evals/canaries.json
 python scripts/run_evals.py probe --output .jarvis-evals/capabilities.json
 ```

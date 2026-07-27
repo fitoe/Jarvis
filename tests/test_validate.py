@@ -21,6 +21,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ValidateRepositoryTests(unittest.TestCase):
+    def test_comparative_claims_require_paired_evidence(self) -> None:
+        policy = (ROOT / "core" / "evidence-policy.md").read_text(encoding="utf-8")
+        for phrase in (
+            "same raw task",
+            "same repository state",
+            "human intervention",
+            "rework",
+            "elapsed time",
+            "visual drift",
+            "side effects",
+        ):
+            self.assertIn(phrase, policy)
+
     def test_current_repository_is_valid(self) -> None:
         self.assertEqual(validate_repo(ROOT), [])
 
@@ -105,6 +118,7 @@ class ValidateRepositoryTests(unittest.TestCase):
                     ).is_file()
                 )
                 self.assertTrue((package / "scripts" / "state.py").is_file())
+                self.assertTrue((package / "evals" / "evals.json").is_file())
 
     def test_document_first_resources_replace_packet_templates(self) -> None:
         required = set(REQUIRED_PATHS)

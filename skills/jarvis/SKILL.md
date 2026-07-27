@@ -62,8 +62,9 @@ real user, worker, reviewer, recovery path, or later decision as consumer.
   delivery units or sessions.
 - A **Page Overview** is optional and exists only when durable page truth has
   multiple consumers or implementation cycles. Page Overview is optional.
-- A **Development Guide** compiles decision-ready context for the active unit
-  when implementation or delegation needs it; run its context-closure check.
+- A **Development Guide** compiles durable decision-ready context for the active
+  unit when a worker, reviewer, recovery path, or later slice needs it. Do not
+  create one solely to begin coding; run its context-closure check when it exists.
 
 Keep future work as coarse hypotheses. Increase detail only when it changes the
 next action, prevents material rework, or supplies a real downstream consumer.

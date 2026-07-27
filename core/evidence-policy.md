@@ -17,6 +17,15 @@ For durable evidence, record:
 - Git commit when code is involved;
 - files or directories whose changes invalidate the evidence.
 
+Comparative delivery claims need paired evidence. When claiming that an agent,
+model, Skill, or workflow performs better than a baseline, run the same raw task
+from the same repository state with the same model, budget, tools, and authority.
+Compare observable outcome, human intervention, rework, elapsed time, quality,
+visual drift when relevant, and unsafe or repeated side effects. Green repository
+checks or one successful run cannot establish a comparative improvement.
+When the claim spans product delivery generally, keep visual drift explicit for
+UI work even if a particular nonvisual comparison records it as not applicable.
+
 Mark evidence stale when a dependency changes after the recorded commit, the
 environment no longer represents the claim, or external state cannot be confirmed.
 Stale evidence remains useful history but cannot support completion.

@@ -9,8 +9,8 @@ frontend, backend, data, integrations, automation, or configuration.
 2. Confirm observable result and success claims.
 3. Find the closest existing implementation.
 4. Identify the smallest check that can falsify each claim.
-5. Confirm the Development Guide is context-closed; resolve only ambiguity that
-   materially changes implementation.
+5. When a Development Guide exists or a downstream worker needs one, confirm it
+   is context-closed. Otherwise keep the active claims in context and proceed.
 
 Follow [Code Quality Policy](../core/code-quality-policy.md).
 
@@ -19,7 +19,8 @@ Follow [Code Quality Policy](../core/code-quality-policy.md).
 - Reuse existing components, services, types, and dependencies.
 - Match local architecture and style.
 - Avoid one-use abstractions and speculative flexibility.
-- Touch only files required by the current Development Guide.
+- Touch only files required by the active result and local repository context;
+  honor the Development Guide when one exists.
 - Remove only code made unused by this change.
 - Keep mock behavior separate from real integration claims.
 - Batch related edits until a coherent checkpoint so most active time remains on

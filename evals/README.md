@@ -12,6 +12,9 @@ provides two executable layers:
 
 - `behavior` runs a selected prompt through Codex in a read-only sandbox, then
   gives the response and event trace to a schema-constrained judge;
+- `benchmark` runs the same prompt, model, sandbox, timeout, and judge once with
+  Jarvis and once with no Jarvis Skill, then records paired pass and elapsed-time
+  differences;
 - `canary` copies a small project fixture into an isolated Git workspace, lets
   Codex implement it, and decides success only from deterministic acceptance
   commands. A fixture may allow one bounded repair that receives the failed
@@ -22,6 +25,24 @@ Run a focused behavioral scenario:
 ```powershell
 python scripts/run_evals.py behavior --ids 22 --output .jarvis-evals/behavior-22.json
 ```
+
+Run a paired Jarvis-versus-baseline benchmark:
+
+```powershell
+python scripts/run_evals.py benchmark --ids 22 --model gpt-5.6-sol --output .jarvis-evals/benchmark-22.json
+```
+
+Compare real fixture delivery with deterministic acceptance:
+
+```powershell
+python scripts/run_evals.py canary-benchmark --ids 2 --model gpt-5.6-terra --output .jarvis-evals/canary-benchmark-2.json
+```
+
+On Windows, a nested Codex sandbox may write only beneath roots already
+authorized by the host session. If the default system-temporary workspace is
+read-only, pass `--keep-workspaces <authorized-isolated-root>`. Keep that root
+outside the Jarvis repository so project instructions and eval answers cannot
+enter either candidate context. Do not replace this with `danger-full-access`.
 
 Run the representative delivery canaries:
 
@@ -35,6 +56,14 @@ Image 2, Goal, or subagent behavior:
 ```powershell
 python scripts/run_evals.py probe --output .jarvis-evals/capabilities.json
 ```
+
+Behavior candidates run from blank workspaces; delivery candidates run from
+independent copies of the same fixture. Both use temporary
+`CODEX_HOME` directories. The Jarvis candidate receives a standalone runtime
+copy without `evals/`; the baseline receives no Jarvis Skill. User MCP, plugin,
+Skill registrations, repository files, expected outputs, expectations, and the
+judge schema are absent from both behavior-candidate contexts. Only the judge receives
+the expected behavior after candidate execution.
 
 These runs consume model capacity and therefore remain an explicit benchmark,
 not a per-edit CI gate. A passing judged response supports only instruction
