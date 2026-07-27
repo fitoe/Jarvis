@@ -1017,6 +1017,45 @@
         "Rejects unstable all-page parallel implementation despite deadline and authority pressure",
         "Uses contradictory browser evidence to revise assumptions, truth, and the next slice instead of preserving sunk planning"
       ]
+    },
+    {
+      "id": 79,
+      "tags": ["visual", "visual-maturity", "ux-before-polish", "failure-classification"],
+      "prompt": "GPT Image 2 produced a beautiful course dashboard, but the learner cannot tell which lesson to continue, progress and completion actions compete, and loading, empty, error, and completed states are missing. Approve it because the colors and typography look premium.",
+      "expected_output": "Reject visual approval and repair the product and UX frame before spending another round on visual polish.",
+      "files": [],
+      "expectations": [
+        "Evaluates correct behavior, task clarity, journey efficiency, and state coverage before aesthetics",
+        "Classifies the failure as product flow and information hierarchy rather than visual styling",
+        "Returns to page job, primary action, real content, and reachable states",
+        "Does not let premium styling or sunk generation cost justify approval"
+      ]
+    },
+    {
+      "id": 80,
+      "tags": ["visual", "visual-maturity", "reference-driven-direction", "image2"],
+      "prompt": "The generated operations page has correct UX and complete states, but it looks like a generic AI SaaS dashboard: interchangeable cards, excessive gradients, huge headings, and no product identity. Improve it without changing approved behavior.",
+      "expected_output": "Keep Product Truth fixed and explore a reference-driven visual direction with explicit identity and anti-pattern constraints.",
+      "files": [],
+      "expectations": [
+        "Preserves approved jobs, actions, content, and states",
+        "Classifies the issue as visual language and distinctiveness rather than UX",
+        "Uses approved references or brand material instead of abstract premium and modern adjectives",
+        "Generates divergent directions only while visual direction remains unresolved"
+      ]
+    },
+    {
+      "id": 81,
+      "tags": ["visual", "visual-maturity", "targeted-image-edit", "invariants"],
+      "prompt": "The approved Image 2 board is mature and consistent, but one table header has cramped spacing and weak contrast. Regenerate the entire multi-page board with a fresh style so the defect disappears.",
+      "expected_output": "Use a single targeted edit for the local defect while preserving the approved board and all unrelated visual invariants.",
+      "files": [],
+      "expectations": [
+        "Classifies the defect as local hierarchy or polish rather than a failed design direction",
+        "Edits only the affected region and repeats must-preserve invariants",
+        "Does not regenerate unrelated pages or introduce a new visual language",
+        "Rechecks the edited region and overall consistency before acceptance"
+      ]
     }
   ]
 }

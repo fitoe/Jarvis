@@ -437,6 +437,30 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertIn("Status: superseded", old_spec)
         self.assertIn("Status: superseded", old_plan)
 
+    def test_visual_maturity_loop_is_explicit(self) -> None:
+        visual = (ROOT / "core" / "visual-source-policy.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Mature the design source before approval",
+            "Correct behavior",
+            "Classify the largest blocking mismatch",
+            "single targeted edit",
+            "implementation-ready",
+        ):
+            self.assertIn(phrase, visual)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "visual-maturity",
+            "ux-before-polish",
+            "reference-driven-direction",
+            "targeted-image-edit",
+        ):
+            self.assertIn(tag, tags)
+
 
 if __name__ == "__main__":
     unittest.main()

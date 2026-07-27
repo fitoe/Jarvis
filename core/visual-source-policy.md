@@ -29,6 +29,70 @@ Generated images may propose composition and art direction. They must not create
 product scope. Ignore controls, claims, data, or states that are absent from the
 approved product behavior.
 
+## Mature the design source before approval
+
+GPT Image 2 produces a visual proposal, not validated UX. Before generation,
+hold enough active product truth to name:
+
+- the target user, page job, journey position, entry, and exit;
+- primary and secondary actions, their priority, and completion result;
+- representative real content, expected density, and data relationships;
+- reachable loading, empty, error, success, permission, and completed states;
+- platform, target viewport, responsive unknowns, and existing components;
+- reference-image roles, desired product identity, and explicit visual
+  anti-patterns.
+
+If a missing answer would create a materially different product or expensive
+rework, resolve it or run a reversible product probe before high-fidelity
+generation. Do not ask Image 2 to invent product behavior and visual language in
+the same unsupported step.
+
+Judge each generated direction in dependency order:
+
+1. **Correct behavior:** approved jobs, actions, content, authority, and states
+   are present without invented product scope.
+2. **Task clarity:** purpose, hierarchy, primary action, status, and next step are
+   immediately understandable.
+3. **Journey efficiency:** the key task avoids competing actions, unnecessary
+   navigation, and avoidable cognitive load.
+4. **System consistency:** grid, density, typography, spacing, components, and
+   interaction language form one reusable system.
+5. **Product distinctiveness:** domain and brand identity replace generic cards,
+   decorative dashboards, arbitrary gradients, and interchangeable AI styling.
+6. **Polish:** alignment, contrast, iconography, imagery, rhythm, and detail are
+   production-grade.
+
+Do not spend another round polishing a lower item while an earlier item fails.
+Visual beauty cannot rescue incorrect UX.
+
+### Classify the largest blocking mismatch
+
+After each output, compare it with Product Truth, the active visual input, and
+approved references. Name the largest blocker and choose the smallest repair
+that can test the diagnosis:
+
+- wrong job, flow, action, content, or state: return to product and UX framing;
+- weak information hierarchy or composition: regenerate that page or semantic
+  section with corrected structure;
+- generic or incoherent visual language: keep behavior fixed and explore a
+  reference-driven direction with explicit identity and anti-pattern constraints;
+- local spacing, contrast, copy, or asset defect: make a single targeted edit to
+  the current output and repeat all must-preserve invariants;
+- uninspectable detail, feasibility, or responsive uncertainty: add the missing
+  implementation constraint or generate only the required detail or viewport.
+
+Generate divergent directions only while the direction-level uncertainty is
+still active. Once a baseline is approved, prefer constrained edits and variants
+over restarting art direction. For a new baseline or material redesign, use an
+independent product or visual critique when it can reveal a costly error; the
+critic identifies a blocker and evidence, while Jarvis retains approval.
+
+Approve a baseline only when it is implementation-ready: the core task and key
+states are clear, representative content has credible density, key journey
+screens share one visual system, product identity is visible, and the target
+viewport is inspectable enough to derive components and constraints. An image
+alone still cannot prove functionality, accessibility, or responsive behavior.
+
 ## Preserve one project design language
 
 For a new project or page family, require human approval of one visual baseline
