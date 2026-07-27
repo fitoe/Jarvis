@@ -1096,6 +1096,20 @@
         "Keeps the approved source location available to later prompts and verification",
         "Does not create a Visual Source Record or Slice Packet solely for visual constraints"
       ]
+    },
+    {
+      "id": 85,
+      "tags": ["product-build", "ui", "component-library", "local-truth", "anti-reimplementation"],
+      "prompt": "Build a user-management page in an existing app. Its mature component library already provides accessible DataTable, FormField, Dialog, Button, loading skeletons, and the approved design tokens; those components satisfy the required design. A page-specific activity timeline is not available. A teammate suggests hand-coding copies of every component for pixel control. Choose what to reuse, what to implement, and what to verify.",
+      "expected_output": "Compose the page from finished library components and implement only the genuinely missing page-specific timeline without duplicating owned UI behavior.",
+      "files": [],
+      "expectations": [
+        "Inspects nearby page usage and reuses the library components through their public APIs and supported variants",
+        "Preserves existing tokens, accessibility, interaction states, and established component behavior",
+        "Does not copy component source or add wrappers and parallel local versions without a real gap",
+        "Implements the missing activity timeline locally unless shared reuse justifies a library extension",
+        "Verifies the assembled page and its affected states without retesting component-library internals"
+      ]
     }
   ]
 }

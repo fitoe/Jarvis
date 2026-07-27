@@ -7,7 +7,8 @@ frontend, backend, data, integrations, automation, or configuration.
 
 1. Read repository instructions and inspect the worktree.
 2. Confirm observable result and success claims.
-3. Find the closest existing implementation.
+3. Find the closest existing implementation. For UI work, inspect the local
+   component library, design system, Storybook, tokens, and nearby page usage.
 4. Identify the smallest check that can falsify each claim.
 5. When a Development Guide exists or a downstream worker needs one, confirm it
    is context-closed. Otherwise keep the active claims in context and proceed.
@@ -33,6 +34,24 @@ Follow [Code Quality Policy](../core/code-quality-policy.md).
 
 Load one [Feature Recipe](../recipes/README.md) only when the project lacks a
 closer pattern.
+
+## Reuse the local component library
+
+Existing finished components preserve consistency and avoid rebuilding behavior
+the project already owns. Prefer, in order: a nearby page pattern, a finished
+component and its supported variants, composition of existing components, a
+shared-library extension with real reuse, then a new local component.
+
+- Reuse public component APIs, variants, tokens, accessibility, interaction
+  states, and established usage patterns instead of copying component source.
+- Compose existing components before adding wrappers, forks, or parallel local
+  versions. Keep page-specific business logic outside the component library.
+- Extend a shared component only when required behavior is genuinely missing and
+  multiple consumers benefit; otherwise keep the smallest adaptation local.
+- Do not force a component that cannot satisfy approved product behavior or the
+  visual source. Record the gap and implement only the missing piece.
+- Verify the assembled page, journey, and affected states. Do not duplicate tests
+  for component-library internals already covered at their owning boundary.
 
 ## Visual implementation
 
