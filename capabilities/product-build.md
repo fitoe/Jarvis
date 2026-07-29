@@ -40,14 +40,18 @@ the project already owns. Prefer, in order: a nearby page pattern, a finished
 component and its supported variants, composition of existing components, a
 shared-library extension with real reuse, then a new local component.
 
-- Reuse public component APIs, variants, tokens, accessibility, interaction
-  states, and established usage patterns instead of copying component source.
+- When a finished component already provides the required behavior, reuse it
+  even if its appearance differs. Adapt through supported public props, variants,
+  tokens, slots, class names, theme APIs, or scoped styles.
+- Preserve its state, focus, keyboard, accessibility, validation, and event
+  mechanisms instead of copying source or rebuilding actions.
 - Compose existing components before adding wrappers, forks, or parallel local
-  versions. Keep page-specific business logic outside the component library.
+  versions. Keep page-specific styling and business logic local; do not change
+  shared defaults for one page.
 - Extend a shared component only when required behavior is genuinely missing and
   multiple consumers benefit; otherwise keep the smallest adaptation local.
-- Do not force a component that cannot satisfy approved product behavior or the
-  visual source. Record the gap and implement only the missing piece.
+- Fork or reimplement only when public extension points cannot satisfy approved
+  Product Truth or Visual Truth; implement only the missing piece.
 - Verify the assembled page, journey, and affected states. Do not duplicate tests
   for component-library internals already covered at their owning boundary.
 

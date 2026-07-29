@@ -552,6 +552,24 @@ class ValidateRepositoryTests(unittest.TestCase):
         ):
             self.assertIn(tag, tags)
 
+    def test_component_behavior_is_reused_when_only_style_differs(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "already provides the required behavior",
+            "props, variants, tokens, slots, class names, theme APIs, or scoped styles",
+            "state, focus, keyboard, accessibility, validation, and event mechanisms",
+            "do not change shared defaults for one page",
+        ):
+            self.assertIn(phrase, product_build)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("style-adapted-component-reuse", tags)
+
     def test_visual_maturity_loop_is_explicit(self) -> None:
         visual = (ROOT / "core" / "visual-source-policy.md").read_text(
             encoding="utf-8"

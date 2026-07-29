@@ -1224,6 +1224,20 @@
         "Uses Product Design:design-qa to compare the source and rendered implementation together at the same viewport and state",
         "Keeps Jarvis ownership and does not let the plugin redesign or broaden approved product behavior"
       ]
+    },
+    {
+      "id": 94,
+      "tags": ["product-build", "ui", "component-library", "style-adapted-component-reuse", "anti-reimplementation"],
+      "prompt": "An existing accessible Dialog already owns focus trapping, Escape handling, validation, submit events, disabled states, and screen-reader semantics. The approved page design only changes radius, padding, colors, and typography. Copy the Dialog source and rebuild those mechanisms so the modal can match the mock exactly.",
+      "expected_output": "Reuse the finished Dialog behavior and adapt only its appearance through supported public styling extension points.",
+      "files": [],
+      "expectations": [
+        "Recognizes that visual difference alone does not justify reimplementing an owned component",
+        "Uses supported props, variants, tokens, slots, class names, theme APIs, or scoped styles for the visual adaptation",
+        "Preserves focus, keyboard, accessibility, validation, state, and event behavior",
+        "Keeps one-page styling local instead of changing shared defaults",
+        "Forks or rebuilds only when public extension points cannot satisfy approved Product Truth or Visual Truth"
+      ]
     }
   ]
 }
