@@ -1152,6 +1152,20 @@
         "Verifies the cross-role handoff through the shared backend or equivalent real boundary",
         "Does not create a universal session or require repeated login setup"
       ]
+    },
+    {
+      "id": 89,
+      "tags": ["visual", "figma", "semantic-decomposition", "context-budget", "full-page-acceptance"],
+      "prompt": "Implement an approved, dense Figma operations page with a large component tree, several tables, overlays, and shared alignment rails. The full-node implementation context is too long to inspect carefully, so fetch it once, summarize it aggressively, and build the whole page from that summary.",
+      "expected_output": "Keep the approved full page as global visual truth, read bounded semantic Figma sections with integration context, and verify both each section and the assembled page.",
+      "files": [],
+      "expectations": [
+        "Reads enough page-level Figma context to retain hierarchy, grid, shared components, and section relationships",
+        "Splits implementation context by semantic visual regions rather than arbitrary token or rectangle limits",
+        "Includes adjacent boundaries and shared style constraints in each bounded section read",
+        "Implements and verifies sections incrementally instead of relying on a shallow full-page summary",
+        "Requires assembled full-page continuity before claiming fidelity"
+      ]
     }
   ]
 }

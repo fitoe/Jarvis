@@ -172,6 +172,15 @@ and detail views as needed. If a long source is already approved, crops from tha
 source retain authority; newly generated close-ups are supplementary and cannot
 silently replace its composition, content, or boundaries.
 
+For a complex approved Figma page, first read enough page-level context to retain
+the global hierarchy, grid, shared components, and section relationships. Then
+request implementation context section by section when one full-node response
+would be too large to inspect reliably. Each bounded read must include the owned
+section plus the adjacent boundary and shared style information needed for
+integration. Do not compress the entire page into a shallow summary merely to fit
+one context window, and do not let partial Figma reads redefine the approved
+full-page source.
+
 Build the shared shell and visual primitives first, then implement and assemble
 sections continuously. Compare each section with its source and compare the
 assembled page with the full-page source at the same viewport and state. Section

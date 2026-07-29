@@ -71,6 +71,8 @@ When the source is too complex for reliable one-pass inspection, use the
 conditional decomposition defined by Visual Source Policy. Implement semantic
 sections against the shared visual language, assemble them continuously, and
 require both section-level and full-page comparison before accepting parity.
+For complex approved Figma pages, read implementation context in bounded semantic
+sections rather than reducing an oversized node to a coarse one-pass summary.
 
 Treat other skills, plugins, models, and services the same way. Follow
 [Capability Provider Policy](../core/provider-policy.md); accept their bounded

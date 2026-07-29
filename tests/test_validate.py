@@ -516,6 +516,14 @@ class ValidateRepositoryTests(unittest.TestCase):
         ):
             self.assertIn(phrase, visual)
 
+        for phrase in (
+            "For a complex approved Figma page",
+            "implementation context section by section",
+            "adjacent boundary",
+            "shallow summary",
+        ):
+            self.assertIn(phrase, visual)
+
         eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
         payload = json.loads(eval_path.read_text(encoding="utf-8"))
         tags = {tag for case in payload["evals"] for tag in case["tags"]}
@@ -527,6 +535,7 @@ class ValidateRepositoryTests(unittest.TestCase):
             "truth-ownership",
         ):
             self.assertIn(tag, tags)
+        self.assertIn("context-budget", tags)
 
         self.assertNotIn("Visual Source Record", visual)
         self.assertNotIn("Slice Packet", visual)

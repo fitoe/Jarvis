@@ -8,6 +8,9 @@
   delivery friction only when a bounded reusable fix has current consumers.
 - Reuse isolated authorized browser contexts for cross-identity journeys instead
   of repeated login setup or universal test sessions.
+- Read complex approved Figma pages in bounded semantic sections when full-node
+  context would force a coarse implementation, while preserving full-page truth
+  and final assembled-page verification.
 - Add executable Candidate-to-Judge behavior evaluations and deterministic
   delivery canaries for HTTP, recovery, real-browser, and authorization paths.
 - Protect canary acceptance files by content hash and ignore generated Python
