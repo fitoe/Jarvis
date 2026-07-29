@@ -61,6 +61,22 @@ silently broaden the user's goal or authority.
 Optimize total delivery time and user waiting, not maximum tool parallelism.
 Concurrent writes that can overlap remain sequential.
 
+## Remove repeated delivery friction
+
+Treat repeated setup and recovery work as evidence about the delivery system.
+When the same cost recurs across units—rebuilding role sessions, reconstructing
+fixtures, rescanning a dirty worktree, restarting providers, or repairing stale
+test harnesses—classify whether one bounded reusable fix would reduce total
+delivery time without broadening product scope.
+
+Prefer stable local fixtures, shared test helpers, reusable authorized provider
+contexts, and one-time cleanup of understood workspace friction when they have
+multiple current consumers. Preserve identity, tenant, and permission isolation;
+reuse must not create an all-powerful test subject or weaken a real boundary.
+Do not build a framework for a single inconvenience. Record or automate the
+remedy only after recurrence proves a real consumer, then return to the active
+product objective.
+
 ## Keep truth boundaries separate
 
 - **Product truth:** approved users, jobs, scope, behavior, data, states, and

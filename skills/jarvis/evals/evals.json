@@ -1110,6 +1110,48 @@
         "Implements the missing activity timeline locally unless shared reuse justifies a library extension",
         "Verifies the assembled page and its affected states without retesting component-library internals"
       ]
+    },
+    {
+      "id": 86,
+      "tags": ["planning", "delivery-compilation", "progressive-refinement", "anti-ceremony"],
+      "prompt": "Continue a partially built marketplace with six business domains and forty known pages. Before touching code, expand every remaining page into a complete implementation checklist, then follow that frozen list even when API and browser evidence changes.",
+      "expected_output": "Compile the stable objective, shape only the active domain, and make the current coherent unit decision-ready while leaving distant work coarse.",
+      "files": [],
+      "expectations": [
+        "Preserves one final objective with scope, proof, authority, and stop conditions",
+        "Shapes the active domain enough to batch related discovery and verification",
+        "Compiles the current unit into outcome, non-goals, dependencies, claims, and evidence",
+        "Does not fully decompose inactive domains",
+        "Recompiles affected work when evidence or user direction changes truth"
+      ]
+    },
+    {
+      "id": 87,
+      "tags": ["efficiency", "repeated-friction", "test-infrastructure", "scope-control"],
+      "prompt": "Every page test spends ten minutes reconstructing the same valid role fixtures and working around the same stale harness. Keep repeating that setup because improving tests is not a product feature, or build a new orchestration framework for all future projects.",
+      "expected_output": "Recognize recurring delivery friction, make one bounded reusable repair with current consumers, then return to product delivery.",
+      "files": [],
+      "expectations": [
+        "Treats repeated setup cost as delivery-system evidence",
+        "Chooses shared fixtures or helpers only because several current units consume them",
+        "Preserves real identity and permission boundaries",
+        "Avoids both permanent repetition and speculative framework construction",
+        "Measures success through reduced repeated work and unaffected product evidence"
+      ]
+    },
+    {
+      "id": 88,
+      "tags": ["provider", "browser", "isolated-browser-contexts", "cross-role-journey"],
+      "prompt": "A farmer publishes a machinery request that an operator must see and accept. Repeatedly log out and overwrite one browser profile, or combine both permission sets into one test token so the flow is faster.",
+      "expected_output": "Keep two reusable isolated authorized browser contexts and verify their handoff through the real shared integration boundary.",
+      "files": [],
+      "expectations": [
+        "Uses separate named contexts for the farmer and operator when supported",
+        "Reuses each authorized context across related checks",
+        "Keeps cookies, storage, permissions, and data ownership isolated",
+        "Verifies the cross-role handoff through the shared backend or equivalent real boundary",
+        "Does not create a universal session or require repeated login setup"
+      ]
     }
   ]
 }

@@ -461,6 +461,48 @@ class ValidateRepositoryTests(unittest.TestCase):
         self.assertIn("Status: superseded", old_spec)
         self.assertIn("Status: superseded", old_plan)
 
+    def test_delivery_efficiency_improvements_are_explicit(self) -> None:
+        planning = (ROOT / "core" / "planning-policy.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Compile work at the useful horizon",
+            "Final objective",
+            "active domain or journey",
+            "progressive compilation",
+        ):
+            self.assertIn(phrase, planning)
+
+        operating = (ROOT / "core" / "operating-model.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "## Remove repeated delivery friction",
+            "shared test helpers",
+            "permission isolation",
+        ):
+            self.assertIn(phrase, operating)
+
+        provider = (ROOT / "core" / "provider-policy.md").read_text(
+            encoding="utf-8"
+        )
+        for phrase in (
+            "matrix of isolated browser contexts",
+            "shared backend",
+            "universal session",
+        ):
+            self.assertIn(phrase, provider)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "delivery-compilation",
+            "repeated-friction",
+            "isolated-browser-contexts",
+        ):
+            self.assertIn(tag, tags)
+
     def test_visual_maturity_loop_is_explicit(self) -> None:
         visual = (ROOT / "core" / "visual-source-policy.md").read_text(
             encoding="utf-8"

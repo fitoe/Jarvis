@@ -58,6 +58,11 @@ or permission to expand the user's goal.
 Read [Planning Policy](../../core/planning-policy.md) when durable planning has a
 real user, worker, reviewer, recovery path, or later decision as consumer.
 
+For substantial multi-unit work, compile the final objective into the active
+domain or journey, then compile only the current coherent delivery unit into
+decision-ready detail. Keep distant work coarse and recompile affected units
+when evidence changes truth.
+
 - A **Product Plan** keeps coarse product-wide truth when the effort spans
   delivery units or sessions.
 - A **Page Overview** is optional and exists only when durable page truth has

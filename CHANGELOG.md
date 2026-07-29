@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Compile substantial delivery at three useful depths: final objective, active
+  domain or journey, and current coherent delivery unit.
+- Treat recurring setup, stale harnesses, and workspace recovery as removable
+  delivery friction only when a bounded reusable fix has current consumers.
+- Reuse isolated authorized browser contexts for cross-identity journeys instead
+  of repeated login setup or universal test sessions.
 - Add executable Candidate-to-Judge behavior evaluations and deterministic
   delivery canaries for HTTP, recovery, real-browser, and authorization paths.
 - Protect canary acceptance files by content hash and ignore generated Python

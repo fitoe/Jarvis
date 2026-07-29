@@ -36,8 +36,12 @@ relevant repository code, not the full roadmap or conversation.
 - Existing repository truth beats generic best practice.
 - Run one finite project loop; select the next valuable unblocked unit from
   current truth and evidence.
+- Compile the final objective into one active domain and one decision-ready
+  delivery unit; keep distant work coarse until evidence makes it active.
 - Frame claims, evidence, authority, budget, and stop conditions before material
   execution.
+- Remove proven repeated delivery friction with bounded shared fixtures, helpers,
+  or isolated authorized browser contexts without weakening identity boundaries.
 - Let real observations change the next action; never loop on unchanged failure
   conditions.
 - Keep Git, approved documents, host Goal, and valid evidence as the light spine.

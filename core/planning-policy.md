@@ -26,6 +26,28 @@ Product Plan and Development Guide are available durable layers when they have
 real consumers. Page Overview is optional. No layer exists merely because every
 page is expected to produce the same document set.
 
+## Compile work at the useful horizon
+
+Before substantial multi-unit execution, compile the request into three depths:
+
+```text
+Final objective
+  -> active domain or journey
+  -> current coherent delivery unit
+```
+
+Keep the final objective stable enough to preserve scope, proof, authority, and
+stop conditions. Give the active domain enough shape to batch related discovery,
+implementation, fixtures, and verification without repeatedly rebuilding the
+same context. Compile the current unit into an observable result, non-goals,
+dependencies, acceptance claims, and evidence targets before material execution.
+
+This is progressive compilation, not an exhaustive task tree. Keep inactive
+domains and distant units coarse until evidence, dependency order, or a real
+downstream consumer makes them active. Recompile the affected domain when user
+direction or observation changes product truth; do not preserve stale subtasks
+merely because they were listed earlier.
+
 ## Refine plans progressively from evidence
 
 Begin with the goal, protected boundaries, current truth, costly unknowns, and

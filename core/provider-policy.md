@@ -58,6 +58,15 @@ Keep the active route in one authorized session and refresh or navigate at
 coherent page or journey checkpoints, not after every edit. The browser shows the
 product, not a Goal dashboard or command trace.
 
+When one journey legitimately spans multiple identities, tenants, or permission
+sets, keep a small named matrix of isolated browser contexts when the host
+supports it. Reuse each authorized context across related checks so role switching
+does not require repeated login setup, while keeping cookies, storage, and data
+ownership separated. Verify cross-context handoffs through the shared backend or
+other real integration boundary; never merge permissions into a universal session
+to make the journey easier to test. Use one context when only one identity is
+needed, and close obsolete contexts instead of accumulating browser state.
+
 Browser creation, authentication, form submission, upload, and sensitive actions
 retain host confirmation requirements. If visible browsing is unavailable,
 continue independent work and keep visual or real-flow claims unverified until a
