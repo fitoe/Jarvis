@@ -61,6 +61,15 @@ silently broaden the user's goal or authority.
 Optimize total delivery time and user waiting, not maximum tool parallelism.
 Concurrent writes that can overlap remain sequential.
 
+Keep an active-domain working set in context: entry paths and nearby
+implementation patterns; components and tokens; API, type, and data anchors;
+focused commands; current changed files; and settled facts that do not need
+rereading. Reuse it across related units. Refresh a fact only when evidence
+invalidates it or a new decision depends on fresher truth. Do not create a new
+working-set artifact; persist these facts in an existing Product Plan,
+Development Guide, or recovery state only when another consumer or a later
+session needs them.
+
 ## Remove repeated delivery friction
 
 Treat repeated setup and recovery work as evidence about the delivery system.

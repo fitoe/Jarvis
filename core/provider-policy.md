@@ -31,6 +31,15 @@ Prefer a direct local solution when provider setup cost exceeds the value of the
 bounded claim. Batch independent provider discovery, but keep overlapping writes
 and shared decisions sequential.
 
+## Hide provider latency
+
+When the host supports background work, inputs and authority are settled, and
+writes are disjoint, start one long provider, Image 2, build, or browser
+preparation task and continue independent implementation. If it may cross
+sessions, checkpoint its durable identity and safe resume action. Reconcile its
+result before dependent work or completion. Do not overlap unsettled contracts,
+shared decisions, or competing writes merely to appear parallel.
+
 For new UI design generation, bind the provider to GPT Image 2. Do not infer
 permission to use Figma from installed Figma skills, an available Figma MCP, or
 generic repository design guidance. Use Figma only to read an existing source
@@ -74,13 +83,15 @@ claim-equivalent fallback or later browser run proves them.
 
 ## Select skills progressively
 
-For software planning, implementation, debugging, review, or refactoring, load
-`efficient-development-workflow` when installed. It governs process size,
-risk-based verification, and outcome-focused tests.
+For routine, context-closed software work, use repository rules and Jarvis's
+embedded build and verification rules. Do not load an external workflow skill
+solely because code will be edited.
 
-Before writing, reviewing, debugging, or refactoring code, also load
-`karpathy-guidelines` when installed. It governs assumptions, simplicity,
-surgical edits, and verifiable success.
+Load `efficient-development-workflow` when installed only when workflow size,
+risk classification, or verification depth is materially uncertain, shared, or
+high-risk. Load `karpathy-guidelines` when installed only for nontrivial design,
+debugging, review, or refactoring where ambiguity, scope control, or design
+tradeoffs matter. Explicit user and repository instructions still win.
 
 For the remaining need:
 

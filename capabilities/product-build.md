@@ -5,32 +5,30 @@ frontend, backend, data, integrations, automation, or configuration.
 
 ## Before editing
 
-1. Read repository instructions and inspect the worktree.
-2. Confirm observable result and success claims.
-3. Find the closest existing implementation. For UI work, inspect the local
+1. Read repository instructions, inspect the worktree, and confirm the
+   observable result and success claims.
+2. Find the closest existing implementation. For UI work, inspect the local
    component library, design system, Storybook, tokens, and nearby page usage.
-4. Identify the smallest check that can falsify each claim.
-5. When a Development Guide exists or a downstream worker needs one, confirm it
-   is context-closed. Otherwise keep the active claims in context and proceed.
+3. Name the smallest check that can falsify each claim. When a Development Guide
+   exists or a downstream worker needs one, confirm it is context-closed.
+   Otherwise keep the active claims in context and proceed.
 
-Follow [Code Quality Policy](../core/code-quality-policy.md).
+Read [Code Quality Policy](../core/code-quality-policy.md) when ambiguity, shared
+code, debugging, review, or refactoring makes its full guidance useful.
 
 ## Implement the smallest coherent change
 
-- Reuse existing components, services, types, and dependencies.
-- Match local architecture and style.
-- Avoid one-use abstractions and speculative flexibility.
-- Touch only files required by the active result and local repository context;
-  honor the Development Guide when one exists.
-- Remove only code made unused by this change.
+- Follow the closest implementation and reuse existing components, services,
+  types, and dependencies; touch only files required by the active result.
+- Avoid speculative abstractions; remove only code this change makes unused.
 - Keep mock behavior separate from real integration claims.
-- Batch related edits until a coherent checkpoint so most active time remains on
-  implementation.
-- Avoid repeated compile-test loops while implementation is still incomplete.
-- Run an early cheap check only to prevent material rework, confirm an uncertain
+- Batch related edits to a coherent checkpoint. Avoid repeated compile-test loops
+  before then; check early only to prevent material rework, confirm an uncertain
   contract, reproduce a defect, or protect a high-risk boundary.
-- At a coherent checkpoint, use the verification scope defined by
-  [Verification Policy](../core/verification-policy.md).
+- At the checkpoint, run the focused or affected check warranted by the claims.
+  Read [Verification Policy](../core/verification-policy.md) when shared or
+  high-risk boundaries, uncertain evidence depth, journey acceptance, or release
+  makes broader guidance useful.
 
 Load one [Feature Recipe](../recipes/README.md) only when the project lacks a
 closer pattern.
@@ -60,12 +58,12 @@ visual evidence exists and fidelity is part of success, treat it as the visual
 source of truth while product behavior remains authoritative. Preserve page type,
 hierarchy, density, typography, color, assets, states, and action priority.
 
-Use the Product Design plugin's `Product Design:image-to-code` and visual QA when
-available, without transferring Jarvis ownership. Capture source and
-implementation at the same viewport and state, compare them together, and repair
-the largest visible gaps within budget. Record simplifications instead of calling
-them parity. Do not require a generated mock for a small edit that already has a
-clear project pattern.
+For an approved Figma node or image reference, use Visual Source Policy's
+`Product Design:image-to-code` and `Product Design:design-qa` route when the
+plugin is available, without transferring Jarvis ownership. Compare source and
+implementation together and repair the largest visible gaps within budget.
+Record simplifications instead of calling them parity. Do not require a generated
+mock for a small edit that already has a clear project pattern.
 
 When the source is too complex for reliable one-pass inspection, use the
 conditional decomposition defined by Visual Source Policy. Implement semantic

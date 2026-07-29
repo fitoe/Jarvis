@@ -292,11 +292,11 @@
       "id": 23,
       "tags": ["skill-routing", "process", "code-quality"],
       "prompt": "Jarvis, plan and implement a multi-step customer import feature, including validation, persistence, and focused tests. The efficient-development-workflow and karpathy-guidelines skills are installed.",
-      "expected_output": "Compose the delivery with the installed process governor and apply the code-quality governor before implementation.",
+      "expected_output": "Load the installed workflow and code-quality guidance because the import crosses shared validation and persistence boundaries, then keep the delivery small.",
       "files": [],
       "expectations": [
-        "Loads efficient-development-workflow for process size, risk, and verification choices",
-        "Loads karpathy-guidelines before writing or reviewing code",
+        "Loads efficient-development-workflow because shared data and verification depth require a workflow decision",
+        "Loads karpathy-guidelines because the nontrivial implementation has scope and design tradeoffs",
         "Keeps one Jarvis goal and state owner",
         "Uses the smallest slice and checks that prove import behavior rather than ceremonial artifacts"
       ]
@@ -305,10 +305,11 @@
       "id": 24,
       "tags": ["skill-routing", "domain", "no-swarm"],
       "prompt": "Jarvis, add a Stripe subscription checkout to this existing React app. Relevant Stripe and React skills are installed alongside unrelated CAD, game, PDF, and email skills. Choose what you need automatically.",
-      "expected_output": "Load the fixed software governors and only the domain skills needed by the active checkout slice.",
+      "expected_output": "Load risk and code-quality guidance for the billing integration, plus only the domain skills needed by the active checkout slice.",
       "files": [],
       "expectations": [
-        "Loads efficient-development-workflow and karpathy-guidelines for software and code work",
+        "Loads efficient-development-workflow because billing is high-risk and needs proportional verification",
+        "Loads karpathy-guidelines because the integration has nontrivial scope and design tradeoffs",
         "Selects the relevant Stripe skill and a React skill only if the active implementation needs it",
         "Does not load unrelated CAD, game, PDF, or email skills",
         "Keeps domain skill output inside Jarvis scope, authority, budget, and evidence"
@@ -318,11 +319,12 @@
       "id": 25,
       "tags": ["skill-routing", "user-named", "overlap"],
       "prompt": "Jarvis, refactor the flaky upload tests. Use the installed testing-strategy skill. Several overlapping TDD and testing workflow skills are also available.",
-      "expected_output": "Honor the named testing skill, compose it with the software governors, and avoid loading competing workflow owners.",
+      "expected_output": "Honor the named testing skill, add workflow and code-quality guidance for the nontrivial shared debugging boundary, and avoid competing workflow owners.",
       "files": [],
       "expectations": [
         "Loads the user-named testing-strategy skill",
-        "Uses efficient-development-workflow and karpathy-guidelines for the software and code work",
+        "Uses efficient-development-workflow because recurrent flakiness makes verification depth uncertain",
+        "Uses karpathy-guidelines because debugging and refactoring require scope control",
         "Does not preload overlapping TDD or testing workflow skills without a distinct active need",
         "Keeps Jarvis as the only goal, state, and completion owner"
       ]
@@ -1165,6 +1167,62 @@
         "Includes adjacent boundaries and shared style constraints in each bounded section read",
         "Implements and verifies sections incrementally instead of relying on a shallow full-page summary",
         "Requires assembled full-page continuity before claiming fidelity"
+      ]
+    },
+    {
+      "id": 90,
+      "tags": ["efficiency", "ready-to-build", "conditional-skill-loading", "anti-ceremony"],
+      "prompt": "Add an existing-app account settings feature across the route, form, API client, and focused tests. Behavior and non-goals are clear, permissions and API contracts are stable, the repository has a nearby profile-page pattern and finished form components, and the affected test command is known. Before coding, load every design, planning, provider, delegation, and general workflow policy because the change spans several files.",
+      "expected_output": "Use the Ready-to-Build fast path: inspect the worktree and closest pattern, implement the coherent feature directly, and run affected verification without loading unrelated workflow layers.",
+      "files": [],
+      "expectations": [
+        "Recognizes that clear behavior, settled boundaries, stable contracts, a nearby pattern, and named acceptance make the feature decision-ready",
+        "Inspects the worktree, existing pattern, and component usage before editing",
+        "Implements the related files as one coherent batch and runs the affected check",
+        "Skips product design, solution design, durable planning, delegation, and provider discovery unless a real gap appears",
+        "Does not load external workflow skills unless ambiguity, shared risk, or verification depth materially requires them"
+      ]
+    },
+    {
+      "id": 91,
+      "tags": ["efficiency", "active-domain-working-set", "context-reuse", "anti-artifact"],
+      "prompt": "Three related billing screens use the same route entry, component library, API types, permission fixture, and focused test command. Rediscover all five facts from scratch for every screen and create WORKING-SET.md so the agent remembers them.",
+      "expected_output": "Keep settled domain anchors in active context, reuse them across the related units, and refresh only invalidated facts without creating a new tracking document.",
+      "files": [],
+      "expectations": [
+        "Keeps entry paths, nearby patterns, components, API or data anchors, focused commands, changed files, and settled facts in the active working set",
+        "Reuses unchanged facts across related delivery units",
+        "Refreshes a fact when code, evidence, or a changed contract invalidates it",
+        "Does not create a working-set artifact without a cross-session or downstream consumer",
+        "Uses an existing Product Plan, Development Guide, or recovery state only when persistence has a real consumer"
+      ]
+    },
+    {
+      "id": 92,
+      "tags": ["efficiency", "provider", "latency-hiding", "checkpoint", "disjoint-work"],
+      "prompt": "An authorized Image 2 design generation has stable inputs, a durable job ID, and may take several minutes. Independent backend validation can proceed without its output. Wait idle for the image before touching the backend, or start duplicate agents on both areas to appear busy.",
+      "expected_output": "Start the recoverable provider task once, continue the independent backend work, then reconcile the design result before dependent UI work or completion.",
+      "files": [],
+      "expectations": [
+        "Confirms stable inputs, authority, host support, a durable identity, and disjoint writes before overlapping work",
+        "Starts one long provider task and checkpoints its identity when it may cross sessions",
+        "Continues independent implementation instead of waiting idle",
+        "Reconciles the provider result before dependent work or completion",
+        "Does not parallelize unsettled contracts, overlapping writes, or duplicate ownership"
+      ]
+    },
+    {
+      "id": 93,
+      "tags": ["visual", "figma", "image-to-code", "product-design-plugin", "visual-qa"],
+      "prompt": "Implement an approved Figma screen or supplied image mockup in an existing product. The Product Design plugin is available, and the repository already has matching components and tokens. Hand-code from memory and treat a saved implementation screenshot as sufficient proof.",
+      "expected_output": "Use the approved source with the existing design system, route translation through Product Design:image-to-code, and run Product Design:design-qa against the same viewport and state.",
+      "files": [],
+      "expectations": [
+        "For Figma, reads implementation context and assets through the authorized Figma source and captures the approved visual target",
+        "For an image mockup or screenshot, uses the supplied image directly as Visual Truth",
+        "Uses Product Design:image-to-code for translation while reusing matching project components and tokens",
+        "Uses Product Design:design-qa to compare the source and rendered implementation together at the same viewport and state",
+        "Keeps Jarvis ownership and does not let the plugin redesign or broaden approved product behavior"
       ]
     }
   ]

@@ -2,8 +2,10 @@
 
 Use these rules for every implementation slice.
 
-Load `karpathy-guidelines` when installed before writing, reviewing, debugging,
-or refactoring code. This policy remains the fallback when that skill is absent.
+Load `karpathy-guidelines` only for nontrivial design, debugging, review, or
+refactoring where ambiguity, scope control, or design tradeoffs matter. Routine,
+context-closed edits use this policy directly unless user or repository rules
+explicitly require the external skill.
 
 ## Before editing
 

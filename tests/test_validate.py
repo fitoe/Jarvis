@@ -503,10 +503,60 @@ class ValidateRepositoryTests(unittest.TestCase):
         ):
             self.assertIn(tag, tags)
 
+    def test_fast_delivery_path_is_explicit(self) -> None:
+        skill = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        skill = " ".join(skill.split())
+        for phrase in (
+            "## Use the Ready-to-Build fast path",
+            "API and shared contracts are stable",
+            "skip Product Design, Solution Design, durable planning, delegation",
+            "workflow size, risk, or",
+            "verification depth is materially uncertain",
+            "when the next move or steering is uncertain",
+            "for material ambiguity or a hard-to-reverse decision",
+            "for a long wait, user correction, pause, resume",
+        ):
+            self.assertIn(phrase, skill)
+
+        operating = (ROOT / "core" / "operating-model.md").read_text(
+            encoding="utf-8"
+        )
+        operating = " ".join(operating.split())
+        for phrase in (
+            "active-domain working set",
+            "entry paths and nearby implementation patterns",
+            "Refresh a fact only when evidence invalidates it",
+        ):
+            self.assertIn(phrase, operating)
+
+        provider = (ROOT / "core" / "provider-policy.md").read_text(
+            encoding="utf-8"
+        )
+        provider = " ".join(provider.split())
+        for phrase in (
+            "Hide provider latency",
+            "continue independent implementation",
+            "Reconcile its result before dependent work or completion",
+        ):
+            self.assertIn(phrase, provider)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "ready-to-build",
+            "active-domain-working-set",
+            "latency-hiding",
+        ):
+            self.assertIn(tag, tags)
+
     def test_visual_maturity_loop_is_explicit(self) -> None:
         visual = (ROOT / "core" / "visual-source-policy.md").read_text(
             encoding="utf-8"
         )
+        visual = " ".join(visual.split())
         for phrase in (
             "## Mature the design source before approval",
             "Correct behavior",
@@ -521,6 +571,9 @@ class ValidateRepositoryTests(unittest.TestCase):
             "implementation context section by section",
             "adjacent boundary",
             "shallow summary",
+            "approved Figma node, screenshot, mockup, or image reference",
+            "capture the approved visual target",
+            "Product Design:design-qa",
         ):
             self.assertIn(phrase, visual)
 
@@ -533,6 +586,7 @@ class ValidateRepositoryTests(unittest.TestCase):
             "reference-driven-direction",
             "targeted-image-edit",
             "truth-ownership",
+            "product-design-plugin",
         ):
             self.assertIn(tag, tags)
         self.assertIn("context-budget", tags)

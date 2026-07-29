@@ -14,6 +14,17 @@ Stay active across multiple pages, capabilities, sessions, or uncertain product
 work. Use a direct routine workflow for one obvious reversible edit. Do not add
 project machinery merely because Jarvis is available.
 
+## Use the Ready-to-Build fast path
+
+A feature is ready to build when behavior and non-goals are clear, authority and
+external-effect boundaries are settled, API and shared contracts are stable, a
+nearby implementation pattern exists, and focused acceptance can be named.
+
+Inspect the worktree and closest pattern, load Product Build only as needed,
+implement the coherent change in one batch, and run affected verification. For
+this path, skip Product Design, Solution Design, durable planning, delegation,
+and provider discovery unless implementation exposes an actual gap.
+
 ## Start from goal and local truth
 
 1. Read repository instructions, current product truth, code, Git, and valid
@@ -29,9 +40,11 @@ Before work crosses sessions, starts a long provider or delegated task, or may
 leave an external effect uncertain, create or refresh recovery state with the
 safe next action and in-flight identifier. Do not checkpoint routine edits.
 
-For unfamiliar or long-running work, read [Operating Model](../../core/operating-model.md),
-[Decision Policy](../../core/decision-policy.md), and
-[Collaboration Policy](../../core/collaboration-policy.md).
+Read [Operating Model](../../core/operating-model.md) when the next move or
+steering is uncertain. Read [Decision Policy](../../core/decision-policy.md)
+for material ambiguity or a hard-to-reverse decision. Read
+[Collaboration Policy](../../core/collaboration-policy.md) for a long wait, user
+correction, pause, resume, or other interaction boundary.
 
 ## Refine toward the goal
 
@@ -41,8 +54,9 @@ At each meaningful feedback boundary:
 2. Observe what is true now, including failed evidence and changed constraints.
 3. Consider a small set of eligible next moves without exposing private
    reasoning or creating an options artifact.
-4. Use [Operating Model](../../core/operating-model.md) to select among them; do
-   not invent a numeric score.
+4. When several moves remain plausible, use
+   [Operating Model](../../core/operating-model.md) to select among them; do not
+   invent a numeric score.
 5. Refine only the chosen page, journey, service, probe, or delivery slice until
    it is safe and decision-ready.
 6. Act in one coherent batch, observe the nearest useful boundary, and update
@@ -87,9 +101,13 @@ Use templates only when creating the corresponding document.
 
 Read [Autonomy Policy](../../core/autonomy-policy.md) before external effects and
 [Capability Provider Policy](../../core/provider-policy.md) before material
-provider work. Load only skills needed by the active slice. For software work,
-use `efficient-development-workflow` when installed; before writing, reviewing,
-debugging, or refactoring code, also use `karpathy-guidelines`.
+provider work. Load only skills needed by the active slice. Routine,
+context-closed software work uses repository rules and Jarvis's embedded fast
+path. Load `efficient-development-workflow` only when workflow size, risk, or
+verification depth is materially uncertain, shared, or high-risk. Load
+`karpathy-guidelines` only for nontrivial design, debugging, review, or
+refactoring with material ambiguity or scope tradeoffs. Explicit user and
+repository instructions still take precedence.
 
 Load [Product Design](../../capabilities/product-design.md),
 [Solution Design](../../capabilities/solution-design.md), or

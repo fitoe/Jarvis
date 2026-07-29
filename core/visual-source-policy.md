@@ -188,11 +188,17 @@ parity does not prove full-page rhythm, continuity, or final visual acceptance.
 
 ## Translate and compare
 
-When the Product Design plugin is available, use its
-`Product Design:image-to-code` workflow as the preferred translation and
-visual-QA provider. Jarvis retains goal, product truth, budget, implementation,
-and completion ownership. The plugin replaces a separate `design-to-code`
-workflow; it does not replace this policy or Image 2 generation.
+When the Product Design plugin is available, use
+`Product Design:image-to-code` as the preferred translation workflow for an
+approved Figma node, screenshot, mockup, or image reference. For Figma, use the
+authorized Figma provider to read implementation context and assets and capture
+the approved visual target; use a supplied image directly. Then run
+`Product Design:design-qa` with the source and rendered implementation together
+at the same viewport and state. A saved screenshot alone is not comparison.
+
+Jarvis retains goal, product truth, budget, implementation, and completion
+ownership. The plugin replaces a separate `design-to-code` workflow; it does not
+replace this policy, local component reuse, or Image 2 generation.
 
 Follow [Capability Provider Policy](provider-policy.md). Apply the configured
 Image 2 provider and Jarvis repair budget; do not import another workflow's
