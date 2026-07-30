@@ -1238,6 +1238,48 @@
         "Keeps one-page styling local instead of changing shared defaults",
         "Forks or rebuilds only when public extension points cannot satisfy approved Product Truth or Visual Truth"
       ]
+    },
+    {
+      "id": 95,
+      "tags": ["product-build", "visible-first", "ui", "routing", "mock-boundary", "early-feedback"],
+      "prompt": "Build a twelve-page internal operations app. Stakeholders need an early walkthrough, the page map and navigation are known, the component library is mature, API and permission contracts are stable, and no high-risk integration blocks the UI. Implement every invisible backend service before creating any route or visible screen.",
+      "expected_output": "Use the visible-first path: make the full page family browsable with realistic contract-compatible states, then connect real backend journeys through the same seams.",
+      "files": [],
+      "expectations": [
+        "Builds the shell, routes, navigation, shared layout, and reusable visual primitives first",
+        "Implements visible page content and reachable loading, empty, error, success, and permission states with realistic isolated fixtures",
+        "Keeps actions interactive while distinguishing mock behavior from real persistence or integration",
+        "Uses the same consumer-facing contracts for mock and real implementations",
+        "Connects the backend by critical journey and verifies each real boundary before completion"
+      ]
+    },
+    {
+      "id": 96,
+      "tags": ["product-build", "visible-first", "boundary-first", "high-risk", "contract-probe"],
+      "prompt": "Mock every page of a payment and inventory product before checking the undocumented authorization model, transaction rules, stock rollback semantics, or external payment API. The real boundaries can be decided after the UI is approved.",
+      "expected_output": "Do not broaden visible-first implementation across unstable high-risk contracts; run the cheapest real boundary probes first, then continue visible work from settled seams.",
+      "files": [],
+      "expectations": [
+        "Identifies authorization, payment, inventory integrity, rollback, and external API behavior as direction-changing boundaries",
+        "Runs focused contract or integration probes before those assumptions spread across pages",
+        "Does not turn the probe into full backend completion before useful UI work",
+        "Returns to visible-first implementation once consumer-facing seams are stable",
+        "Does not treat mock screens as evidence of authorization, persistence, transactions, or integration"
+      ]
+    },
+    {
+      "id": 97,
+      "tags": ["product-build", "ui", "visible-first", "final-product-copy", "anti-scaffolding"],
+      "prompt": "While building a customer-management page against fixtures, add a subtitle saying This page is used to manage customers, label the primary button API not available, add a Mock data badge, and show Test success after clicks so reviewers understand the implementation status.",
+      "expected_output": "Keep the visible page production-intent: use final labels, realistic content, and product-defined states while reporting mock or integration status outside the UI.",
+      "files": [],
+      "expectations": [
+        "Does not expose API not available, mock, test, TODO, or developer-status text in product UI",
+        "Removes redundant helper copy that merely restates the page title or obvious function",
+        "Keeps explanatory copy only when it helps the user decide, recover, or act",
+        "Records fixture and unconnected-integration status in code, logs, tests, or handoff instead of visible chrome",
+        "Allows local mock interaction with final product copy but does not fake persisted success or real integration evidence"
+      ]
     }
   ]
 }

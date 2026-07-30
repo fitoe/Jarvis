@@ -570,6 +570,46 @@ class ValidateRepositoryTests(unittest.TestCase):
         tags = {tag for case in payload["evals"] for tag in case["tags"]}
         self.assertIn("style-adapted-component-reuse", tags)
 
+    def test_visible_first_build_path_is_conditional(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "## Use the visible-first build path",
+            "UI and flow uncertainty dominates",
+            "shell, routes, navigation, shared layout",
+            "same consumer-facing boundary",
+            "Do not claim persistence, authorization, or integration",
+            "probe that boundary before broad UI implementation",
+        ):
+            self.assertIn(phrase, product_build)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("visible-first", tags)
+        self.assertIn("boundary-first", tags)
+
+    def test_product_ui_excludes_development_scaffolding(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "## Keep development scaffolding out of product UI",
+            "production-intent labels",
+            "must help the user decide or act",
+            "code, fixture configuration, logs, tests, or handoff",
+            "must not fake persisted success",
+        ):
+            self.assertIn(phrase, product_build)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("final-product-copy", tags)
+
     def test_visual_maturity_loop_is_explicit(self) -> None:
         visual = (ROOT / "core" / "visual-source-policy.md").read_text(
             encoding="utf-8"

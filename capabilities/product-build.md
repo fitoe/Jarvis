@@ -33,6 +33,50 @@ code, debugging, review, or refactoring makes its full guidance useful.
 Load one [Feature Recipe](../recipes/README.md) only when the project lacks a
 closer pattern.
 
+## Use the visible-first build path
+
+Activate this path when early walkthrough feedback is valuable, UI and flow
+uncertainty dominates, the page map is known, consumer-facing contracts are
+stable enough to mock, and no high-risk real boundary controls the direction.
+
+1. Build the shell, routes, navigation, shared layout, and reusable visual
+   primitives.
+2. Make the in-scope page family browsable with realistic content and reachable
+   loading, empty, error, success, permission, and disabled states.
+3. Keep visible controls interactive through isolated fixtures or a mock adapter
+   behind the same consumer-facing boundary intended for the real implementation.
+4. Connect the backend by critical journey, replace mocks one seam at a time,
+   and verify persistence, permissions, side effects, and integration at their
+   real boundaries.
+
+Name provisional API, data, and permission contracts before broad page work. If
+conflicting local evidence or an unknown shared contract could invalidate many
+screens, run the cheapest focused probe first, then return to visible work. Do
+not complete every invisible service merely because one contract needed proof.
+
+Do not claim persistence, authorization, or integration from a visible mock.
+Mark unconnected behavior honestly outside product UI. When authentication,
+billing, inventory, migration, destructive data, or an external API can change
+the page model, probe that boundary before broad UI implementation.
+
+## Keep development scaffolding out of product UI
+
+Build user-visible surfaces as the intended final product, not as an
+implementation-status board.
+
+- Use production-intent labels, realistic content, and product-defined loading,
+  empty, error, success, permission, and disabled states. Do not render `TODO`,
+  `not implemented`, `API unavailable`, `mock`, `test`, debug badges, or
+  developer notes as product copy.
+- Headings and supporting copy must help the user decide or act, understand a
+  material condition, or recover from a real state. Remove subtitles that merely
+  restate the page title or explain an obvious function.
+- Keep development status in code, fixture configuration, logs, tests, or
+  handoff. It must not occupy user-facing chrome.
+- Mock-backed controls may exercise the intended local interaction with final
+  copy, but must not fake persisted success or real integration. Report missing
+  proof outside the UI instead of adding placeholder text.
+
 ## Reuse the local component library
 
 Existing finished components preserve consistency and avoid rebuilding behavior
