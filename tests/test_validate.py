@@ -610,6 +610,47 @@ class ValidateRepositoryTests(unittest.TestCase):
         tags = {tag for case in payload["evals"] for tag in case["tags"]}
         self.assertIn("final-product-copy", tags)
 
+    def test_navigation_preserves_link_semantics(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "## Preserve link semantics for navigation",
+            "First identify the target runtime",
+            "native link or the framework's `Link` component",
+            "Do not hide a known route behind a generic container, button, or click handler",
+            "open in a new tab, copy link, focus, keyboard use",
+            "Use buttons for commands",
+            "programmatic navigation when it is genuinely conditional",
+        ):
+            self.assertIn(phrase, product_build)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("link-semantics", tags)
+
+    def test_mini_programs_exclude_browser_only_primitives(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "WeChat, Alipay, or another mini-program runtime",
+            "native declarative navigation component",
+            "platform router, lifecycle, storage, request, and UI APIs",
+            "Do not emit `<a>`, `window`, `document`, DOM APIs, `localStorage`",
+            "supported web-view boundary",
+        ):
+            self.assertIn(phrase, product_build)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("mini-program", tags)
+        self.assertIn("anti-browser-globals", tags)
+
     def test_visual_maturity_loop_is_explicit(self) -> None:
         visual = (ROOT / "core" / "visual-source-policy.md").read_text(
             encoding="utf-8"

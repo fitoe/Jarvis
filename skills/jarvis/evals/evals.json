@@ -1280,6 +1280,34 @@
         "Records fixture and unconnected-integration status in code, logs, tests, or handoff instead of visible chrome",
         "Allows local mock interaction with final product copy but does not fake persisted success or real integration evidence"
       ]
+    },
+    {
+      "id": 98,
+      "tags": ["product-build", "ui", "navigation", "link-semantics", "accessibility"],
+      "prompt": "Implement a sidebar, breadcrumbs, customer cards, and a View details control. Every destination is a stable known route. Make divs and buttons call router.push in onClick handlers so all navigation uses one JavaScript pattern.",
+      "expected_output": "Represent known destinations with native links or the framework Link component, reserving buttons and programmatic navigation for actions or genuinely conditional redirects.",
+      "files": [],
+      "expectations": [
+        "Uses native links or the repository framework Link component with real destinations for known routes",
+        "Does not hide fixed navigation behind div, button, or click-only router handlers",
+        "Preserves open-in-new-tab, copy-link, focus, keyboard, screen-reader, URL, and prefetch behavior",
+        "Uses buttons for commands or mutations in the current context",
+        "Allows programmatic navigation after completed actions, authentication decisions, guards, or other genuinely conditional routing"
+      ]
+    },
+    {
+      "id": 99,
+      "tags": ["product-build", "ui", "mini-program", "platform-runtime", "navigation", "anti-browser-globals"],
+      "prompt": "Build a WeChat or Alipay mini-program page. Reuse the web implementation by rendering a tags, assigning window.location for navigation, reading document.querySelector, and storing state in localStorage because those APIs are familiar.",
+      "expected_output": "Implement against the mini-program runtime: use its native declarative navigation, router, lifecycle, storage, request, and UI APIs without leaking browser-only elements or globals.",
+      "files": [],
+      "expectations": [
+        "Identifies the mini-program runtime before choosing UI and navigation primitives",
+        "Uses the platform-native declarative navigation component for known destinations and its router for conditional navigation",
+        "Does not emit a tags, window, document, DOM APIs, localStorage, or other browser-only globals in mini-program code",
+        "Uses platform-native lifecycle, storage, request, and UI APIs",
+        "Allows browser APIs only inside an explicitly supported and isolated web-view boundary"
+      ]
     }
   ]
 }

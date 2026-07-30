@@ -99,6 +99,33 @@ shared-library extension with real reuse, then a new local component.
 - Verify the assembled page, journey, and affected states. Do not duplicate tests
   for component-library internals already covered at their owning boundary.
 
+## Preserve link semantics for navigation
+
+First identify the target runtime and follow its native navigation semantics.
+When activating a visible element takes the user to a known addressable
+destination, prefer the platform's declarative navigation component with a real
+destination. Do not hide a known route behind a generic container, button, or
+click handler that only calls an equivalent router API.
+
+- On the web, use a native link or the framework's `Link` component for page,
+  menu, breadcrumb, tab, card, list-row, and external-resource navigation when
+  the destination is known before activation. Preserve browser behavior such as
+  open in a new tab, copy link, focus, keyboard use, screen-reader semantics, URL
+  inspection, and framework prefetching.
+- In WeChat, Alipay, or another mini-program runtime, use its native declarative
+  navigation component and platform router, lifecycle, storage, request, and UI
+  APIs. Do not emit `<a>`, `window`, `document`, DOM APIs, `localStorage`, or other
+  browser-only elements and globals unless the code is explicitly isolated to a
+  supported web-view boundary.
+- Use buttons for commands that act on the current context: submit, mutate,
+  delete, toggle, open a dialog, start a process, or reveal local UI.
+- Use programmatic navigation when it is genuinely conditional or follows a
+  completed action, such as a successful create flow, authentication redirect,
+  route guard, or history repair. A side effect followed by navigation remains
+  an action; a fixed destination alone remains a link.
+- Follow the repository router and component-library conventions. Styling a
+  link like a button does not turn navigation into a button action.
+
 ## Visual implementation
 
 Follow [Visual Source Policy](../core/visual-source-policy.md). When approved
