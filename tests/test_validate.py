@@ -468,7 +468,7 @@ class ValidateRepositoryTests(unittest.TestCase):
         for phrase in (
             "## Compile work at the useful horizon",
             "Final objective",
-            "active domain or journey",
+            "highest-value unclosed journey",
             "progressive compilation",
         ):
             self.assertIn(phrase, planning)
@@ -502,6 +502,103 @@ class ValidateRepositoryTests(unittest.TestCase):
             "isolated-browser-contexts",
         ):
             self.assertIn(tag, tags)
+
+    def test_delivery_defaults_to_the_highest_value_real_journey(self) -> None:
+        skill = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        skill = " ".join(skill.split())
+        self.assertIn("select the highest-value unclosed journey", skill)
+        self.assertIn(
+            "Distinguish Scaffolded, Slice done, Journey done, and Product ready",
+            skill,
+        )
+
+        operating = (ROOT / "core" / "operating-model.md").read_text(
+            encoding="utf-8"
+        )
+        operating = " ".join(operating.split())
+        for phrase in (
+            "## Close the highest-value Journey first",
+            "visible pages and states, real data and permissions",
+            "Finish the Journey or report Hold before expanding a secondary page family",
+            "runtime crash, visible `undefined`, or indefinite loading",
+            "while the core Journey remains open",
+        ):
+            self.assertIn(phrase, operating)
+
+        planning = (ROOT / "core" / "planning-policy.md").read_text(
+            encoding="utf-8"
+        )
+        planning = " ".join(planning.split())
+        for phrase in (
+            "Spanning multiple pages alone does not justify hierarchical planning",
+            "Journey is the default delivery sequence",
+            "Treat page inventory as a navigation and dependency map",
+        ):
+            self.assertIn(phrase, planning)
+
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "## Deliver one real Journey at a time",
+            "cross-page action, resulting state, and readback",
+            "before implementing an unrelated page",
+            "Visible-first is a temporary discovery accelerator",
+        ):
+            self.assertIn(phrase, product_build)
+
+        verification = (ROOT / "core" / "verification-policy.md").read_text(
+            encoding="utf-8"
+        )
+        verification = " ".join(verification.split())
+        for phrase in (
+            "**Scaffolded:**",
+            "**Slice done:**",
+            "**Journey done:**",
+            "**Product ready:**",
+            "accumulating them does not promote work",
+        ):
+            self.assertIn(phrase, verification)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("journey-first", tags)
+        self.assertIn("anti-horizontal-expansion", tags)
+
+    def test_process_assets_trigger_a_product_evidence_reframe(self) -> None:
+        operating = (ROOT / "core" / "operating-model.md").read_text(
+            encoding="utf-8"
+        )
+        operating = " ".join(operating.split())
+        for phrase in (
+            "Every delivery stage must improve user-visible behavior",
+            "Ordinary implementation does not create a Product Plan, Development Guide, or recovery state",
+            "If two consecutive loops add only process assets",
+            "more than half of the active time budget",
+        ):
+            self.assertIn(phrase, operating)
+
+        evidence = (ROOT / "core" / "evidence-policy.md").read_text(
+            encoding="utf-8"
+        )
+        evidence = " ".join(evidence.split())
+        for phrase in (
+            "Delivery progress requires improved user-visible behavior",
+            "existence or count is not evidence that a Journey or product advanced",
+            "When two successive loops produce only process assets",
+        ):
+            self.assertIn(phrase, evidence)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("process-budget", tags)
+        self.assertIn("anti-ceremony", tags)
+        self.assertIn("scaffolded", tags)
 
     def test_fast_delivery_path_is_explicit(self) -> None:
         skill = (ROOT / "skills" / "jarvis" / "SKILL.md").read_text(
@@ -579,7 +676,9 @@ class ValidateRepositoryTests(unittest.TestCase):
             "## Use the visible-first build path",
             "UI and flow uncertainty dominates",
             "shell, routes, navigation, shared layout",
-            "same consumer-facing boundary",
+            "same consumer-facing seams",
+            "stop horizontal mock expansion",
+            "finish or hold it before polishing secondary page families",
             "Do not claim persistence, authorization, or integration",
             "probe that boundary before broad UI implementation",
         ):
@@ -650,6 +749,180 @@ class ValidateRepositoryTests(unittest.TestCase):
         tags = {tag for case in payload["evals"] for tag in case["tags"]}
         self.assertIn("mini-program", tags)
         self.assertIn("anti-browser-globals", tags)
+
+    def test_product_ready_closure_reconciles_delivery_evidence(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "## Reconcile cross-cutting changes",
+            "runtime code, unit and end-to-end tests, fixtures and mocks",
+            "Known in-scope violations block Product ready",
+            "## Close Product-ready claims",
+            "Affected, Journey, and Release gate",
+            "An unexplained warning blocks Product ready",
+            "Stale tests, fixtures, routes, or documents",
+        ):
+            self.assertIn(phrase, product_build)
+
+        verification = (ROOT / "core" / "verification-policy.md").read_text(
+            encoding="utf-8"
+        )
+        verification = " ".join(verification.split())
+        for phrase in (
+            "reconcile affected consumers across runtime code, tests, fixtures, configuration",
+            "zero exit status is insufficient",
+            "Existing green unit, type, lint, or build checks cannot replace",
+            "A regex match, format check, or presence of target-language characters",
+        ):
+            self.assertIn(phrase, verification)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "warning-verdict",
+            "stale-e2e",
+            "semantic-gate",
+            "closure-sweep",
+        ):
+            self.assertIn(tag, tags)
+
+    def test_large_page_family_visual_evidence_is_scoped(self) -> None:
+        verification = (ROOT / "core" / "verification-policy.md").read_text(
+            encoding="utf-8"
+        )
+        verification = " ".join(verification.split())
+        for phrase in (
+            "entry or home surface, at least one list or detail surface",
+            "current approved source at the same viewport and state",
+            "Do not infer family-wide visual completion",
+        ):
+            self.assertIn(phrase, verification)
+
+        evidence = (ROOT / "core" / "evidence-policy.md").read_text(
+            encoding="utf-8"
+        )
+        evidence = " ".join(evidence.split())
+        for phrase in (
+            "successful build does not erase its warnings",
+            "cross-cutting migration must cover the bounded consumer search",
+            "retain representative inspected samples and residual searches",
+            "Record why the selected pages represent their family",
+            "visual status as unverified",
+        ):
+            self.assertIn(phrase, evidence)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("large-page-family", tags)
+        self.assertIn("evidence-scope", tags)
+
+    def test_figma_nodes_are_resolved_at_implementation_and_acceptance(self) -> None:
+        visual = (ROOT / "core" / "visual-source-policy.md").read_text(
+            encoding="utf-8"
+        )
+        visual = " ".join(visual.split())
+        for phrase in (
+            "when implementation starts",
+            "again immediately before final visual acceptance",
+            "Node identifiers are external references, not permanent truth",
+            "mark evidence tied to the old node stale",
+            "Stop requesting or citing the invalid node",
+        ):
+            self.assertIn(phrase, visual)
+
+        evidence = (ROOT / "core" / "evidence-policy.md").read_text(
+            encoding="utf-8"
+        )
+        evidence = " ".join(evidence.split())
+        self.assertIn(
+            "latest successful resolution at implementation start and final acceptance",
+            evidence,
+        )
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        self.assertIn("stale-node", tags)
+        self.assertIn("evidence-freshness", tags)
+
+    def test_live_page_acceptance_pairs_function_and_rendered_state(self) -> None:
+        product_build = (ROOT / "capabilities" / "product-build.md").read_text(
+            encoding="utf-8"
+        )
+        product_build = " ".join(product_build.split())
+        for phrase in (
+            "## Model page function and acceptance before coding",
+            "actor or role and the user's goal",
+            "Journey position, entry conditions, and exit result",
+            "real data sources and their fact owners",
+            "core actions, authority, and side effects",
+            "precondition -> action -> target-state",
+            "successful server readback, navigation, or multi-party consistency",
+            "loading, empty, error, permission, disabled, and completed boundaries",
+            "current valid Figma node or visual source, code route, platform, and acceptance viewport",
+            "Keep it in active context by default",
+            "Persist it only in an existing Development Guide or Page Overview",
+            "ask the smallest blocking question or report Hold",
+            "Decide ordinary reversible presentation details autonomously",
+            "materially blank core region",
+            "report the page as Hold",
+        ):
+            self.assertIn(phrase, product_build)
+
+        planning = (ROOT / "core" / "planning-policy.md").read_text(
+            encoding="utf-8"
+        )
+        planning = " ".join(planning.split())
+        self.assertIn("Page Functional Model in active context", planning)
+        self.assertIn("never require a separate model document for a simple page", planning)
+
+        visual = (ROOT / "core" / "visual-source-policy.md").read_text(
+            encoding="utf-8"
+        )
+        visual = " ".join(visual.split())
+        for phrase in (
+            "Figma may define visual composition, content hierarchy, and interaction it explicitly expresses",
+            "It cannot establish API behavior, permissions, state meaning, idempotency, side effects, or the source of real data",
+        ):
+            self.assertIn(phrase, visual)
+
+        verification = (ROOT / "core" / "verification-policy.md").read_text(
+            encoding="utf-8"
+        )
+        verification = " ".join(verification.split())
+        for phrase in (
+            "entry or home surface, at least one list or detail surface",
+            "use its Page Functional Model to verify actor and goal",
+            "success readback or consistency, and reachable failure boundaries",
+            "single unpaired screenshot",
+            "Visible `undefined`, indefinite loading, materially blank core content",
+            "report Hold",
+            "Page Functional Model is incomplete",
+            "resolved Functional Model and fresh evidence",
+        ):
+            self.assertIn(phrase, verification)
+
+        evidence = (ROOT / "core" / "evidence-policy.md").read_text(
+            encoding="utf-8"
+        )
+        evidence = " ".join(evidence.split())
+        self.assertIn("When it has a durable consumer", evidence)
+        self.assertIn("active Page Functional Model", evidence)
+
+        eval_path = ROOT / "skills" / "jarvis" / "evals" / "evals.json"
+        payload = json.loads(eval_path.read_text(encoding="utf-8"))
+        tags = {tag for case in payload["evals"] for tag in case["tags"]}
+        for tag in (
+            "page-functional-model",
+            "figma-functional-boundary",
+            "scaffolded-only",
+            "context-first",
+        ):
+            self.assertIn(tag, tags)
 
     def test_visual_maturity_loop_is_explicit(self) -> None:
         visual = (ROOT / "core" / "visual-source-policy.md").read_text(

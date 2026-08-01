@@ -33,6 +33,83 @@ code, debugging, review, or refactoring makes its full guidance useful.
 Load one [Feature Recipe](../recipes/README.md) only when the project lacks a
 closer pattern.
 
+## Model page function and acceptance before coding
+
+Before coding an active page or page family, form one lightweight Page Functional
+Model from Product Truth, current code, and real API or data contracts. Keep it in
+active context by default. Persist it only in an existing Development Guide or
+Page Overview when a cross-session handoff, multiple workers or reviewers, a
+complex state machine, or a later slice is a real consumer. Do not create a new
+document or second acceptance matrix for it.
+
+For each representative surface, resolve:
+
+- actor or role and the user's goal;
+- Journey position, entry conditions, and exit result;
+- real data sources and their fact owners, distinguishing integration from mocks;
+- core actions, authority, and side effects;
+- each material precondition -> action -> target-state transition;
+- successful server readback, navigation, or multi-party consistency;
+- loading, empty, error, permission, disabled, and completed boundaries;
+- current valid Figma node or visual source, code route, platform, and acceptance
+  viewport.
+
+Figma does not complete this model. If actor, core action, state transition, or
+success result is materially ambiguous, inspect current product truth, code, and
+API contracts first. If the ambiguity remains and guessing could cause rework,
+ask the smallest blocking question or report Hold. Decide ordinary reversible
+presentation details autonomously.
+
+Refresh the model before implementation and final acceptance. Observe the real
+rendered surface as well as its source and tests. Visible `undefined`, an
+unbounded loading state, a materially blank core region, or missing required
+content is a failed page state even when source code contains an error branch or
+mock tests pass. Fix the state or report the page as Hold in the ordinary handoff;
+do not create another status system or claim Product ready.
+
+Run this target-runtime observation as soon as the active page or state is
+coherent, before implementing an unrelated page. Exercise the reachable normal,
+loading, empty, error, and permission states needed by the active Journey; do not
+defer obvious runtime failure to project-wide acceptance.
+
+## Deliver one real Journey at a time
+
+Default to the highest-value unclosed Journey. Move it vertically through:
+
+1. current approved product and visual truth;
+2. the required pages, routes, content, and reachable states;
+3. real data, permissions, and side effects rather than fixture-only success;
+4. the cross-page action, resulting state, and readback;
+5. target-runtime checks and same-viewport visual comparison when claimed;
+6. accepted Journey evidence or an explicit Hold.
+
+Do not expand a secondary page family while a higher-value core Journey remains
+broken. A high-risk contract probe may precede the Journey when it controls the
+safe implementation path, but return to the Journey as soon as the boundary is
+settled.
+
+## Reconcile cross-cutting changes
+
+When a route scheme, name, platform convention, shared contract, or other rule
+changes across an active product, identify its bounded consumer set before
+claiming the migration complete. Search runtime code, unit and end-to-end tests,
+fixtures and mocks, configuration, generated inputs, and maintained documents
+that encode the changed truth. Update each in-scope consumer and run the affected
+and journey checks that own the shared behavior; a green compiler, unit suite, or
+build alone does not prove consumer reconciliation.
+
+When a new cross-cutting rule is adopted after implementation has started, scan
+the current in-scope surface once. Fix violations that fall inside the completion
+claim. Record known out-of-scope debt in the ordinary handoff or existing project
+truth and narrow the claim; do not create a new registry. Known in-scope
+violations block Product ready.
+
+For translation, bulk renaming, codemods, and other mechanical transformations,
+inspect representative samples across distinct variants and search for residual
+old forms, mixed terminology, and malformed meaning. Structural checks such as
+matching a regex, compiling, or containing target-language characters cannot
+establish semantic quality by themselves.
+
 ## Use the visible-first build path
 
 Activate this path when early walkthrough feedback is valuable, UI and flow
@@ -40,14 +117,15 @@ uncertainty dominates, the page map is known, consumer-facing contracts are
 stable enough to mock, and no high-risk real boundary controls the direction.
 
 1. Build the shell, routes, navigation, shared layout, and reusable visual
-   primitives.
-2. Make the in-scope page family browsable with realistic content and reachable
-   loading, empty, error, success, permission, and disabled states.
-3. Keep visible controls interactive through isolated fixtures or a mock adapter
-   behind the same consumer-facing boundary intended for the real implementation.
-4. Connect the backend by critical journey, replace mocks one seam at a time,
-   and verify persistence, permissions, side effects, and integration at their
-   real boundaries.
+   primitives needed to expose the product shape.
+2. Make the known page map browsable only deeply enough for early flow and
+   information-architecture feedback. Use realistic content and the same
+   consumer-facing seams intended for real implementation.
+3. Once the shape is visible and the active contracts are stable, stop horizontal
+   mock expansion. Select the highest-value unclosed Journey and connect its
+   pages and states to real data, permissions, side effects, and readback.
+4. Verify that Journey in the target runtime, replace its mocks one seam at a
+   time, and finish or hold it before polishing secondary page families.
 
 Name provisional API, data, and permission contracts before broad page work. If
 conflicting local evidence or an unknown shared contract could invalidate many
@@ -58,6 +136,8 @@ Do not claim persistence, authorization, or integration from a visible mock.
 Mark unconnected behavior honestly outside product UI. When authentication,
 billing, inventory, migration, destructive data, or an external API can change
 the page model, probe that boundary before broad UI implementation.
+Visible-first is a temporary discovery accelerator. Routes, pages, controls, and
+fixtures that only demonstrate shape remain Scaffolded, not delivered product.
 
 ## Keep development scaffolding out of product UI
 
@@ -76,6 +156,28 @@ implementation-status board.
 - Mock-backed controls may exercise the intended local interaction with final
   copy, but must not fake persisted success or real integration. Report missing
   proof outside the UI instead of adding placeholder text.
+
+## Close Product-ready claims
+
+Before claiming Product ready, run one bounded closure sweep over the agreed
+scope. This is a final acceptance boundary, not a repeated per-edit ritual.
+
+1. Run every repository-defined Affected, Journey, and Release gate that applies
+   to the claim, including target-platform builds and their observable smoke
+   checks. Inspect failures instead of substituting a green unit suite or build.
+2. Search in-scope user-visible surfaces for development-status copy and
+   redundant filler, then inspect representative matches in context. Reconcile
+   fixed-destination navigation and platform-runtime rules the same way.
+3. Inspect compiler, linter, bundler, framework, and target-platform warnings.
+   Fix each warning or retain explicit evidence that names the warning, affected
+   surface, impact, and why it is acceptable. An unexplained warning blocks
+   Product ready even when the command exits successfully.
+4. Reconcile active cross-cutting migrations and newly adopted rules against
+   their current consumers. Stale tests, fixtures, routes, or documents are
+   unresolved product work, not harmless test noise.
+5. For a large page family, apply the representative visual evidence rules in
+   Verification Policy. Report visual completion only for surfaces supported by
+   approved-source comparison.
 
 ## Reuse the local component library
 

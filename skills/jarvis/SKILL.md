@@ -124,7 +124,7 @@ capable sufficient host-listed model without weakening the claim.
 
 ## Run Loop Engineering
 
-1. **Discover:** reconcile goal, truth, evidence, and unfinished claims.
+1. **Discover:** select the highest-value unclosed journey from current truth, evidence, and claims.
 2. **Frame:** choose the next move heuristically and refine its claims, authority,
    evidence, budget, and reframe condition.
 3. **Execute:** implement one coherent slice with the smallest needed providers.
@@ -153,7 +153,7 @@ creating external resources, reconcile current external state and follow
 
 ## Finish honestly
 
-Distinguish unit done, journey done, and product ready. Complete only when all
-required in-scope claims have fresh evidence and no required work remains. Report
-working behavior, checks actually run, conflicts, missing proof, material risk,
-and the smallest useful next action.
+Distinguish Scaffolded, Slice done, Journey done, and Product ready. Complete only
+when all required in-scope claims have fresh evidence and no required work
+remains. Report working behavior, checks actually run, conflicts, missing proof,
+material risk, and the smallest useful next action.

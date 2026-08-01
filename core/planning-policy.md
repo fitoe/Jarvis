@@ -6,12 +6,14 @@ let evidence reshape future detail.
 
 ## Choose the lightest planning depth
 
-Routine edits may remain in conversation and code when nearby behavior and
-repository patterns already make the change obvious. Do not create three
+Routine implementation remains in active context and code when nearby behavior
+and repository patterns make the next move clear. Do not create a Product Plan,
+Development Guide, or recovery state by default, and do not create three
 documents for copy, spacing, static configuration, or one contained fix.
 
-Use hierarchical planning when work spans multiple pages, journeys, shared
-rules, capabilities, or delivery sessions and those layers have real consumers.
+Spanning multiple pages alone does not justify hierarchical planning. Use it
+when journeys, shared rules, capabilities, delivery sessions, or downstream
+workers give those layers real consumers.
 For UI products, the available shape is:
 
 ```text
@@ -32,7 +34,7 @@ Before substantial multi-unit execution, compile the request into three depths:
 
 ```text
 Final objective
-  -> active domain or journey
+  -> highest-value unclosed journey
   -> current coherent delivery unit
 ```
 
@@ -61,10 +63,17 @@ resolve an expensive assumption faster than prose. When observation contradicts
 the plan, update or retire the invalid assumption and refresh only affected
 downstream context; do not preserve sunk planning.
 
-Page is the default UI boundary, not a universal unit. A Development Guide may
-instead cover a coherent page state, cross-page journey, shared component, API,
-service integration, migration, or release boundary when that is the smallest
-independently understandable and acceptable result.
+Journey is the default delivery sequence; page is an optional UI context
+boundary, not a universal unit. A Development Guide may cover a coherent page
+state, cross-page journey, shared component, API, service integration, migration,
+or release boundary when that is the smallest independently understandable and
+acceptable result.
+
+Before page implementation, hold Product Build's lightweight Page Functional
+Model in active context. It becomes durable planning only when a cross-session
+handoff, multiple workers or reviewers, a complex state machine, or a later slice
+will consume it. Then place it in the existing Development Guide or Page
+Overview; never require a separate model document for a simple page.
 
 ## Level 1: Product Plan
 
@@ -215,19 +224,27 @@ is a teaching and evaluation fixture, not a mandatory workflow stage.
 1. Understand the product goal and resolve only direction-level ambiguity.
 2. Decide whether a Product Plan has a real cross-unit, cross-session, or
    downstream consumer; write or refresh it only then.
-3. Identify only enough of the core journey, likely page inventory, shared
-   rules, and priority to choose the active unit.
+3. Identify the highest-value unclosed core journey and only enough page
+   inventory, shared rules, and dependencies to choose its next vertical slice.
 4. Decide whether the current page has a real Page Overview consumer. Write or
    refresh one only when the optional-layer criteria apply.
-5. Select the current valuable page or coherent delivery unit.
-6. Inspect linked sources and current repository patterns.
+5. Select the smallest coherent unit that advances the active journey through a
+   real observable boundary.
+6. Inspect linked sources and current repository patterns; resolve the active
+   Page Functional Model from product truth, code, and API contracts when UI is
+   involved.
 7. Write or refresh its Development Guide only when implementation, delegation,
    review, or recovery has a durable reader. Otherwise keep the same bounded
    context active without creating a document.
 8. Run the context-closure check before dispatch and proceed only when
    decision-ready.
 9. Verify the result, integrate it, and route durable discoveries upstream.
-10. Refresh the next active guide instead of fully detailing all future work.
+10. Keep the next move inside the active journey until it is done or held;
+    refresh another guide only when its consumer becomes active.
+
+Treat page inventory as a navigation and dependency map, not an implementation
+queue. Do not fully plan, scaffold, or polish every page before closing the core
+Journey that gives those pages product meaning.
 
 ## Split by coherent claims, not size
 

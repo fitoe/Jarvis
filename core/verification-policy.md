@@ -72,7 +72,13 @@ Add independent overlays when needed:
 - **Product-uncertain:** seek the cheapest user or market signal that can
   challenge the value hypothesis before broad investment.
 - **Visual-fidelity:** establish an approved source and compare the same viewport
-  and state. Scope strict fidelity to the declared surfaces.
+  and state. Scope strict fidelity to the declared surfaces. For a large page
+  family, include its entry or home surface, at least one list or detail surface,
+  and a critical error, empty, or loading state when applicable, plus any
+  materially different layouts, platforms, and critical journeys. Compare each
+  selected surface with its current approved source at the same viewport and
+  state. Do not infer family-wide visual completion from build success or an
+  unpaired screenshot.
 
 An overlay does not lower risk intensity. A production admin screen can require
 both high-risk verification and visual-fidelity evidence.
@@ -82,17 +88,40 @@ both high-risk verification and visual-fidelity evidence.
 - **Focused gate:** while building a page or delivery unit, run the narrowest
   check that can falsify its active acceptance claims.
 - **Affected gate:** when shared logic, contracts, dependencies, or recurrent
-  defects change, run regression checks for affected consumers plus the relevant
-  type, syntax, or contract check.
+  defects change, reconcile affected consumers across runtime code, tests,
+  fixtures, configuration, and maintained documents, then run their regression
+  checks plus the relevant type, syntax, or contract check.
 - **Journey gate:** when the pages and boundaries for a critical journey are
   connected, exercise that journey end to end and inspect its resulting state.
 - **Release gate:** only when release readiness is claimed, run the repository's
-  release checks and inspect the built artifact or external environment.
+  release checks and inspect the built artifact or external environment. A zero
+  exit status is insufficient when the output contains warnings relevant to the
+  claimed platform or surface; each warning needs a fix or an explicit supported
+  acceptance verdict.
 
 Do not run a full suite for every page edit. A focused page check can establish
 Slice done, but isolated page checks cannot establish Journey done or Product
 ready. Use the Product Plan to name critical journeys and project gates; use the
 current Development Guide to map page acceptance claims to focused evidence.
+
+At the Product-ready boundary, run all applicable repository-defined Affected,
+Journey, and Release gates once, then perform the bounded closure sweep defined
+by Product Build. Existing green unit, type, lint, or build checks cannot replace
+a failing or stale end-to-end consumer. Product ready requires every relevant
+failure and warning to be resolved or explicitly shown not to invalidate the
+claim.
+
+For an in-scope visible page, use its Page Functional Model to verify actor and
+goal, entry and exit, each material state transition, real data and side effects,
+success readback or consistency, and reachable failure boundaries. Inspect the
+real rendered result at its representative viewport. When Visual parity is
+claimed, pair that render with the current approved source at the same state.
+Source code, a unit test, a successful mock, or a single unpaired screenshot can
+support a narrower claim but cannot independently prove page completion, Visual
+parity, or Product ready. Visible `undefined`, indefinite loading, materially
+blank core content, or missing required information blocks Product ready even
+when an error branch exists in code. Fix it or report Hold with the failed claim
+and observed state.
 
 ## Verification cadence
 
@@ -109,6 +138,13 @@ a relevant code change or failed result. Run Affected, Journey, and Release gate
 when their corresponding boundaries are reached, not as repeated background
 rituals.
 
+For a visible Journey, the first target-runtime observation is part of slice
+development rather than a final-project ceremony. As soon as an active page or
+state is coherent, inspect the reachable normal, loading, empty, error, and
+permission states needed by the Journey at its representative viewport. Use a
+focused runtime check, not a full suite, and repair decisive failure before
+expanding unrelated surfaces.
+
 Optimize for total delivery time rather than test frequency. Deferring broad
 verification does not authorize an unsupported completion claim.
 
@@ -122,6 +158,12 @@ An active quality overlay selects the smallest check that can falsify its claim.
 It does not require a full accessibility, performance, security, operability, or
 compatibility suite when that boundary is outside the active scope.
 
+For a bulk translation, rename, codemod, or migration, combine structural checks
+with semantic acceptance: inspect representative samples across distinct source
+patterns, exercise an affected real flow where meaning controls behavior, and
+search for residual old, mixed, or malformed forms. A regex match, format check,
+or presence of target-language characters proves structure only.
+
 ## Evidence rule
 
 Never claim a check passed unless it ran in the current work and its output was
@@ -129,10 +171,19 @@ inspected. A partial check supports only the claim it actually tested.
 
 ## Completion levels
 
-- **Slice done:** current slice claims have fresh evidence.
-- **Journey done:** the complete in-scope user journey works across its boundaries.
+- **Scaffolded:** routes, pages, visual structure, controls, components, types,
+  API shapes, fixtures, mocks, or tests exist, but the Page Functional Model is
+  incomplete or no broader real-behavior claim has been proved.
+- **Slice done:** one coherent unit produces its claimed observable result with
+  a resolved Functional Model and fresh evidence at the required local or real
+  boundary.
+- **Journey done:** the complete in-scope user journey works through real pages,
+  data, permissions, actions, resulting state, and readback at its required
+  runtime boundaries.
 - **Product ready:** agreed product scope, critical journeys, permissions, data,
   operating conditions, and requested release boundary are evidenced.
 
-State the achieved level and material gaps. Passing a slice check does not imply
-journey completion or release readiness.
+State the achieved level and material gaps. Page existence, typed APIs, source
+code, unit tests, fixtures, or mocks can support Scaffolded or a narrow Slice
+claim; accumulating them does not promote work to Journey done or Product ready
+without fresh evidence at those higher boundaries.

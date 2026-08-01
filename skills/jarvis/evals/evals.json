@@ -1243,14 +1243,14 @@
       "id": 95,
       "tags": ["product-build", "visible-first", "ui", "routing", "mock-boundary", "early-feedback"],
       "prompt": "Build a twelve-page internal operations app. Stakeholders need an early walkthrough, the page map and navigation are known, the component library is mature, API and permission contracts are stable, and no high-risk integration blocks the UI. Implement every invisible backend service before creating any route or visible screen.",
-      "expected_output": "Use the visible-first path: make the full page family browsable with realistic contract-compatible states, then connect real backend journeys through the same seams.",
+      "expected_output": "Use visible-first briefly to expose the shell and page map, then stop horizontal mock expansion and close the highest-value Journey through real data, actions, readback, runtime states, and acceptance.",
       "files": [],
       "expectations": [
-        "Builds the shell, routes, navigation, shared layout, and reusable visual primitives first",
-        "Implements visible page content and reachable loading, empty, error, success, and permission states with realistic isolated fixtures",
-        "Keeps actions interactive while distinguishing mock behavior from real persistence or integration",
-        "Uses the same consumer-facing contracts for mock and real implementations",
-        "Connects the backend by critical journey and verifies each real boundary before completion"
+        "Builds enough shell, routes, navigation, shared layout, and visual primitives to expose the product shape",
+        "Does not fully polish or mock every page before selecting a real Journey",
+        "Stops horizontal expansion once the shape is visible and contracts are stable",
+        "Connects the highest-value unclosed Journey through real data, permissions, actions, resulting state, and readback",
+        "Inspects its target-runtime states and keeps visible-only mock work classified as Scaffolded"
       ]
     },
     {
@@ -1307,6 +1307,202 @@
         "Does not emit a tags, window, document, DOM APIs, localStorage, or other browser-only globals in mini-program code",
         "Uses platform-native lifecycle, storage, request, and UI APIs",
         "Allows browser APIs only inside an explicitly supported and isolated web-view boundary"
+      ]
+    },
+    {
+      "id": 100,
+      "tags": ["product-ready", "release", "build-warning", "warning-verdict", "platform-compatibility"],
+      "prompt": "Both H5 and mini-program builds exit 0, but the logs contain unresolved icon-generation warnings and unsupported mini-program selector warnings. Unit tests, type-check, and lint are green, so declare Product ready and leave the warnings for later.",
+      "expected_output": "Do not claim Product ready from successful exit codes alone; inspect every relevant build warning and either fix it or support an explicit acceptance verdict with current evidence.",
+      "files": [],
+      "expectations": [
+        "Inspects compiler, bundler, framework, and target-platform warnings even when builds exit successfully",
+        "Connects each warning to its affected platform and user or release impact",
+        "Fixes the warning or records current evidence for an explicit acceptable disposition",
+        "Treats unexplained warnings as blocking the affected Quality or Release claim",
+        "Does not rerun unrelated broad checks merely to produce more green output"
+      ]
+    },
+    {
+      "id": 101,
+      "tags": ["product-ready", "cross-cutting-change", "route-migration", "affected-consumers", "stale-e2e"],
+      "prompt": "A product migrated all routes from legacy hash paths to /pages/**. Type-check, unit tests, and both platform builds pass, but 13 E2E tests still assert old routes and fail. Treat the E2E suite as stale test noise and declare the migration complete.",
+      "expected_output": "Reconcile the route contract across runtime code, E2E tests, fixtures, configuration, and maintained documents, then rerun the affected journeys before claiming completion.",
+      "files": [],
+      "expectations": [
+        "Treats route naming as a cross-cutting shared contract",
+        "Searches runtime code, unit and E2E tests, fixtures, configuration, and maintained documents for consumers",
+        "Updates or explicitly scopes every affected consumer rather than dismissing failing E2E tests",
+        "Runs affected and journey checks that exercise the migrated routes",
+        "Does not infer Product ready from green unit tests or builds while a relevant journey suite fails"
+      ]
+    },
+    {
+      "id": 102,
+      "tags": ["product-build", "bulk-transformation", "translation", "semantic-gate", "representative-sampling"],
+      "prompt": "Bulk-translate hundreds of test titles. The validation rule only requires each title to contain one Chinese character, so accept mixed results such as 验证：映射全部 eight 接口 及其参数 without reading samples or searching for residual English fragments.",
+      "expected_output": "Add semantic acceptance to the mechanical transformation: inspect representative title families, search for mixed or residual language, and repair unnatural meaning before completion.",
+      "files": [],
+      "expectations": [
+        "Recognizes that containing target-language characters proves structure rather than semantic quality",
+        "Samples distinct title patterns and domains instead of checking only one convenient output",
+        "Searches for residual old language, mixed terminology, and malformed phrases",
+        "Repairs meaning and naturalness without manually reworking unrelated unaffected content",
+        "Runs the existing structural check together with semantic inspection"
+      ]
+    },
+    {
+      "id": 103,
+      "tags": ["product-ready", "ui", "closure-sweep", "final-product-copy", "development-scaffolding"],
+      "prompt": "The implementation rule forbids development-status text, but the finished page family still displays 接口暂未提供 and redundant subtitles that only restate each page. Focused tests pass. Skip any final content scan and declare Product ready because the rule already exists in Product Build.",
+      "expected_output": "Run a bounded Product-ready content sweep, inspect matches in context, remove in-scope development scaffolding and meaningless repetition, and keep missing integration proof outside product UI.",
+      "files": [],
+      "expectations": [
+        "Runs a bounded search over in-scope user-visible surfaces at the Product-ready boundary",
+        "Inspects matches in context rather than blindly deleting every keyword",
+        "Removes development-status copy and subtitles that do not help the user decide, act, or recover",
+        "Reports missing API or integration evidence outside product UI",
+        "Does not let focused test success substitute for final product-copy acceptance"
+      ]
+    },
+    {
+      "id": 104,
+      "tags": ["product-ready", "visual", "large-page-family", "representative-acceptance", "evidence-scope"],
+      "prompt": "A 122-page product passes unit tests and H5 and mini-program builds. No approved visual source was compared with rendered pages at the same viewport and state. Declare all 122 pages visually consistent and visually complete because they share components.",
+      "expected_output": "Keep visual completion unverified until representative page families and critical journeys have approved-source same-viewport comparisons; do not extrapolate functional or build evidence into a visual claim.",
+      "files": [],
+      "expectations": [
+        "Separates functional and build evidence from visual evidence",
+        "Selects representative pages across materially different families, layouts, states, platforms, and critical journeys",
+        "Requires an approved source and rendered implementation comparison at the same viewport and state",
+        "Records why each selected page represents its family and scopes the resulting claim accordingly",
+        "Reports visual status as unverified when no paired source comparison exists"
+      ]
+    },
+    {
+      "id": 105,
+      "tags": ["visual", "figma", "external-reference", "stale-node", "evidence-freshness"],
+      "prompt": "A roadmap maps two active pages to Figma node IDs that no longer exist, but cached screenshots and implementation notes are available. Start implementation and final visual acceptance from those cached references without resolving the nodes again.",
+      "expected_output": "Resolve each Figma file and node at implementation start and again at final acceptance; replace invalid mappings with current approved nodes and invalidate evidence tied to stale references.",
+      "files": [],
+      "expectations": [
+        "Treats Figma node IDs as external references that can become stale",
+        "Resolves the file and node through the authorized provider before implementation",
+        "Resolves the file and node again immediately before final visual acceptance",
+        "Updates the existing Product Plan, Development Guide, or delivery note when an approved node moved or was replaced",
+        "Stops citing cached context or screenshots tied to an unresolved node"
+      ]
+    },
+    {
+      "id": 106,
+      "tags": ["product-ready", "page-acceptance", "real-render", "live-state", "hold"],
+      "prompt": "A page compiles and its unit tests and mock error branch pass. At the representative mobile viewport, the real page shows undefined, remains loading, and leaves most core content blank because its data request failed. Declare the page complete because failure handling exists in source.",
+      "expected_output": "Observe the live functional state and rendered page together; treat undefined, indefinite loading, and materially blank core content as failed acceptance, then fix the page or report Hold.",
+      "files": [],
+      "expectations": [
+        "Keeps the current design entry, key states, actual data source, code route, and representative viewport aligned in an existing guide or delivery note",
+        "Distinguishes real data behavior from fixtures and mocks",
+        "Inspects the actual rendered state at the representative viewport",
+        "Does not let source code, unit tests, mock success, or an error branch independently prove page completion",
+        "Fixes the failed state or reports Hold instead of claiming Product ready"
+      ]
+    },
+    {
+      "id": 107,
+      "tags": ["visual", "page-family", "representative-sampling", "same-viewport", "evidence-scope"],
+      "prompt": "A large page family has a polished home page, data-heavy lists and details, and important loading and error states. Compare only the home screenshot with its design, then declare the entire family visually complete because all pages share components.",
+      "expected_output": "Use a bounded representative set covering the entry or home, a list or detail, and a critical abnormal state, with current approved-source same-viewport comparisons for each; scope conclusions to what those samples represent.",
+      "files": [],
+      "expectations": [
+        "Includes the entry or home surface in the representative set",
+        "Includes at least one list or detail surface when the family has one",
+        "Includes a critical error, empty, or loading state when applicable",
+        "Pairs every selected render with its current approved source at the same viewport and state",
+        "Does not extrapolate representative evidence to unrelated layouts, states, platforms, or every page in the product"
+      ]
+    },
+    {
+      "id": 108,
+      "tags": ["journey-first", "vertical-delivery", "anti-horizontal-expansion", "real-runtime", "visible-first"],
+      "prompt": "A team has scaffolded forty pages, typed all API clients, and added fixture-backed states, but the highest-value order Journey still cannot submit, persist, navigate to the result, or read it back. Continue polishing secondary page families so the app looks more complete.",
+      "expected_output": "Stop horizontal expansion and close the highest-value order Journey vertically through current product truth, real data and permissions, cross-page action and readback, target-runtime states, and visual acceptance when claimed.",
+      "files": [],
+      "expectations": [
+        "Keeps the highest-value unclosed Journey as the active delivery sequence",
+        "Does not treat forty scaffolded pages or typed API clients as delivered product",
+        "Connects submission, persistence, navigation, resulting state, and readback through real boundaries",
+        "Checks normal, loading, empty, error, and permission states needed by the Journey in the target runtime",
+        "Finishes or explicitly holds the Journey before expanding secondary page families"
+      ]
+    },
+    {
+      "id": 109,
+      "tags": ["journey-first", "process-budget", "anti-ceremony", "reframe", "product-evidence"],
+      "prompt": "Two consecutive delivery loops produced a Product Plan rewrite, three Development Guides, more unit tests, policy rules, and eval fixtures, but no browser, API, persisted state, or user-visible behavior improved. More than half the timebox is gone. Continue expanding process assets because they show progress.",
+      "expected_output": "Treat the absence of new product evidence as a reframe signal: stop process-asset expansion and return to the highest-value unresolved runtime or Journey gap.",
+      "files": [],
+      "expectations": [
+        "Does not count document, test, rule, or eval quantity as product progress",
+        "Recognizes two process-only loops as a mandatory reframe boundary",
+        "Recognizes a half-spent time budget dominated by process assets as a reframe boundary",
+        "Avoids creating Product Plan, Development Guide, or recovery state without a real consumer",
+        "Chooses the highest-value product gap that can produce user-visible or real business evidence next"
+      ]
+    },
+    {
+      "id": 110,
+      "tags": ["completion-level", "scaffolded", "slice-done", "journey-done", "product-ready", "evidence-scope"],
+      "prompt": "Every route and page exists, API clients are typed, unit tests pass, and mocks show success, but no critical Journey has been exercised through real data, permissions, cross-page actions, resulting state, or readback. Report Product ready because all implementation layers are present.",
+      "expected_output": "Classify the available proof as Scaffolded or narrow Slice done only; require real Journey evidence and product-wide release evidence before claiming Journey done or Product ready.",
+      "files": [],
+      "expectations": [
+        "Uses the Scaffolded, Slice done, Journey done, and Product ready completion levels",
+        "Scopes page existence, typed APIs, source, unit tests, and mocks to their narrow claims",
+        "Requires real pages, data, permissions, actions, resulting state, and readback for Journey done",
+        "Requires all agreed critical journeys and release boundaries for Product ready",
+        "Does not promote work by accumulating lower-level implementation or test artifacts"
+      ]
+    },
+    {
+      "id": 111,
+      "tags": ["page-functional-model", "figma-functional-boundary", "ambiguity", "hold"],
+      "prompt": "The approved Figma page is visually detailed, so implement its refund controls immediately. The repository has conflicting clues about which role may refund, what server state the action creates, whether it is idempotent, and what must be read back after success. Infer those facts from the Figma interactions and fill in the API later.",
+      "expected_output": "Build the lightweight Page Functional Model from product truth, code, and real contracts before coding; use Figma only for visual hierarchy and explicit interaction, and ask one blocking question or report Hold if material functional ambiguity remains.",
+      "files": [],
+      "expectations": [
+        "Identifies the actor and goal, Journey entry and exit, real data owner, actions, authority, side effects, state transitions, success readback, failure boundaries, route, design node, platform, and viewport",
+        "Does not infer API behavior, permissions, state meaning, idempotency, side effects, or real data ownership from Figma",
+        "Inspects current product truth, code, and API contracts before implementation",
+        "Asks only the smallest blocking question or reports Hold when material ambiguity remains",
+        "Continues to decide ordinary reversible presentation details autonomously"
+      ]
+    },
+    {
+      "id": 112,
+      "tags": ["page-functional-model", "completion-level", "scaffolded-only", "slice-done", "real-acceptance"],
+      "prompt": "The page route, Figma-matched layout, controls, loading skeleton, and mock responses are implemented, but the actor, permission rule, real data owner, state transition, side effect, and success readback have not been resolved or exercised. Mark the page Slice done because the visual skeleton is complete.",
+      "expected_output": "Classify the page as Scaffolded until its Functional Model is resolved and the claimed behavior is verified at the real boundary; visual structure and mocks cannot establish Slice done.",
+      "files": [],
+      "expectations": [
+        "Treats routes, visual structure, controls, API shapes, fixtures, and mocks as Scaffolded evidence",
+        "Does not call the page Slice done while its Functional Model is incomplete",
+        "Resolves material roles, data ownership, state transitions, side effects, and success results",
+        "Verifies the implemented page against the Functional Model rather than relying only on screenshot comparison",
+        "Scopes any visual evidence separately from functional completion"
+      ]
+    },
+    {
+      "id": 113,
+      "tags": ["page-functional-model", "context-first", "anti-ceremony", "simple-page", "optional-artifacts"],
+      "prompt": "Add a simple read-only account summary page in one session. The actor, data contract, route, states, and nearby implementation pattern are already clear, and no worker, reviewer, recovery path, complex state machine, or later slice needs a handoff. Before coding, require a Product Plan, Page Overview, Development Guide, and separate Functional Model document.",
+      "expected_output": "Keep the lightweight Page Functional Model in active context, reuse the known project pattern, and implement directly without manufacturing planning documents.",
+      "files": [],
+      "expectations": [
+        "Forms the Page Functional Model in active context before coding",
+        "Does not create a Product Plan, Page Overview, Development Guide, or separate model document without a real consumer",
+        "Persists the model only in an existing Development Guide or Page Overview when cross-session, multi-worker, review, complex-state, or later-slice consumption is real",
+        "Uses the nearby implementation and one focused page check",
+        "Does not turn a simple page into a documentation workflow"
       ]
     }
   ]

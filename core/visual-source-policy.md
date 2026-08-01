@@ -3,6 +3,11 @@
 Use an approved visual source before implementing a new page-level UI, a key new
 visual state, or a material visual redesign. The approved source governs Visual
 Truth only; Product Truth still governs functions, data, states, and authority.
+Figma may define visual composition, content hierarchy, and interaction it
+explicitly expresses. It cannot establish API behavior, permissions, state
+meaning, idempotency, side effects, or the source of real data. Resolve those
+facts from product truth, code, and current contracts rather than guessing from
+the design.
 
 ## Choose the source path
 
@@ -188,6 +193,15 @@ parity does not prove full-page rhythm, continuity, or final visual acceptance.
 
 ## Translate and compare
 
+For a Figma source, resolve the referenced file and node through the authorized
+provider when implementation starts and resolve them again immediately before
+final visual acceptance. Node identifiers are external references, not permanent
+truth. If a node was removed, moved, or replaced, locate the current approved
+node, update the existing Product Plan, Development Guide, or delivery note that
+owns the mapping, and mark evidence tied to the old node stale. Stop requesting
+or citing the invalid node; do not compare implementation against cached output
+from an unresolved reference.
+
 When the Product Design plugin is available, use
 `Product Design:image-to-code` as the preferred translation workflow for an
 approved Figma node, screenshot, mockup, or image reference. For Figma, use the
@@ -195,6 +209,14 @@ authorized Figma provider to read implementation context and assets and capture
 the approved visual target; use a supplied image directly. Then run
 `Product Design:design-qa` with the source and rendered implementation together
 at the same viewport and state. A saved screenshot alone is not comparison.
+
+For a large page family, choose a bounded representative set that includes its
+entry or home surface, at least one list or detail surface, and a critical error,
+empty, or loading state when those categories exist. Include additional samples
+only when materially different layouts, platforms, or critical journeys would
+otherwise be unrepresented. Each sample needs its own current approved source
+and same-viewport, same-state comparison. Passing samples support only the page
+family characteristics they actually represent, not every page in the product.
 
 Jarvis retains goal, product truth, budget, implementation, and completion
 ownership. The plugin replaces a separate `design-to-code` workflow; it does not

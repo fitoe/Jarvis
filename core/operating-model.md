@@ -46,6 +46,13 @@ These are judgment heuristics, not a numeric score or optimizer. New evidence ma
 change the active slice, plan, or implementation hypothesis, but it may not
 silently broaden the user's goal or authority.
 
+When eligible product gaps compete, resolve them in this order: runtime crash,
+visible `undefined`, or indefinite loading; a broken core journey; incorrect
+data, permission, side effect, or fake success; information-architecture drift;
+visual drift; secondary enhancement; then documentation or coverage polish.
+Higher-risk authority and irreversible boundaries still take precedence when
+they control whether the next product move is safe.
+
 ## Work economically
 
 - batch independent read-only discovery and related searches;
@@ -60,6 +67,18 @@ silently broaden the user's goal or authority.
 
 Optimize total delivery time and user waiting, not maximum tool parallelism.
 Concurrent writes that can overlap remain sequential.
+
+Every delivery stage must improve user-visible behavior or produce evidence at a
+real business boundary. Documents, tests, rules, and evaluation fixtures are
+enabling assets, not product progress by quantity. Ordinary implementation does
+not create a Product Plan, Development Guide, or recovery state unless a real
+consumer or recovery boundary needs it.
+
+If two consecutive loops add only process assets without improving current
+product evidence, stop and return to the highest-value product gap. Reframe at
+the same boundary when more than half of the active time budget is spent but the
+main output remains planning, documentation, tests, rules, or evaluation
+infrastructure rather than observable product behavior.
 
 Keep an active-domain working set in context: entry paths and nearby
 implementation patterns; components and tokens; API, type, and data anchors;
@@ -101,14 +120,20 @@ Generated output and provider suggestions remain proposals until accepted into
 the relevant truth boundary. Visual truth cannot add product behavior, and an
 implementation choice cannot silently redefine the outcome.
 
-## Select a vertical slice
+## Close the highest-value Journey first
 
-Choose the smallest coherent path from an input or user action to an observable
-result. A slice should be useful, testable, and small enough to finish without
-holding the whole product in context.
+Default to the highest-value unclosed user Journey, then choose the smallest
+vertical slice that advances it from approved product or visual truth through
+visible pages and states, real data and permissions, cross-page action and
+readback, target-runtime observation, and same-viewport visual acceptance when
+claimed. Finish the Journey or report Hold before expanding a secondary page
+family.
 
-For a new product, prefer a walking skeleton through UI or API, business logic,
-and data before building broad horizontal foundations.
+A slice should be useful, testable, and small enough to finish without holding
+the whole product in context. For a new product, use a walking skeleton through
+UI or API, business logic, and data to expose the Journey cheaply, then replace
+its provisional seams and close the real path before broad horizontal
+foundations.
 
 ## Keep one Loop Contract
 
@@ -142,8 +167,9 @@ uncertain and inspect its real state before retrying or accepting it.
 
 Read current Product Truth, repository instructions, code, Git, valid evidence,
 host Goal state, and recovery state when present. Use the goal-directed
-heuristics to select the next eligible move. Do not invent scheduled or
-perpetual work or fully decompose inactive units.
+heuristics to select the next move inside the highest-value eligible unclosed
+Journey. Do not invent scheduled or perpetual work, fully decompose inactive
+units, or expand secondary page families while the core Journey remains open.
 
 ### Frame
 
@@ -164,6 +190,9 @@ shared decisions sequential. Parallel discovery or workers remain optional.
 Collect real feedback from the closest useful boundary: diff, deterministic test,
 API or stored state, browser interaction, screenshot, build artifact, or external
 state. Select the observation provider from the claim, not from workflow habit.
+After an active visible page or state becomes coherent, inspect its target runtime
+and viewport before moving to an unrelated surface; exercise the reachable
+normal, loading, empty, error, and permission states needed by the Journey.
 
 ### Verify
 
@@ -187,6 +216,10 @@ the cause, and repair, reframe, change approach, use a claim-equivalent fallback
 or stop.
 Retry only when the next attempt changes a relevant condition. Two equivalent
 failures require a changed path.
+
+Until the active Journey is done or explicitly held, its highest-priority failed
+claim remains the default next move. Passing a page, API, mock, or unit-test slice
+does not authorize horizontal expansion by itself.
 
 ## Keep nested evidence scopes
 
